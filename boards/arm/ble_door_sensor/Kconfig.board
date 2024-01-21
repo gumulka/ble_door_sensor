@@ -1,0 +1,3 @@
+config BOARD_BLE_DOOR_SENSOR
+	bool "BLE door sensor"
+	depends on SOC_NRF52832_QFAA

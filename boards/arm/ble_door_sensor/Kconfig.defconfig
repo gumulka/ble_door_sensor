@@ -1,0 +1,9 @@
+if BOARD_BLE_DOOR_SENSOR
+
+config BOARD
+	default "ble_door_sensor"
+
+config BT_CTLR
+	default BT
+
+endif # BOARD_BLE_DOOR_SENSOR
