@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52832_qfaa.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 / {
 	model = "BLE door sensor";
@@ -23,6 +24,20 @@
 
 	aliases {
 		watchdog0 = &wdt0;
+	};
+
+	buttons {
+		compatible = "gpio-keys";
+		hall_sensor_left: hall_sensor_left {
+			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+			label = "Left hall sensor";
+			zephyr,code = <INPUT_KEY_0>;
+		};
+		hall_sensor_right: hall_sensor_right {
+			gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
+			label = "Right hall Sensor";
+			zephyr,code = <INPUT_KEY_1>;
+		};
 	};
 };
 
