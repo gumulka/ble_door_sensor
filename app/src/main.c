@@ -1,4 +1,5 @@
 #include <zephyr/kernel.h>
+#include <zephyr/drivers/adc.h>
 #include <zephyr/drivers/gpio.h>
 
 #include <zephyr/bluetooth/bluetooth.h>
@@ -22,6 +23,7 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 #define BTHOME_VALUE_DOOR_OPEN     0x01
 #define BTHOME_VALUE_WINDOW_CLOSED 0x00
 #define BTHOME_VALUE_WINDOW_OPEN   0x01
+#define BTHOME_VALUE_BATTERY_ERROR 0xFF // just a first guess from my side. Need to verify
 
 #define BTHOME_SERVICE_UUID 0xfcd2
 
@@ -32,10 +34,13 @@ static uint8_t service_data[] = {
 	BTHOME_VALUE_DOOR_CLOSED,
 	BTHOME_SENSOR_BINARY_WINDOW,
 	BTHOME_VALUE_DOOR_CLOSED,
+	BTHOME_SENSOR_BATTERY,
+	0,
 };
 
 #define POS_FIRST_WINDOW_DATA  4
 #define POS_SECOND_WINDOW_DATA 6
+#define POS_BATTERY_DATA       8
 
 static struct bt_data ad[] = {
 	BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR),
@@ -48,6 +53,8 @@ static const struct gpio_dt_spec hall_sensor_right =
 	GPIO_DT_SPEC_GET(DT_NODELABEL(hall_sensor_right), gpios);
 static struct gpio_callback hall_sensor_left_callback;
 static struct gpio_callback hall_sensor_right_callback;
+
+static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
 
 static void bt_ready(int err)
 {
@@ -93,6 +100,48 @@ void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 	k_work_submit(&ble_adv_work);
 }
 
+static void read_supply_voltage(struct k_work *_work)
+{
+	struct k_work_delayable *work = k_work_delayable_from_work(_work);
+	k_work_reschedule(work, K_HOURS(12));
+	LOG_DBG("Reading ADC");
+	static int adc_read_error_counter = 0;
+	uint16_t buf;
+	struct adc_sequence sequence = {
+		.buffer = &buf,
+		/* buffer size in bytes, not number of samples */
+		.buffer_size = sizeof(buf),
+	};
+	(void)adc_sequence_init_dt(&soc_voltage, &sequence);
+
+	int err = adc_read_dt(&soc_voltage, &sequence);
+	if (err < 0) {
+		printk("Could not read ADC (%d)\n", err);
+		adc_read_error_counter++;
+		if (adc_read_error_counter > 10) {
+			service_data[POS_BATTERY_DATA] = BTHOME_VALUE_BATTERY_ERROR;
+		}
+		return;
+	}
+	adc_read_error_counter = 0;
+	int32_t battery = (int32_t)buf;
+	LOG_DBG("Raw value: %" PRId32, battery);
+	adc_raw_to_millivolts_dt(&soc_voltage, &battery);
+	// convert mv to percentage with 3.3V beeing 100% and 2.5V beeing 0%
+	// This is not a battery curve, just some calculations for better or worse.
+	battery -= 2500;
+	battery /= 8;
+	if (battery > 100) {
+		battery = 100;
+	} else if (battery < 0) {
+		battery = 0;
+	}
+	LOG_INF("New Battery value: %d", battery);
+	service_data[POS_BATTERY_DATA] = (char)battery;
+	k_work_submit(&ble_adv_work);
+}
+K_WORK_DELAYABLE_DEFINE(adc_read_work, read_supply_voltage);
+
 int configure_sensor(const struct gpio_dt_spec *hall_sensor,
 		     struct gpio_callback *hall_sensor_callback)
 {
@@ -122,6 +171,22 @@ int configure_sensor(const struct gpio_dt_spec *hall_sensor,
 	return 0;
 }
 
+int configure_adc(const struct adc_dt_spec *adc)
+{
+	if (!adc_is_ready_dt(adc)) {
+		printk("ADC controller device %s not ready\n", adc->dev->name);
+		return -EBADFD;
+	}
+
+	int ret = adc_channel_setup_dt(adc);
+	if (ret < 0) {
+		printk("Could not setup adc (%d)\n", ret);
+		return ret;
+	}
+
+	return 0;
+}
+
 int main(void)
 {
 	int ret;
@@ -138,7 +203,13 @@ int main(void)
 		return ret;
 	}
 
+	ret = configure_adc(&soc_voltage);
+	if (ret < 0) {
+		return ret;
+	}
+
 	read_sensor_data();
+	read_supply_voltage(&adc_read_work.work);
 
 	/* Initialize the Bluetooth Subsystem */
 	ret = bt_enable(bt_ready);
