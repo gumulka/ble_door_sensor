@@ -3,6 +3,7 @@
 #include <zephyr/drivers/gpio.h>
 
 #include <zephyr/bluetooth/bluetooth.h>
+#include <zephyr/bluetooth/hci_types.h>
 #include <zephyr/bluetooth/uuid.h>
 
 #include <zephyr/logging/log.h>
@@ -66,8 +67,9 @@ static void bt_ready(int err)
 	LOG_INF("Bluetooth initialized");
 
 	/* Start advertising */
-	err = bt_le_adv_start(BT_LE_ADV_PARAM(BT_LE_ADV_OPT_USE_IDENTITY, BT_GAP_ADV_SLOW_INT_MIN,
-					      BT_GAP_ADV_SLOW_INT_MAX, NULL),
+	err = bt_le_adv_start(BT_LE_ADV_PARAM(BT_LE_ADV_OPT_USE_IDENTITY,
+					      BT_LE_ADV_INTERVAL_MAX / 2, BT_LE_ADV_INTERVAL_MAX,
+					      NULL),
 			      ad, ARRAY_SIZE(ad), NULL, 0);
 	if (err) {
 		LOG_ERR("Advertising failed to start (err %d)", err);
@@ -86,7 +88,7 @@ static void ble_adv_handler(struct k_work *_work)
 }
 K_WORK_DEFINE(ble_adv_work, ble_adv_handler);
 
-void read_sensor_data()
+static void read_sensor_data()
 {
 	service_data[POS_FIRST_WINDOW_DATA] = !gpio_pin_get_dt(&hall_sensor_left);
 	service_data[POS_SECOND_WINDOW_DATA] = !gpio_pin_get_dt(&hall_sensor_right);
@@ -94,7 +96,7 @@ void read_sensor_data()
 		service_data[POS_SECOND_WINDOW_DATA]);
 }
 
-void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
+static void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
 	read_sensor_data();
 	k_work_submit(&ble_adv_work);
@@ -142,8 +144,8 @@ static void read_supply_voltage(struct k_work *_work)
 }
 K_WORK_DELAYABLE_DEFINE(adc_read_work, read_supply_voltage);
 
-int configure_sensor(const struct gpio_dt_spec *hall_sensor,
-		     struct gpio_callback *hall_sensor_callback)
+static int configure_sensor(const struct gpio_dt_spec *hall_sensor,
+			    struct gpio_callback *hall_sensor_callback)
 {
 	int ret;
 	if (!gpio_is_ready_dt(hall_sensor)) {
@@ -171,7 +173,7 @@ int configure_sensor(const struct gpio_dt_spec *hall_sensor,
 	return 0;
 }
 
-int configure_adc(const struct adc_dt_spec *adc)
+static int configure_adc(const struct adc_dt_spec *adc)
 {
 	if (!adc_is_ready_dt(adc)) {
 		printk("ADC controller device %s not ready\n", adc->dev->name);
