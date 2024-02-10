@@ -25,4 +25,9 @@
     (thermal_bridge_angle 45) (tstamp d1469008-e341-4ed7-8ade-11b3004a9cf0))
   (pad "2" smd roundrect (at 0 9 180) (size 2.286 1.524) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
     (thermal_bridge_angle 45) (tstamp e69b63f1-42a7-4469-96b0-93583d0a4237))
+  (model "${KIPRJMOD}/Library.pretty/3D/reed_contact.step"
+    (offset (xyz 0 0 0.23))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 90))
+  )
 )
