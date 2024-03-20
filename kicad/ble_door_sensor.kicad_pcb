@@ -143,6 +143,8 @@
 			(outputdirectory "")
 		)
 	)
+	(property "date" "19.03.2024")
+	(property "version" "v0.2")
 	(net 0 "")
 	(net 1 "GND")
 	(net 2 "VCC")
@@ -5241,6 +5243,17 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+		(model "${KIPRJMOD}/3D-Models/Sensirion-SHTC3.step"
+			(offset
+				(xyz -122.25 -17.25 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 0 0)
 			)
 		)
 	)
