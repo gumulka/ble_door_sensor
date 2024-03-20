@@ -6544,7 +6544,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Library:JLCPCB_Mounting_hole"
+		(property "Footprint" "g-Misc:JLCPCB_Mounting_hole"
 			(at 237.49 151.13 0)
 			(effects
 				(font
@@ -7089,7 +7089,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Library:reed_contact"
+		(property "Footprint" "g-Sensors:reed_contact"
 			(at 248.92 54.61 0)
 			(effects
 				(font
@@ -9437,7 +9437,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Library:JLCPCB_Mounting_hole"
+		(property "Footprint" "g-Misc:JLCPCB_Mounting_hole"
 			(at 257.81 151.13 0)
 			(effects
 				(font
@@ -10949,7 +10949,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Library:JLCPCB_Mounting_hole"
+		(property "Footprint" "g-Misc:JLCPCB_Mounting_hole"
 			(at 215.9 151.13 0)
 			(effects
 				(font

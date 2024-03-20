@@ -224,7 +224,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -296,7 +296,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "Crystal*")
 		(path "/f3bdcfd4-f183-4b92-b854-670d894aa00c")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -497,7 +499,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -557,7 +559,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/88c6b5a4-6373-4184-8f72-364298f73502")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -701,7 +705,7 @@
 			)
 		)
 	)
-	(footprint "Library:JLCPCB_Mounting_hole"
+	(footprint "g-Misc:JLCPCB_Mounting_hole"
 		(layer "F.Cu")
 		(uuid "1ce327a3-6320-4d30-99de-55007b1d5947")
 		(at 144 42)
@@ -710,7 +714,7 @@
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "3c1505c2-2ca6-4009-b1a7-75474887ead7")
+			(uuid "7188f192-ed99-4c68-bb3f-9057deccac27")
 			(effects
 				(font
 					(size 1 1)
@@ -722,7 +726,7 @@
 			(at 0 2.286 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "fe1a94bf-79bd-4079-8e5c-d178716393de")
+			(uuid "af7e3a90-11bc-4b51-8c5e-8b30aeae2242")
 			(effects
 				(font
 					(size 1 1)
@@ -730,12 +734,12 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "g-Misc:JLCPCB_Mounting_hole"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "501f2279-e644-45c7-8228-e4decbcd249e")
+			(uuid "4a7a7bde-011b-4e06-858b-878d24f1f686")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -747,7 +751,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e7a500ce-e026-4627-a5d8-a79aa0c9c9fa")
+			(uuid "14de0f59-a5d3-44a2-aadb-79d27b3338cc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -759,7 +763,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3c4ad9f0-6952-4093-bb74-ae5ba5349717")
+			(uuid "a15fc644-77aa-4939-8d6d-b11b6943e60c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -802,8 +806,11 @@
 				)
 			)
 		)
+		(property ki_fp_filters "MountingHole*")
 		(path "/81cdee7c-f64a-421c-9e52-30ef54fccd44")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
+		(zone_connect 0)
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
@@ -814,13 +821,13 @@
 			)
 			(fill none)
 			(layer "Margin")
-			(uuid "4c608673-fb49-4654-ade5-de75fb258e3f")
+			(uuid "a8de1d46-b9d7-4b04-95c5-f8f944112551")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 4.064 0)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "034e0cd3-ba4c-43bd-9e3e-6473ca9ee696")
+			(uuid "7298c76c-056d-45dc-817d-096b088eba16")
 			(effects
 				(font
 					(size 1 1)
@@ -836,7 +843,7 @@
 			(solder_mask_margin 0.148)
 			(clearance 0.248)
 			(zone_connect 0)
-			(uuid "04d741be-b04c-474b-a073-1430d8c05e9b")
+			(uuid "520f0d65-f44a-47a5-9953-9447e8005436")
 		)
 	)
 	(footprint "MountingHole:MountingHole_2.2mm_M2"
@@ -869,7 +876,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -941,7 +948,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "MountingHole*")
 		(path "/e2c4bbd3-597c-454c-a078-9f6dad4cfe32")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
@@ -1014,7 +1023,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DFN_QFN:QFN-48-1EP_6x6mm_P0.4mm_EP4.6x4.6mm"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1026,7 +1035,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "http://infocenter.nordicsemi.com/pdf/nRF52832_PS_v1.4.pdf"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1086,7 +1095,10 @@
 				)
 			)
 		)
+		(property ki_fp_filters "QFN*1EP*6x6mm*P0.4mm*")
 		(path "/a247b1f5-7003-481a-ad92-fc420a5a6952")
+		(sheetname "Root")
+		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 3.11 -3.11)
@@ -1887,7 +1899,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 -135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1947,7 +1959,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/4e914b98-094d-4068-a312-41e8f9fd981d")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2120,7 +2134,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2180,7 +2194,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/d35e0357-ce09-4789-84b2-ac006f761add")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2353,7 +2369,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2413,7 +2429,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/7664fffe-6165-41f8-a29b-37b39135206b")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2557,7 +2575,7 @@
 			)
 		)
 	)
-	(footprint "Library:reed_contact"
+	(footprint "g-Sensors:reed_contact"
 		(locked yes)
 		(layer "F.Cu")
 		(uuid "3d059802-3e0c-4448-90f3-9f0f035d5a34")
@@ -2567,7 +2585,7 @@
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "c367f452-d33d-469e-935f-ab843a1ea1bf")
+			(uuid "b6942193-3dbc-430e-9254-6ad848037e93")
 			(effects
 				(font
 					(size 1 1)
@@ -2579,7 +2597,7 @@
 			(at -4 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "2207a5c3-0205-477c-ad5b-b7b38e3fa387")
+			(uuid "1cd8db4f-d389-4de0-9e5f-6a9f93a157f5")
 			(effects
 				(font
 					(size 1 1)
@@ -2587,12 +2605,12 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "g-Sensors:reed_contact"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d27656d8-52e3-419f-97f8-b493354a16ef")
+			(uuid "56b302b5-918c-4b43-bada-d2e155955b0e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2604,7 +2622,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "edfceb0a-7341-49fc-9ce9-0c52acb5aaeb")
+			(uuid "ab9cd2e1-03d9-44c8-81ce-8d27407db391")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2616,7 +2634,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b3305f1c-f172-4ac5-81b8-7aaaa04fcc08")
+			(uuid "db557664-5280-451d-915f-2cab553dcebb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2648,6 +2666,7 @@
 			)
 		)
 		(path "/220d28f8-7a7e-4e81-8e19-0821ae879a7b")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2658,7 +2677,7 @@
 				(type default)
 			)
 			(layer "Edge.Cuts")
-			(uuid "270f0d52-fcb8-46e8-b5eb-1291c33ecb94")
+			(uuid "8feedaff-503e-49d3-be29-4cd2153fb110")
 		)
 		(fp_line
 			(start -1.5 7.5)
@@ -2668,7 +2687,7 @@
 				(type default)
 			)
 			(layer "Edge.Cuts")
-			(uuid "2339a3d6-2e73-4885-b5cd-10e8cd01f0c1")
+			(uuid "9fee49e3-b93a-4325-9be7-464c1b467b51")
 		)
 		(fp_line
 			(start 1.5 -7.5)
@@ -2678,7 +2697,7 @@
 				(type default)
 			)
 			(layer "Edge.Cuts")
-			(uuid "e667dabc-3c44-4acf-828e-d9fac066cd3d")
+			(uuid "90a08f17-b2ec-4cbc-976d-f24457745116")
 		)
 		(fp_rect
 			(start -1.25 -10)
@@ -2689,13 +2708,13 @@
 			)
 			(fill none)
 			(layer "F.CrtYd")
-			(uuid "f86ab57b-bc33-4a97-b9d8-02917edbd733")
+			(uuid "b5567343-761e-4fee-9e0a-7a9367376591")
 		)
 		(fp_text user "${REFERENCE}"
 			(at -2.5 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "b17e9018-9055-4432-8900-a125474c5411")
+			(uuid "af3c2a58-07d5-4526-86b7-073e53cb2736")
 			(effects
 				(font
 					(size 1 1)
@@ -2712,7 +2731,7 @@
 			(pinfunction "1")
 			(pintype "passive")
 			(thermal_bridge_angle 45)
-			(uuid "7061cde9-2628-40f0-a0a6-0884b8a08169")
+			(uuid "1bcca73f-8cbe-405b-b2fc-3afe5cac9586")
 		)
 		(pad "2" smd roundrect
 			(at 0 9 180)
@@ -2722,11 +2741,10 @@
 			(net 1 "GND")
 			(pinfunction "2")
 			(pintype "passive")
-			(zone_connect 2)
 			(thermal_bridge_angle 45)
-			(uuid "a00b8375-78fe-47de-a0f7-9063e727ad69")
+			(uuid "58d110af-e9c4-47d1-aeda-ff302ec225b6")
 		)
-		(model "${KIPRJMOD}/Library.pretty/3D/reed_contact.step"
+		(model "${KIPRJMOD}/library/g-Sensors.pretty/3D/reed_contact.step"
 			(offset
 				(xyz 0 0 0.23)
 			)
@@ -2767,7 +2785,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
 			(at 0 0 45)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2839,7 +2857,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/60f734ce-559b-47c7-a260-6b96170228dd")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -3014,7 +3034,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Battery:BatteryHolder_Keystone_3034_1x20mm"
 			(at 0 0 -90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3087,6 +3107,7 @@
 			)
 		)
 		(path "/5a3a5672-34e8-449a-bc2e-1691861823f7")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -3609,7 +3630,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3669,7 +3690,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/6e4cfaed-2110-449d-87c6-b6a63cc0447e")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -3842,7 +3865,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3902,7 +3925,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/942ef49f-9b8b-4f5f-bfe5-737ced6f1b0e")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -4075,7 +4100,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 -45)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4135,7 +4160,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/5e54e61d-a54e-4601-baba-6c7d171b8abc")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -4308,7 +4335,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4368,7 +4395,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "LED* LED_SMD:* LED_THT:*")
 		(path "/be2f5c11-2dd6-4289-af7e-d100d35c124e")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -4563,7 +4592,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4623,7 +4652,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/fefd57b6-61a8-47e2-a59a-9a546c795274")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -4797,7 +4828,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4869,7 +4900,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "MountingHole*")
 		(path "/25e4cf2a-847a-4375-85d3-e6f76ab93ede")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
@@ -4942,7 +4975,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Sensor_Humidity:Sensirion_DFN-4-1EP_2x2mm_P1mm_EP0.7x1.6mm"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4954,7 +4987,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHTC3_Datasheet.pdf"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5014,7 +5047,10 @@
 				)
 			)
 		)
+		(property ki_fp_filters "Sensirion*DFN*1EP*2x2mm*P1mm*EP0.7x1.6mm*")
 		(path "/69eac76e-b553-455d-a35d-e8ef533181f8")
+		(sheetname "Root")
+		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -1 -1.11)
@@ -5286,7 +5322,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5346,7 +5382,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/cd717525-d4f0-4845-850e-262592fa98ff")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -5519,7 +5557,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5579,7 +5617,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/c4d89009-09cf-46d2-b729-818d88a9babd")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -5752,7 +5792,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5812,7 +5852,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/e60c4e6e-f2a9-455a-b27e-148a0b12c323")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -5985,7 +6027,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 -135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6069,7 +6111,10 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/ccae0a5e-6390-4344-a01e-c9bcf5b7ba8e")
+		(sheetname "Root")
+		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd exclude_from_bom dnp)
 		(fp_line
 			(start -0.107836 0.36)
@@ -6241,7 +6286,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 -135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6301,7 +6346,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/5ccb384b-f55a-4c63-8250-0e4641b639e5")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -6475,7 +6522,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "RF_Antenna:Texas_SWRA117D_2.4GHz_Right"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6548,6 +6595,7 @@
 			)
 		)
 		(path "/f1b27ede-295e-4d9e-9cb6-128e6e0259a5")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(net_tie_pad_groups "1,2")
@@ -6775,7 +6823,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6787,7 +6835,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "http://www.ti.com/lit/gpn/tmp100"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6847,7 +6895,10 @@
 				)
 			)
 		)
+		(property ki_fp_filters "SOT?23*")
 		(path "/8a8ea1d8-a642-40ff-979c-3082822d9638")
+		(sheetname "Root")
+		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 0 -1.56)
@@ -7103,7 +7154,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7163,7 +7214,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/85029a09-f5c9-4a1d-b1f5-8247b8bb633a")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -7307,7 +7360,7 @@
 			)
 		)
 	)
-	(footprint "Library:JLCPCB_Mounting_hole"
+	(footprint "g-Misc:JLCPCB_Mounting_hole"
 		(layer "F.Cu")
 		(uuid "b31f1036-101d-4fe0-875b-c639ac1afc94")
 		(at 142.5 99)
@@ -7316,7 +7369,7 @@
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "4c88a28d-a8b1-4f8d-a428-e4bbade07fe9")
+			(uuid "4a87dd43-90b1-4dc8-8ce0-423b7ad4a2c3")
 			(effects
 				(font
 					(size 1 1)
@@ -7328,7 +7381,7 @@
 			(at 0 2.286 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "3ce82193-2b4e-420d-ac94-80d960130446")
+			(uuid "7a69946a-000e-45c1-a86d-911671909ad5")
 			(effects
 				(font
 					(size 1 1)
@@ -7336,12 +7389,12 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "g-Misc:JLCPCB_Mounting_hole"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3be46e85-0f01-4fd2-90d6-d5bd36c21b47")
+			(uuid "06a29260-c906-4853-8dfb-282016e4b9b4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7353,7 +7406,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "63dcb6a7-8094-4ce9-9103-73d331db3fd0")
+			(uuid "76bab741-6d69-4652-90c8-66b0c594c4ab")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7365,7 +7418,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f047e1dd-f9f8-495e-953a-ac57c4dc18c0")
+			(uuid "7d638416-57bb-4c0b-b579-1796bd0f5e2e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7408,8 +7461,11 @@
 				)
 			)
 		)
+		(property ki_fp_filters "MountingHole*")
 		(path "/040e20dc-b36e-4575-bc5d-201ef4e96bce")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
+		(zone_connect 0)
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
@@ -7420,13 +7476,13 @@
 			)
 			(fill none)
 			(layer "Margin")
-			(uuid "56a3ce66-a01d-4a56-8e2a-b46aab2b8280")
+			(uuid "fde0cfd2-377b-4dba-b4db-52cd65a8398a")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 4.064 0)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "25805a2b-442f-4718-b4f4-67d8c3f678fc")
+			(uuid "19a2c2a3-c9b8-4fc5-bfef-5d6fd9125aa0")
 			(effects
 				(font
 					(size 1 1)
@@ -7442,7 +7498,7 @@
 			(solder_mask_margin 0.148)
 			(clearance 0.248)
 			(zone_connect 0)
-			(uuid "7223b378-55bf-42aa-a32a-6db1ba7f257f")
+			(uuid "19aef69c-9f02-48e6-ab9a-06c47b78bb7c")
 		)
 	)
 	(footprint "Button_Switch_SMD:SW_SPST_TL3342"
@@ -7474,7 +7530,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_TL3342"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7547,6 +7603,7 @@
 			)
 		)
 		(path "/5531d5c9-3168-4416-809f-c81f28825617")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -8088,7 +8145,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 -90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8148,7 +8205,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/7f5f15ae-66ce-4f26-909c-f38d75b216cb")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -8321,7 +8380,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8333,7 +8392,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/TC2030-CTX_1.pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8381,19 +8440,9 @@
 				)
 			)
 		)
-		(property "exclude_from_bom" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d2fdf587-6256-4555-bf97-fca77bb1953f")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
+		(property ki_fp_filters "*TC2030*")
 		(path "/c7a7c26d-4783-4519-8037-5fab899a79aa")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
@@ -8611,7 +8660,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 0 0 -135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8672,6 +8721,7 @@
 			)
 		)
 		(path "/271ae0b8-00cd-46bf-af15-83437d425836")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -8866,7 +8916,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8926,7 +8976,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/40b7427b-d1a6-4fae-b0a8-dfe47ae502ee")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9070,7 +9122,7 @@
 			)
 		)
 	)
-	(footprint "Library:JLCPCB_Mounting_hole"
+	(footprint "g-Misc:JLCPCB_Mounting_hole"
 		(layer "F.Cu")
 		(uuid "e9e93e08-3525-41e5-bfc3-cf286e0bae89")
 		(at 126 42)
@@ -9079,7 +9131,7 @@
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "7e27a8fe-8488-4fa2-905a-e1fb4f0ac966")
+			(uuid "58722d1c-a4ab-4277-8f24-9849b0a0d3e8")
 			(effects
 				(font
 					(size 1 1)
@@ -9091,7 +9143,7 @@
 			(at 0 2.286 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "9826ab5f-65f9-4d92-8db5-98d4598b86fa")
+			(uuid "59a2a597-9253-4103-82fe-4ffdcf4e797a")
 			(effects
 				(font
 					(size 1 1)
@@ -9099,12 +9151,12 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "g-Misc:JLCPCB_Mounting_hole"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1ebcb4fb-6f67-4070-a563-6eeaa22e8cb0")
+			(uuid "25c3926f-5cc8-406c-beac-385f161e8173")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9116,7 +9168,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0773e91c-7b0f-4f59-a650-3f28d3d76fd5")
+			(uuid "b443e880-5bf6-4667-a5e1-6606681c4948")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9128,7 +9180,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "49a1ce35-6ca9-4443-8c8e-e1845f34a1a9")
+			(uuid "e691c9ee-47ee-4a75-9ddf-f22fc91ee625")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9171,8 +9223,11 @@
 				)
 			)
 		)
+		(property ki_fp_filters "MountingHole*")
 		(path "/af81bdd7-6e24-411c-9cc0-6bf4d32ee941")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
+		(zone_connect 0)
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
@@ -9183,13 +9238,13 @@
 			)
 			(fill none)
 			(layer "Margin")
-			(uuid "8115b07e-0c6c-43c0-a3c3-b4bbef2f513a")
+			(uuid "4c8e97a0-b6eb-4c05-a36c-ac933cd59cbf")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 4.064 0)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "c6024aa0-c57c-4902-9c16-69413ecd4582")
+			(uuid "341bab56-0be6-4794-9353-4621c40c4835")
 			(effects
 				(font
 					(size 1 1)
@@ -9205,7 +9260,7 @@
 			(solder_mask_margin 0.148)
 			(clearance 0.248)
 			(zone_connect 0)
-			(uuid "4eadc865-f9a7-4029-b59c-b5a701566dc5")
+			(uuid "5bc92cc6-8da7-4ff9-8b40-160ee57b5d93")
 		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
@@ -9237,7 +9292,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9297,7 +9352,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "R_*")
 		(path "/a0f7c7dd-fa56-404f-b10f-343d54555251")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9470,7 +9527,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 45)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9530,7 +9587,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/49f5dedf-d38c-4298-ba9c-14da29aeee3a")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9703,7 +9762,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
 			(at 0 0 -135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -9775,7 +9834,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/a829690e-fce7-4f8f-a4bf-52453a89ecbb")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9930,7 +9991,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10002,7 +10063,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/0a321c43-329c-429c-a64f-ac8e98e49a75")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -10157,7 +10220,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 0 0 -45)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10217,7 +10280,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/9ccd30b4-1123-4953-a5be-c0624e8b0fe5")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -10390,7 +10455,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -10450,7 +10515,9 @@
 				)
 			)
 		)
+		(property ki_fp_filters "C_*")
 		(path "/acb021f9-a547-4173-978a-64930e7201b9")
+		(sheetname "Root")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -11096,7 +11163,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical_SMD_Pin1Left"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -11158,7 +11225,10 @@
 				(justify mirror)
 			)
 		)
+		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/20131899-95c5-47a1-8257-e4c447b00433")
+		(sheetname "Root")
+		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 1.33 10.22)
