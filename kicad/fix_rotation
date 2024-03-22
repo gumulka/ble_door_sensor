@@ -12,13 +12,12 @@ mappings = {
     "SOT-363": 180,
     "SOT-23": 180,
     "SOT-23W": 90,
-    "VQFN-24": 270
+    "VQFN-24": 270,
+    "Sensirion_DFN-4": 270,
 }
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-                    prog = 'Fix Rotation',
-                    description = 'Fixes rotation in position file for JLCPCB')
+    parser = argparse.ArgumentParser(prog="Fix Rotation", description="Fixes rotation in position file for JLCPCB")
     parser.add_argument("-i", "--infile", required=True)
     parser.add_argument("-o", "--outfile", required=True)
     args = parser.parse_args()

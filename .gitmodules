@@ -1,0 +1,3 @@
+[submodule "kicad/library"]
+	path = kicad/library
+	url = ../my-kicad-libraries.git

@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "g-Sensors")(type "KiCad")(uri "${KIPRJMOD}/library/g-Sensors.pretty")(options "")(descr ""))
+  (lib (name "g-Misc")(type "KiCad")(uri "${KIPRJMOD}/library/g-Misc.pretty")(options "")(descr ""))
+)
