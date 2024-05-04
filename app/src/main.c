@@ -20,11 +20,16 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 #define BTHOME_SENSOR_BINARY_DOOR    0x1A
 #define BTHOME_SENSOR_BINARY_WINDOW  0x2D
 
-#define BTHOME_VALUE_DOOR_CLOSED   0x00
-#define BTHOME_VALUE_DOOR_OPEN     0x01
-#define BTHOME_VALUE_WINDOW_CLOSED 0x00
-#define BTHOME_VALUE_WINDOW_OPEN   0x01
-#define BTHOME_VALUE_BATTERY_ERROR 0xFF // just a first guess from my side. Need to verify
+#define BTHOME_VALUE_DOOR_CLOSED         0x00
+#define BTHOME_VALUE_DOOR_OPEN           0x01
+#define BTHOME_VALUE_BUTTON_NONE         0x00
+#define BTHOME_VALUE_BUTTON_PRESSED      0x01
+#define BTHOME_VALUE_BUTTON_DOUBLE_PRESS 0x02
+#define BTHOME_VALUE_BUTTON_TRIPLE_PRESS 0x03
+#define BTHOME_VALUE_BUTTON_LONG_PRESS   0x03
+#define BTHOME_VALUE_WINDOW_CLOSED       0x00
+#define BTHOME_VALUE_WINDOW_OPEN         0x01
+#define BTHOME_VALUE_BATTERY_ERROR       0xFF // just a first guess from my side. Need to verify
 
 #define BTHOME_SERVICE_UUID 0xfcd2
 
@@ -33,27 +38,25 @@ static uint8_t service_data[] = {
 	BTHOME_INFO_VERSION | BTHOME_INFO_IRREGULAR_INTERVAL | BTHOME_INFO_UNENCRYPTED_DATA,
 	BTHOME_SENSOR_BINARY_WINDOW,
 	BTHOME_VALUE_DOOR_CLOSED,
-	BTHOME_SENSOR_BINARY_WINDOW,
-	BTHOME_VALUE_DOOR_CLOSED,
+	BTHOME_SENSOR_BUTTON,
+	BTHOME_VALUE_BUTTON_NONE,
 	BTHOME_SENSOR_BATTERY,
 	0,
 };
 
-#define POS_FIRST_WINDOW_DATA  4
-#define POS_SECOND_WINDOW_DATA 6
-#define POS_BATTERY_DATA       8
+#define POS_HALL_EFFECT_DATA 4
+#define POS_BUTTON_DATA      6
+#define POS_BATTERY_DATA     8
 
 static struct bt_data ad[] = {
 	BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR),
 	BT_DATA(BT_DATA_NAME_COMPLETE, CONFIG_BT_DEVICE_NAME, sizeof(CONFIG_BT_DEVICE_NAME) - 1),
 	BT_DATA(BT_DATA_SVC_DATA16, service_data, ARRAY_SIZE(service_data))};
 
-static const struct gpio_dt_spec hall_sensor_left =
-	GPIO_DT_SPEC_GET(DT_NODELABEL(hall_sensor_left), gpios);
-static const struct gpio_dt_spec hall_sensor_right =
-	GPIO_DT_SPEC_GET(DT_NODELABEL(hall_sensor_right), gpios);
-static struct gpio_callback hall_sensor_left_callback;
-static struct gpio_callback hall_sensor_right_callback;
+static const struct gpio_dt_spec hall_sensor = GPIO_DT_SPEC_GET(DT_NODELABEL(hall_sensor), gpios);
+static const struct gpio_dt_spec button = GPIO_DT_SPEC_GET(DT_NODELABEL(button), gpios);
+static struct gpio_callback hall_sensor_callback;
+static struct gpio_callback button_callback;
 
 static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
 
@@ -90,10 +93,10 @@ K_WORK_DEFINE(ble_adv_work, ble_adv_handler);
 
 static void read_sensor_data()
 {
-	service_data[POS_FIRST_WINDOW_DATA] = !gpio_pin_get_dt(&hall_sensor_left);
-	service_data[POS_SECOND_WINDOW_DATA] = !gpio_pin_get_dt(&hall_sensor_right);
-	LOG_DBG("Sensor values: %d, %d", service_data[POS_FIRST_WINDOW_DATA],
-		service_data[POS_SECOND_WINDOW_DATA]);
+	service_data[POS_HALL_EFFECT_DATA] = !gpio_pin_get_dt(&hall_sensor);
+	service_data[POS_BUTTON_DATA] = !!gpio_pin_get_dt(&button);
+	LOG_DBG("Sensor values: %d, %d", service_data[POS_HALL_EFFECT_DATA],
+		service_data[POS_BUTTON_DATA]);
 }
 
 static void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
@@ -195,12 +198,12 @@ int main(void)
 
 	LOG_INF("BLE Door Sensor");
 
-	ret = configure_sensor(&hall_sensor_left, &hall_sensor_left_callback);
+	ret = configure_sensor(&hall_sensor, &hall_sensor_callback);
 	if (ret < 0) {
 		return ret;
 	}
 
-	ret = configure_sensor(&hall_sensor_right, &hall_sensor_right_callback);
+	ret = configure_sensor(&button, &button_callback);
 	if (ret < 0) {
 		return ret;
 	}
