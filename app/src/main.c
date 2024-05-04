@@ -1,6 +1,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/adc.h>
 #include <zephyr/drivers/gpio.h>
+#include <zephyr/drivers/sensor.h>
 
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/hci_types.h>
@@ -16,9 +17,13 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 #define BTHOME_INFO_UNENCRYPTED_DATA   0x00
 
 #define BTHOME_SENSOR_BATTERY        0x01
+#define BTHOME_SENSOR_TEMPERATURE    0x02
+#define BTHOME_SENSOR_HUMIDITY_16    0x03
 #define BTHOME_SENSOR_BINARY_BATTERY 0x15
 #define BTHOME_SENSOR_BINARY_DOOR    0x1A
 #define BTHOME_SENSOR_BINARY_WINDOW  0x2D
+#define BTHOME_SENSOR_HUMIDITY_8     0x2E
+#define BTHOME_SENSOR_BUTTON         0x3A
 
 #define BTHOME_VALUE_DOOR_CLOSED         0x00
 #define BTHOME_VALUE_DOOR_OPEN           0x01
@@ -42,11 +47,18 @@ static uint8_t service_data[] = {
 	BTHOME_VALUE_BUTTON_NONE,
 	BTHOME_SENSOR_BATTERY,
 	0,
+	BTHOME_SENSOR_TEMPERATURE,
+	0,
+	0,
+	BTHOME_SENSOR_HUMIDITY_8,
+	0,
 };
 
 #define POS_HALL_EFFECT_DATA 4
 #define POS_BUTTON_DATA      6
 #define POS_BATTERY_DATA     8
+#define POS_TEMPERATURE_DATA 10
+#define POS_HUMIDITY_DATA    13
 
 static struct bt_data ad[] = {
 	BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR),
@@ -90,6 +102,43 @@ static void ble_adv_handler(struct k_work *_work)
 	}
 }
 K_WORK_DEFINE(ble_adv_work, ble_adv_handler);
+
+static void read_shtc_cb(struct k_work *_work)
+{
+	const struct device *const dev = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
+	struct sensor_value value;
+	int ret;
+	struct k_work_delayable *work = k_work_delayable_from_work(_work);
+	k_work_reschedule(work, K_MINUTES(10));
+
+	ret = sensor_sample_fetch_chan(dev, SENSOR_CHAN_ALL);
+	if (ret < 0) {
+		LOG_WRN("Could not fetch shtc data: %d", ret);
+		return;
+	}
+
+	ret = sensor_channel_get(dev, SENSOR_CHAN_AMBIENT_TEMP, &value);
+	if (ret < 0) {
+		LOG_WRN("Could not get temperature: %d", ret);
+		return;
+	}
+	LOG_DBG("Temperature is %0.1f°C", sensor_value_to_float(&value));
+	uint16_t temp = (uint16_t) (value.val1 * 100 + value.val2 / 10000);
+	service_data[POS_TEMPERATURE_DATA + 1] = (temp >> 8) & 0xFF;
+	service_data[POS_TEMPERATURE_DATA] = temp & 0xFF;
+
+	ret = sensor_channel_get(dev, SENSOR_CHAN_HUMIDITY, &value);
+	if (ret < 0) {
+		LOG_WRN("Could not get humidity: %d", ret);
+		return;
+	}
+	LOG_DBG("Humidity is %0.1f percent", sensor_value_to_float(&value));
+	service_data[POS_HUMIDITY_DATA] = (uint8_t) (value.val1 & 0xFF);
+
+	k_work_submit(&ble_adv_work);
+	return;
+}
+K_WORK_DELAYABLE_DEFINE(read_shtc_work, read_shtc_cb);
 
 static void read_sensor_data()
 {
@@ -215,6 +264,7 @@ int main(void)
 
 	read_sensor_data();
 	read_supply_voltage(&adc_read_work.work);
+	read_shtc_cb(&read_shtc_work.work);
 
 	/* Initialize the Bluetooth Subsystem */
 	ret = bt_enable(bt_ready);
