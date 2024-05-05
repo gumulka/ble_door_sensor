@@ -26,6 +26,7 @@
 		led0 = &led0;
 		sw0 = &button;
 		ambient-temp0 = &shtc3;
+		ambient-light0 = &light_sensor;
 		watchdog0 = &wdt0;
 	};
 
@@ -49,6 +50,13 @@
 			label = "User Button";
 			zephyr,code = <INPUT_KEY_1>;
 		};
+	};
+
+	light_sensor: ambient_light_sensor {
+		compatible = "phototransistor-special";
+		enable-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+		io-channels = <&adc 4>;
+		pulldown-ohm = <1000>;
 	};
 
 	zephyr,user {
@@ -87,6 +95,16 @@
 		zephyr,reference = "ADC_REF_INTERNAL";
 		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
 		zephyr,input-positive = <NRF_SAADC_VDD>;
+		zephyr,resolution = <12>;
+	};
+
+	channel@4 {
+		reg = <4>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>; /* 10us */
+		zephyr,input-positive = <NRF_SAADC_AIN4>; /* P0.28 */
+		zephyr,oversampling = <3>; /* x8 */
 		zephyr,resolution = <12>;
 	};
 };

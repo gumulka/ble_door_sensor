@@ -1,0 +1,28 @@
+# Copyright (c) 2024 Fabian Pflug
+# SPDX-License-Identifier: Apache-2.0
+
+description: Generic Phototransistor
+
+compatible: "phototransistor-special"
+
+include: [sensor-device.yaml]
+
+properties:
+  io-channels:
+    required: true
+    description: |
+      ADC IO channel connected to this phototransistor.
+
+  pulldown-ohm:
+    type: int
+    required: true
+    description: |
+      The pulldown resistance in the circuit.
+
+  enable-gpios:
+    type: phandle-array
+    required: true
+    description: |
+      GPIO to use to enable/disable the phototransistor. This GPIO is driven
+      active when the phototransistor is enabled and inactive when the
+      phototransistor is disabled.

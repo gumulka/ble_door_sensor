@@ -19,6 +19,7 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 #define BTHOME_SENSOR_BATTERY        0x01
 #define BTHOME_SENSOR_TEMPERATURE    0x02
 #define BTHOME_SENSOR_HUMIDITY_16    0x03
+#define BTHOME_SENSOR_ILLUMINANCE    0x05
 #define BTHOME_SENSOR_BINARY_BATTERY 0x15
 #define BTHOME_SENSOR_BINARY_DOOR    0x1A
 #define BTHOME_SENSOR_BINARY_WINDOW  0x2D
@@ -52,6 +53,10 @@ static uint8_t service_data[] = {
 	0,
 	BTHOME_SENSOR_HUMIDITY_8,
 	0,
+	BTHOME_SENSOR_ILLUMINANCE,
+	0,
+	0,
+	0,
 };
 
 #define POS_HALL_EFFECT_DATA 4
@@ -59,6 +64,7 @@ static uint8_t service_data[] = {
 #define POS_BATTERY_DATA     8
 #define POS_TEMPERATURE_DATA 10
 #define POS_HUMIDITY_DATA    13
+#define POS_ILLUMINANCE_DATA 15
 
 static struct bt_data ad[] = {
 	BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR),
@@ -71,6 +77,9 @@ static struct gpio_callback hall_sensor_callback;
 static struct gpio_callback button_callback;
 
 static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
+
+static const struct device *const shtc = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
+static const struct device *const light = DEVICE_DT_GET(DT_ALIAS(ambient_light0));
 
 static void bt_ready(int err)
 {
@@ -103,13 +112,10 @@ static void ble_adv_handler(struct k_work *_work)
 }
 K_WORK_DEFINE(ble_adv_work, ble_adv_handler);
 
-static void read_shtc_cb(struct k_work *_work)
+static void read_shtc(const struct device *dev)
 {
-	const struct device *const dev = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
 	struct sensor_value value;
 	int ret;
-	struct k_work_delayable *work = k_work_delayable_from_work(_work);
-	k_work_reschedule(work, K_MINUTES(10));
 
 	ret = sensor_sample_fetch_chan(dev, SENSOR_CHAN_ALL);
 	if (ret < 0) {
@@ -122,8 +128,8 @@ static void read_shtc_cb(struct k_work *_work)
 		LOG_WRN("Could not get temperature: %d", ret);
 		return;
 	}
-	LOG_DBG("Temperature is %0.1f°C", sensor_value_to_float(&value));
-	uint16_t temp = (uint16_t) (value.val1 * 100 + value.val2 / 10000);
+	LOG_DBG("Temperature is %d°C", value.val1);
+	uint16_t temp = (uint16_t)(value.val1 * 100 + value.val2 / 10000);
 	service_data[POS_TEMPERATURE_DATA + 1] = (temp >> 8) & 0xFF;
 	service_data[POS_TEMPERATURE_DATA] = temp & 0xFF;
 
@@ -132,13 +138,45 @@ static void read_shtc_cb(struct k_work *_work)
 		LOG_WRN("Could not get humidity: %d", ret);
 		return;
 	}
-	LOG_DBG("Humidity is %0.1f percent", sensor_value_to_float(&value));
-	service_data[POS_HUMIDITY_DATA] = (uint8_t) (value.val1 & 0xFF);
+	LOG_DBG("Humidity is %d percent", value.val1);
+	service_data[POS_HUMIDITY_DATA] = (uint8_t)(value.val1 & 0xFF);
+}
+
+static void read_ambient_light(const struct device *dev)
+{
+	struct sensor_value value;
+	int ret;
+
+	ret = sensor_sample_fetch_chan(dev, SENSOR_CHAN_ALL);
+	if (ret < 0) {
+		LOG_WRN("Could not fetch ambient light data: %d", ret);
+		return;
+	}
+
+	ret = sensor_channel_get(dev, SENSOR_CHAN_LIGHT, &value);
+	if (ret < 0) {
+		LOG_WRN("Could not get ambient light: %d", ret);
+		return;
+	}
+	uint32_t temp = (uint32_t)(value.val1 * 100 + value.val2 / 10000);
+	LOG_DBG("Light is %d centi lux", temp);
+	service_data[POS_ILLUMINANCE_DATA + 2] = (temp >> 16) & 0xFF;
+	service_data[POS_ILLUMINANCE_DATA + 1] = (temp >> 8) & 0xFF;
+	service_data[POS_ILLUMINANCE_DATA] = temp & 0xFF;
+}
+
+static void read_sensors_cb(struct k_work *_work)
+{
+	struct k_work_delayable *work = k_work_delayable_from_work(_work);
+	k_work_reschedule(work, K_MINUTES(10));
+
+	read_shtc(shtc);
+	read_ambient_light(light);
 
 	k_work_submit(&ble_adv_work);
 	return;
 }
-K_WORK_DELAYABLE_DEFINE(read_shtc_work, read_shtc_cb);
+K_WORK_DELAYABLE_DEFINE(read_sensors_work, read_sensors_cb);
 
 static void read_sensor_data()
 {
@@ -263,8 +301,9 @@ int main(void)
 	}
 
 	read_sensor_data();
+	read_shtc(shtc);
+	read_ambient_light(light);
 	read_supply_voltage(&adc_read_work.work);
-	read_shtc_cb(&read_shtc_work.work);
 
 	/* Initialize the Bluetooth Subsystem */
 	ret = bt_enable(bt_ready);
@@ -272,6 +311,8 @@ int main(void)
 		LOG_ERR("Bluetooth init failed (err %d)", ret);
 		return ret;
 	}
+
+	k_work_schedule(&read_sensors_work, K_MINUTES(1));
 
 	return 0;
 }

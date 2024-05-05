@@ -6,3 +6,4 @@ name: ble_door_sensor
 build:
   settings:
     board_root: .
+    dts_root: .
