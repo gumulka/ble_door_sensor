@@ -18,3 +18,5 @@ manifest:
           - cmsis
           - hal_nordic
           - tinycrypt
+          - zcbor
+          - mcuboot

@@ -3,6 +3,9 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
 
+#include <zephyr/sys/reboot.h>
+#include <zephyr/logging/log_ctrl.h>
+
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/hci_types.h>
 #include <zephyr/bluetooth/uuid.h>
@@ -81,6 +84,20 @@ static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zep
 static const struct device *const shtc = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
 static const struct device *const light = DEVICE_DT_GET(DT_ALIAS(ambient_light0));
 
+void k_sys_fatal_error_handler(unsigned int reason,
+				      const z_arch_esf_t *esf)
+{
+	ARG_UNUSED(esf);
+
+	LOG_PANIC();
+	LOG_ERR("Rebooting system");
+
+    sys_reboot(SYS_REBOOT_COLD);
+
+	CODE_UNREACHABLE; /* LCOV_EXCL_LINE */
+}
+
+
 static void bt_ready(int err)
 {
 	if (err) {
@@ -91,7 +108,7 @@ static void bt_ready(int err)
 	LOG_INF("Bluetooth initialized");
 
 	/* Start advertising */
-	err = bt_le_adv_start(BT_LE_ADV_PARAM(BT_LE_ADV_OPT_USE_IDENTITY,
+	err = bt_le_adv_start(BT_LE_ADV_PARAM(BT_LE_ADV_OPT_CONNECTABLE | BT_LE_ADV_OPT_USE_IDENTITY,
 					      BT_LE_ADV_INTERVAL_MAX / 2, BT_LE_ADV_INTERVAL_MAX,
 					      NULL),
 			      ad, ARRAY_SIZE(ad), NULL, 0);
