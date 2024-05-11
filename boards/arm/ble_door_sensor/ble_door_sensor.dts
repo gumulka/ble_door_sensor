@@ -65,7 +65,7 @@
 };
 
 &i2c0 {
-	compatible = "nordic,nrf-twi";
+	compatible = "nordic,nrf-twim";
 	status = "okay";
 
 	pinctrl-0 = <&i2c0_default>;
@@ -142,22 +142,22 @@
 			// 24kByte
 			reg = <0x00000000 0x06000>;
 		};
-		slot0_partition: partition@c000 {
+		slot0_partition: partition@6000 {
 			label = "image-0";
 			// 232kByte
 			reg = <0x00006000 0x3A000>;
 		};
-		slot1_partition: partition@3e000 {
+		slot1_partition: partition@40000 {
 			label = "image-1";
 			// 232kByte
 			reg = <0x00040000 0x3A000>;
 		};
-		scratch_partition: partition@70000 {
+		scratch_partition: partition@7a000 {
 			label = "image-scratch";
 			// 20kByte
 			reg = <0x0007A000 0x05000>;
 		};
-		storage_partition: partition@7a000 {
+		storage_partition: partition@7f000 {
 			label = "storage";
 			// 4kByte
 			reg = <0x0007F000 0x00001000>;
