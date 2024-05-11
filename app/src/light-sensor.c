@@ -11,8 +11,6 @@
 #include <zephyr/drivers/adc.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
-#include <zephyr/pm/device.h>
-#include <zephyr/pm/device_runtime.h>
 
 #include <zephyr/logging/log.h>
 #define DT_DRV_COMPAT phototransistor_special
@@ -35,7 +33,6 @@ static int phototransistor_sample_fetch(const struct device *dev, enum sensor_ch
 {
 	struct phototransistor_data *data = dev->data;
 	const struct phototransistor_config *cfg = dev->config;
-	enum pm_device_state pm_state;
 	int32_t val_mv;
 	int res;
 	struct adc_sequence sequence = {
@@ -44,11 +41,6 @@ static int phototransistor_sample_fetch(const struct device *dev, enum sensor_ch
 		.buffer_size = sizeof(data->raw),
 		.calibrate = false,
 	};
-
-	(void)pm_device_state_get(dev, &pm_state);
-	if (pm_state != PM_DEVICE_STATE_ACTIVE) {
-		return -EIO;
-	}
 
 	k_mutex_lock(&data->mutex, K_FOREVER);
 
@@ -136,33 +128,8 @@ static int phototransistor_init(const struct device *dev)
 		return err;
 	}
 
-#ifdef CONFIG_PM_DEVICE_RUNTIME
-	pm_device_init_suspended(dev);
-
-	err = pm_device_runtime_enable(dev);
-	if (err) {
-		LOG_ERR("Failed to enable runtime power management");
-		return err;
-	}
-#endif
-
 	return 0;
 }
-
-#ifdef CONFIG_PM_DEVICE
-static int phototransistor_pm_action(const struct device *dev, enum pm_device_action action)
-{
-	switch (action) {
-	case PM_DEVICE_ACTION_TURN_ON:
-	case PM_DEVICE_ACTION_RESUME:
-	case PM_DEVICE_ACTION_TURN_OFF:
-	case PM_DEVICE_ACTION_SUSPEND:
-		return 0;
-	default:
-		return -ENOTSUP;
-	}
-}
-#endif
 
 #define PHOTOTRANSISTOR_DEFINE(inst)                                                               \
 	static struct phototransistor_data phototransistor_driver_##inst;                          \
@@ -173,9 +140,7 @@ static int phototransistor_pm_action(const struct device *dev, enum pm_device_ac
 		.pulldown_ohm = DT_INST_PROP(inst, pulldown_ohm),                                  \
 	};                                                                                         \
                                                                                                    \
-	PM_DEVICE_DT_INST_DEFINE(inst, phototransistor_pm_action);                                 \
-                                                                                                   \
-	SENSOR_DEVICE_DT_INST_DEFINE(inst, phototransistor_init, PM_DEVICE_DT_INST_GET(inst),      \
+	SENSOR_DEVICE_DT_INST_DEFINE(inst, phototransistor_init, NULL,                             \
 				     &phototransistor_driver_##inst, &phototransistor_cfg_##inst,  \
 				     POST_KERNEL, CONFIG_SENSOR_INIT_PRIORITY,                     \
 				     &phototransistor_driver_api);
