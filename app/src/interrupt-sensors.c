@@ -19,29 +19,29 @@ static int64_t time_last_button_action;
 
 static void stop_button_cb(struct k_work *_work)
 {
-    LOG_DBG("Stopping button press.");
-    // we have broadcasted our button press long enough.
-    button_value = BTHOME_VALUE_BUTTON_NONE;
+	LOG_DBG("Stopping button press.");
+	// we have broadcasted our button press long enough.
+	button_value = BTHOME_VALUE_BUTTON_NONE;
 	k_work_reschedule(read_sensors_work, K_NO_WAIT);
 }
 K_WORK_DELAYABLE_DEFINE(stop_button_work, stop_button_cb);
 
 static void button_cb(struct k_work *_work)
 {
-    int64_t difference = sys_clock_tick_get() - time_last_button_action;
-    LOG_DBG("Time difference: %lld", difference);
+	int64_t difference = sys_clock_tick_get() - time_last_button_action;
+	LOG_DBG("Time difference: %lld", difference);
 
-    if (difference >= k_ms_to_ticks_ceil32(4000)) {
-        button_value = BTHOME_VALUE_BUTTON_LONG_PRESS;
-        LOG_DBG("Sending long press");
-    } else {
-        button_value = BTHOME_VALUE_BUTTON_PRESSED;
-        LOG_DBG("Sending short press");
-    }
+	if (difference >= k_ms_to_ticks_ceil32(4000)) {
+		button_value = BTHOME_VALUE_BUTTON_LONG_PRESS;
+		LOG_DBG("Sending long press");
+	} else {
+		button_value = BTHOME_VALUE_BUTTON_PRESSED;
+		LOG_DBG("Sending short press");
+	}
 
-    // stop the current button symbol in 1 minute
-    k_work_reschedule(&stop_button_work, K_MINUTES(1));
-    // but start broadcasting the current button symbol now
+	// stop the current button symbol in 5 minutes
+	k_work_reschedule(&stop_button_work, K_MINUTES(6));
+	// but start broadcasting the current button symbol now
 	k_work_reschedule(read_sensors_work, K_NO_WAIT);
 }
 K_WORK_DELAYABLE_DEFINE(button_work, button_cb);
@@ -49,29 +49,28 @@ K_WORK_DELAYABLE_DEFINE(button_work, button_cb);
 static void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
 	ARG_UNUSED(cb);
-    int state = gpio_pin_get_dt(&button);
-    LOG_DBG("Button interrupt with value %d", state);
-    switch (state)
-    {
-    case 1:
-        time_last_button_action = sys_clock_tick_get();
-        // 4 seconds is long enough for long button press.
-        k_work_reschedule(&button_work, K_SECONDS(4));
-        return;
-    case 0:
-        int64_t difference = sys_clock_tick_get() - time_last_button_action;
-        if(difference < k_ms_to_ticks_ceil32(4000)) {
-            // if it is after 4 seconds, then we have already send a long press.
-            k_work_reschedule(&button_work, K_NO_WAIT);
-        }
-        return;
+	int state = gpio_pin_get_dt(&button);
+	LOG_DBG("Button interrupt with value %d", state);
+	switch (state) {
+	case 1:
+		time_last_button_action = sys_clock_tick_get();
+		// 4 seconds is long enough for long button press.
+		k_work_reschedule(&button_work, K_SECONDS(4));
+		return;
+	case 0:
+		int64_t difference = sys_clock_tick_get() - time_last_button_action;
+		if (difference < k_ms_to_ticks_ceil32(4000)) {
+			// if it is after 4 seconds, then we have already send a long press.
+			k_work_reschedule(&button_work, K_NO_WAIT);
+		}
+		return;
 
-    default:
-        break;
-    }
-    if(state < 0) {
-        return;
-    }
+	default:
+		break;
+	}
+	if (state < 0) {
+		return;
+	}
 }
 
 static void hall_sensor_triggered(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
@@ -79,7 +78,7 @@ static void hall_sensor_triggered(const struct device *dev, struct gpio_callback
 	ARG_UNUSED(dev);
 	ARG_UNUSED(cb);
 	ARG_UNUSED(pins);
-    // delay by a bit to account for bouncing effects.
+	// delay by a bit to account for bouncing effects.
 	k_work_reschedule(read_sensors_work, Z_TIMEOUT_MS(100));
 }
 
@@ -130,27 +129,27 @@ int int_init_sensors(struct k_work_delayable *sensors_read)
 	gpio_init_callback(&button_callback, button_pressed, BIT(button.pin));
 	gpio_add_callback(button.port, &button_callback);
 
-    time_last_button_action = sys_clock_tick_get();
+	time_last_button_action = sys_clock_tick_get();
 
 	return ret;
 }
 
 int int_read_sensor_data(uint8_t *button_val, uint8_t *window)
 {
-    int ret = 0;
-    switch (gpio_pin_get_dt(&hall_sensor))
-    {
-    case 0:
-        *window = BTHOME_VALUE_WINDOW_OPEN;
-        break;
-    case 1:
-        *window = BTHOME_VALUE_WINDOW_CLOSED;
-        break;
-    default:
-        ret = -EIO;
-        break;
-    }
+	int ret = 0;
+	switch (gpio_pin_get_dt(&hall_sensor)) {
+	case 0:
+		*window = BTHOME_VALUE_WINDOW_OPEN;
+		break;
+	case 1:
+		*window = BTHOME_VALUE_WINDOW_CLOSED;
+		break;
+	default:
+		ret = -EIO;
+		break;
+	}
 	*button_val = button_value;
-	LOG_DBG("Sensor values: %d, %d", *window, *button_val);
-    return 0;
+	LOG_DBG("Window: %s Button: %s", *window ? "open" : "closed",
+		*button_val ? "pressed" : "idle");
+	return 0;
 }

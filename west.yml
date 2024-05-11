@@ -14,7 +14,7 @@ manifest:
   projects:
     - name: zephyr
       remote: my-github-fork
-      revision: i2c_power_fix
+      revision: i2c_power_fix_v3_5
       import:
         name-allowlist:
           - cmsis

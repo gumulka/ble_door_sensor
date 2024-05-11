@@ -67,7 +67,6 @@ static void read_ambient_light(uint8_t *illuminance)
 
 static void read_supply_voltage(uint8_t *battery)
 {
-	LOG_DBG("Reading ADC");
 	static int adc_read_error_counter = 0;
 	uint16_t buf;
 	struct adc_sequence sequence = {
@@ -88,7 +87,6 @@ static void read_supply_voltage(uint8_t *battery)
 	}
 	adc_read_error_counter = 0;
 	int32_t batt = (int32_t)buf;
-	LOG_DBG("Raw battery value: %" PRId32, batt);
 	adc_raw_to_millivolts_dt(&soc_voltage, &batt);
 	// convert mv to percentage with 3V beeing 100% and 2V beeing 0%
 	// This is not a battery curve, just some calculations for better or worse.
@@ -99,7 +97,7 @@ static void read_supply_voltage(uint8_t *battery)
 	} else if (batt < 0) {
 		batt = 0;
 	}
-	LOG_DBG("New battery value: %d", batt);
+	LOG_DBG("Battery is at %d percent", batt);
 	*battery = (uint8_t)batt;
 }
 

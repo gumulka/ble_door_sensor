@@ -1,4 +1,5 @@
 #include <zephyr/kernel.h>
+#include <zephyr/drivers/gpio.h>
 
 #include <zephyr/sys/reboot.h>
 #include <zephyr/logging/log_ctrl.h>
@@ -46,6 +47,8 @@ static struct bt_data ad[] = {
 	BT_DATA(BT_DATA_NAME_COMPLETE, CONFIG_BT_DEVICE_NAME, sizeof(CONFIG_BT_DEVICE_NAME) - 1),
 	BT_DATA(BT_DATA_SVC_DATA16, service_data, ARRAY_SIZE(service_data))};
 
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
+
 void k_sys_fatal_error_handler(unsigned int reason, const z_arch_esf_t *esf)
 {
 	ARG_UNUSED(esf);
@@ -65,8 +68,6 @@ static void bt_ready(int err)
 		return;
 	}
 
-	LOG_INF("Bluetooth initialized");
-
 	/* Start advertising */
 	err = bt_le_adv_start(
 		BT_LE_ADV_PARAM(BT_LE_ADV_OPT_CONNECTABLE | BT_LE_ADV_OPT_USE_IDENTITY,
@@ -83,6 +84,7 @@ static void read_sensors_cb(struct k_work *_work)
 	struct k_work_delayable *work = k_work_delayable_from_work(_work);
 	k_work_reschedule(work, K_MINUTES(10));
 
+	gpio_pin_set_dt(&led, 1);
 	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
 			     service_data + POS_HUMIDITY_DATA, service_data + POS_ILLUMINANCE_DATA);
 
@@ -94,6 +96,7 @@ static void read_sensors_cb(struct k_work *_work)
 	if (ret) {
 		LOG_ERR("Failed to update advertising data (err %d)", ret);
 	}
+	gpio_pin_set_dt(&led, 0);
 }
 K_WORK_DELAYABLE_DEFINE(read_sensors_work, read_sensors_cb);
 
@@ -101,7 +104,16 @@ int main(void)
 {
 	int ret;
 
-	LOG_INF("BLE Door Sensor");
+	if (!gpio_is_ready_dt(&led)) {
+		LOG_ERR("No LED defined");
+		return -ENODEV;
+	}
+
+	ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE);
+	if (ret < 0) {
+		LOG_ERR("Could not configure LED.");
+		return 0;
+	}
 
 	env_init_sensors();
 	int_init_sensors(&read_sensors_work);
@@ -118,6 +130,14 @@ int main(void)
 	}
 
 	k_work_schedule(&read_sensors_work, K_MINUTES(1));
+
+	// short blink to signal everything is okay
+	for(int i = 0; i <3; i++) {
+		gpio_pin_set_dt(&led, 1);
+		k_msleep(80);
+		gpio_pin_set_dt(&led, 0);
+		k_msleep(100);
+	}
 
 	return 0;
 }
