@@ -1,7 +1,4 @@
 #include <zephyr/kernel.h>
-#include <zephyr/drivers/adc.h>
-#include <zephyr/drivers/gpio.h>
-#include <zephyr/drivers/sensor.h>
 
 #include <zephyr/sys/reboot.h>
 #include <zephyr/logging/log_ctrl.h>
@@ -15,6 +12,7 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 
 #include "bthome.h"
 #include "environment-sensors.h"
+#include "interrupt-sensors.h"
 
 static uint8_t service_data[] = {
 	BT_UUID_16_ENCODE(BTHOME_SERVICE_UUID),
@@ -48,11 +46,6 @@ static struct bt_data ad[] = {
 	BT_DATA(BT_DATA_NAME_COMPLETE, CONFIG_BT_DEVICE_NAME, sizeof(CONFIG_BT_DEVICE_NAME) - 1),
 	BT_DATA(BT_DATA_SVC_DATA16, service_data, ARRAY_SIZE(service_data))};
 
-static const struct gpio_dt_spec hall_sensor = GPIO_DT_SPEC_GET(DT_NODELABEL(hall_sensor), gpios);
-static const struct gpio_dt_spec button = GPIO_DT_SPEC_GET(DT_NODELABEL(button), gpios);
-static struct gpio_callback hall_sensor_callback;
-static struct gpio_callback button_callback;
-
 void k_sys_fatal_error_handler(unsigned int reason, const z_arch_esf_t *esf)
 {
 	ARG_UNUSED(esf);
@@ -85,17 +78,6 @@ static void bt_ready(int err)
 	}
 }
 
-static void ble_adv_handler(struct k_work *_work)
-{
-	LOG_INF("Updating BLE ADV Data");
-	int ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
-	LOG_HEXDUMP_DBG(service_data, ARRAY_SIZE(service_data), "Service data:");
-	if (ret) {
-		LOG_ERR("Failed to update advertising data (err %d)", ret);
-	}
-}
-K_WORK_DEFINE(ble_adv_work, ble_adv_handler);
-
 static void read_sensors_cb(struct k_work *_work)
 {
 	struct k_work_delayable *work = k_work_delayable_from_work(_work);
@@ -104,53 +86,16 @@ static void read_sensors_cb(struct k_work *_work)
 	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
 			     service_data + POS_HUMIDITY_DATA, service_data + POS_ILLUMINANCE_DATA);
 
-	k_work_submit(&ble_adv_work);
-	return;
+	int_read_sensor_data(service_data + POS_BUTTON_DATA, service_data + POS_HALL_EFFECT_DATA);
+
+	LOG_INF("Updating BLE ADV Data");
+	int ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
+	LOG_HEXDUMP_DBG(service_data, ARRAY_SIZE(service_data), "Service data:");
+	if (ret) {
+		LOG_ERR("Failed to update advertising data (err %d)", ret);
+	}
 }
 K_WORK_DELAYABLE_DEFINE(read_sensors_work, read_sensors_cb);
-
-static void read_sensor_data()
-{
-	service_data[POS_HALL_EFFECT_DATA] = !gpio_pin_get_dt(&hall_sensor);
-	service_data[POS_BUTTON_DATA] = !!gpio_pin_get_dt(&button);
-	LOG_DBG("Sensor values: %d, %d", service_data[POS_HALL_EFFECT_DATA],
-		service_data[POS_BUTTON_DATA]);
-}
-
-static void button_pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
-{
-	read_sensor_data();
-	k_work_submit(&ble_adv_work);
-}
-
-static int configure_sensor(const struct gpio_dt_spec *hall_sensor,
-			    struct gpio_callback *hall_sensor_callback)
-{
-	int ret;
-	if (!gpio_is_ready_dt(hall_sensor)) {
-		LOG_ERR("Error: Sensor device %s is not ready", hall_sensor->port->name);
-		return -EBADFD;
-	}
-
-	ret = gpio_pin_configure_dt(hall_sensor, GPIO_INPUT);
-	if (ret != 0) {
-		LOG_ERR("Error %d: failed to configure %s pin %d", ret, hall_sensor->port->name,
-			hall_sensor->pin);
-		return ret;
-	}
-
-	ret = gpio_pin_interrupt_configure_dt(hall_sensor, GPIO_INT_EDGE_BOTH);
-	if (ret != 0) {
-		LOG_ERR("Error %d: failed to configure interrupt on %s pin %d", ret,
-			hall_sensor->port->name, hall_sensor->pin);
-		return ret;
-	}
-
-	gpio_init_callback(hall_sensor_callback, button_pressed, BIT(hall_sensor->pin));
-	gpio_add_callback(hall_sensor->port, hall_sensor_callback);
-	LOG_DBG("Set up button at %s pin %d", hall_sensor->port->name, hall_sensor->pin);
-	return 0;
-}
 
 int main(void)
 {
@@ -158,22 +103,12 @@ int main(void)
 
 	LOG_INF("BLE Door Sensor");
 
-	ret = configure_sensor(&hall_sensor, &hall_sensor_callback);
-	if (ret < 0) {
-		return ret;
-	}
-
-	ret = configure_sensor(&button, &button_callback);
-	if (ret < 0) {
-		return ret;
-	}
-
 	env_init_sensors();
-
-	read_sensor_data();
+	int_init_sensors(&read_sensors_work);
 
 	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
 			     service_data + POS_HUMIDITY_DATA, service_data + POS_ILLUMINANCE_DATA);
+	int_read_sensor_data(service_data + POS_BUTTON_DATA, service_data + POS_HALL_EFFECT_DATA);
 
 	/* Initialize the Bluetooth Subsystem */
 	ret = bt_enable(bt_ready);
