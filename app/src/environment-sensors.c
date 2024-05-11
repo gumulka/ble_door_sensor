@@ -9,7 +9,6 @@
 LOG_MODULE_REGISTER(environment_sensors, CONFIG_APP_LOG_LEVEL);
 
 static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
-
 static const struct device *const shtc = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
 static const struct device *const light = DEVICE_DT_GET(DT_ALIAS(ambient_light0));
 
@@ -89,18 +88,18 @@ static void read_supply_voltage(uint8_t *battery)
 	}
 	adc_read_error_counter = 0;
 	int32_t batt = (int32_t)buf;
-	LOG_DBG("Raw value: %" PRId32, batt);
+	LOG_DBG("Raw battery value: %" PRId32, batt);
 	adc_raw_to_millivolts_dt(&soc_voltage, &batt);
-	// convert mv to percentage with 3.3V beeing 100% and 2.5V beeing 0%
+	// convert mv to percentage with 3V beeing 100% and 2V beeing 0%
 	// This is not a battery curve, just some calculations for better or worse.
-	batt -= 2500;
-	batt /= 8;
+	batt -= 2000;
+	batt /= 10;
 	if (batt > 100) {
 		batt = 100;
 	} else if (batt < 0) {
 		batt = 0;
 	}
-	LOG_INF("New batt value: %d", batt);
+	LOG_DBG("New battery value: %d", batt);
 	*battery = (uint8_t)batt;
 }
 
