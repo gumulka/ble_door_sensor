@@ -13,34 +13,8 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 
-#define BTHOME_INFO_VERSION            0x40
-#define BTHOME_INFO_REGULAR_INTERVAL   0x00
-#define BTHOME_INFO_IRREGULAR_INTERVAL 0x04
-#define BTHOME_INFO_ENCRYPTED_DATA     0x01
-#define BTHOME_INFO_UNENCRYPTED_DATA   0x00
-
-#define BTHOME_SENSOR_BATTERY        0x01
-#define BTHOME_SENSOR_TEMPERATURE    0x02
-#define BTHOME_SENSOR_HUMIDITY_16    0x03
-#define BTHOME_SENSOR_ILLUMINANCE    0x05
-#define BTHOME_SENSOR_BINARY_BATTERY 0x15
-#define BTHOME_SENSOR_BINARY_DOOR    0x1A
-#define BTHOME_SENSOR_BINARY_WINDOW  0x2D
-#define BTHOME_SENSOR_HUMIDITY_8     0x2E
-#define BTHOME_SENSOR_BUTTON         0x3A
-
-#define BTHOME_VALUE_DOOR_CLOSED         0x00
-#define BTHOME_VALUE_DOOR_OPEN           0x01
-#define BTHOME_VALUE_BUTTON_NONE         0x00
-#define BTHOME_VALUE_BUTTON_PRESSED      0x01
-#define BTHOME_VALUE_BUTTON_DOUBLE_PRESS 0x02
-#define BTHOME_VALUE_BUTTON_TRIPLE_PRESS 0x03
-#define BTHOME_VALUE_BUTTON_LONG_PRESS   0x03
-#define BTHOME_VALUE_WINDOW_CLOSED       0x00
-#define BTHOME_VALUE_WINDOW_OPEN         0x01
-#define BTHOME_VALUE_BATTERY_ERROR       0xFF // just a first guess from my side. Need to verify
-
-#define BTHOME_SERVICE_UUID 0xfcd2
+#include "bthome.h"
+#include "environment-sensors.h"
 
 static uint8_t service_data[] = {
 	BT_UUID_16_ENCODE(BTHOME_SERVICE_UUID),
@@ -79,24 +53,17 @@ static const struct gpio_dt_spec button = GPIO_DT_SPEC_GET(DT_NODELABEL(button),
 static struct gpio_callback hall_sensor_callback;
 static struct gpio_callback button_callback;
 
-static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
-
-static const struct device *const shtc = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
-static const struct device *const light = DEVICE_DT_GET(DT_ALIAS(ambient_light0));
-
-void k_sys_fatal_error_handler(unsigned int reason,
-				      const z_arch_esf_t *esf)
+void k_sys_fatal_error_handler(unsigned int reason, const z_arch_esf_t *esf)
 {
 	ARG_UNUSED(esf);
 
 	LOG_PANIC();
 	LOG_ERR("Rebooting system");
 
-    sys_reboot(SYS_REBOOT_COLD);
+	sys_reboot(SYS_REBOOT_COLD);
 
 	CODE_UNREACHABLE; /* LCOV_EXCL_LINE */
 }
-
 
 static void bt_ready(int err)
 {
@@ -108,10 +75,10 @@ static void bt_ready(int err)
 	LOG_INF("Bluetooth initialized");
 
 	/* Start advertising */
-	err = bt_le_adv_start(BT_LE_ADV_PARAM(BT_LE_ADV_OPT_CONNECTABLE | BT_LE_ADV_OPT_USE_IDENTITY,
-					      BT_LE_ADV_INTERVAL_MAX / 2, BT_LE_ADV_INTERVAL_MAX,
-					      NULL),
-			      ad, ARRAY_SIZE(ad), NULL, 0);
+	err = bt_le_adv_start(
+		BT_LE_ADV_PARAM(BT_LE_ADV_OPT_CONNECTABLE | BT_LE_ADV_OPT_USE_IDENTITY,
+				BT_LE_ADV_INTERVAL_MAX / 2, BT_LE_ADV_INTERVAL_MAX, NULL),
+		ad, ARRAY_SIZE(ad), NULL, 0);
 	if (err) {
 		LOG_ERR("Advertising failed to start (err %d)", err);
 		return;
@@ -129,66 +96,13 @@ static void ble_adv_handler(struct k_work *_work)
 }
 K_WORK_DEFINE(ble_adv_work, ble_adv_handler);
 
-static void read_shtc(const struct device *dev)
-{
-	struct sensor_value value;
-	int ret;
-
-	ret = sensor_sample_fetch_chan(dev, SENSOR_CHAN_ALL);
-	if (ret < 0) {
-		LOG_WRN("Could not fetch shtc data: %d", ret);
-		return;
-	}
-
-	ret = sensor_channel_get(dev, SENSOR_CHAN_AMBIENT_TEMP, &value);
-	if (ret < 0) {
-		LOG_WRN("Could not get temperature: %d", ret);
-		return;
-	}
-	LOG_DBG("Temperature is %d°C", value.val1);
-	uint16_t temp = (uint16_t)(value.val1 * 100 + value.val2 / 10000);
-	service_data[POS_TEMPERATURE_DATA + 1] = (temp >> 8) & 0xFF;
-	service_data[POS_TEMPERATURE_DATA] = temp & 0xFF;
-
-	ret = sensor_channel_get(dev, SENSOR_CHAN_HUMIDITY, &value);
-	if (ret < 0) {
-		LOG_WRN("Could not get humidity: %d", ret);
-		return;
-	}
-	LOG_DBG("Humidity is %d percent", value.val1);
-	service_data[POS_HUMIDITY_DATA] = (uint8_t)(value.val1 & 0xFF);
-}
-
-static void read_ambient_light(const struct device *dev)
-{
-	struct sensor_value value;
-	int ret;
-
-	ret = sensor_sample_fetch_chan(dev, SENSOR_CHAN_ALL);
-	if (ret < 0) {
-		LOG_WRN("Could not fetch ambient light data: %d", ret);
-		return;
-	}
-
-	ret = sensor_channel_get(dev, SENSOR_CHAN_LIGHT, &value);
-	if (ret < 0) {
-		LOG_WRN("Could not get ambient light: %d", ret);
-		return;
-	}
-	uint32_t temp = (uint32_t)(value.val1 * 100 + value.val2 / 10000);
-	LOG_DBG("Light is %d centi lux", temp);
-	service_data[POS_ILLUMINANCE_DATA + 2] = (temp >> 16) & 0xFF;
-	service_data[POS_ILLUMINANCE_DATA + 1] = (temp >> 8) & 0xFF;
-	service_data[POS_ILLUMINANCE_DATA] = temp & 0xFF;
-}
-
 static void read_sensors_cb(struct k_work *_work)
 {
 	struct k_work_delayable *work = k_work_delayable_from_work(_work);
 	k_work_reschedule(work, K_MINUTES(10));
 
-	read_shtc(shtc);
-	read_ambient_light(light);
+	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
+			     service_data + POS_HUMIDITY_DATA, service_data + POS_ILLUMINANCE_DATA);
 
 	k_work_submit(&ble_adv_work);
 	return;
@@ -208,48 +122,6 @@ static void button_pressed(const struct device *dev, struct gpio_callback *cb, u
 	read_sensor_data();
 	k_work_submit(&ble_adv_work);
 }
-
-static void read_supply_voltage(struct k_work *_work)
-{
-	struct k_work_delayable *work = k_work_delayable_from_work(_work);
-	k_work_reschedule(work, K_HOURS(12));
-	LOG_DBG("Reading ADC");
-	static int adc_read_error_counter = 0;
-	uint16_t buf;
-	struct adc_sequence sequence = {
-		.buffer = &buf,
-		/* buffer size in bytes, not number of samples */
-		.buffer_size = sizeof(buf),
-	};
-	(void)adc_sequence_init_dt(&soc_voltage, &sequence);
-
-	int err = adc_read_dt(&soc_voltage, &sequence);
-	if (err < 0) {
-		printk("Could not read ADC (%d)\n", err);
-		adc_read_error_counter++;
-		if (adc_read_error_counter > 10) {
-			service_data[POS_BATTERY_DATA] = BTHOME_VALUE_BATTERY_ERROR;
-		}
-		return;
-	}
-	adc_read_error_counter = 0;
-	int32_t battery = (int32_t)buf;
-	LOG_DBG("Raw value: %" PRId32, battery);
-	adc_raw_to_millivolts_dt(&soc_voltage, &battery);
-	// convert mv to percentage with 3.3V beeing 100% and 2.5V beeing 0%
-	// This is not a battery curve, just some calculations for better or worse.
-	battery -= 2500;
-	battery /= 8;
-	if (battery > 100) {
-		battery = 100;
-	} else if (battery < 0) {
-		battery = 0;
-	}
-	LOG_INF("New Battery value: %d", battery);
-	service_data[POS_BATTERY_DATA] = (char)battery;
-	k_work_submit(&ble_adv_work);
-}
-K_WORK_DELAYABLE_DEFINE(adc_read_work, read_supply_voltage);
 
 static int configure_sensor(const struct gpio_dt_spec *hall_sensor,
 			    struct gpio_callback *hall_sensor_callback)
@@ -280,22 +152,6 @@ static int configure_sensor(const struct gpio_dt_spec *hall_sensor,
 	return 0;
 }
 
-static int configure_adc(const struct adc_dt_spec *adc)
-{
-	if (!adc_is_ready_dt(adc)) {
-		printk("ADC controller device %s not ready\n", adc->dev->name);
-		return -EBADFD;
-	}
-
-	int ret = adc_channel_setup_dt(adc);
-	if (ret < 0) {
-		printk("Could not setup adc (%d)\n", ret);
-		return ret;
-	}
-
-	return 0;
-}
-
 int main(void)
 {
 	int ret;
@@ -312,15 +168,12 @@ int main(void)
 		return ret;
 	}
 
-	ret = configure_adc(&soc_voltage);
-	if (ret < 0) {
-		return ret;
-	}
+	env_init_sensors();
 
 	read_sensor_data();
-	read_shtc(shtc);
-	read_ambient_light(light);
-	read_supply_voltage(&adc_read_work.work);
+
+	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
+			     service_data + POS_HUMIDITY_DATA, service_data + POS_ILLUMINANCE_DATA);
 
 	/* Initialize the Bluetooth Subsystem */
 	ret = bt_enable(bt_ready);
