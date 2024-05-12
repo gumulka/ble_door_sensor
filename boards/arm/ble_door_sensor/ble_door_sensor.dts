@@ -23,25 +23,63 @@
 	};
 
 	aliases {
+		led0 = &led0;
+		sw0 = &button;
+		ambient-temp0 = &shtc3;
+		ambient-light0 = &light_sensor;
 		watchdog0 = &wdt0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+			label = "User LED";
+		};
 	};
 
 	buttons {
 		compatible = "gpio-keys";
-		hall_sensor_left: hall_sensor_left {
-			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
-			label = "Left hall sensor";
+		hall_sensor: hall_sensor {
+			gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
+			label = "Hall sensor";
 			zephyr,code = <INPUT_KEY_0>;
 		};
-		hall_sensor_right: hall_sensor_right {
-			gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
-			label = "Right hall Sensor";
+		button: button0 {
+			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+			label = "User Button";
 			zephyr,code = <INPUT_KEY_1>;
 		};
 	};
 
+	light_sensor: ambient_light_sensor {
+		compatible = "phototransistor-special";
+		enable-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+		io-channels = <&adc 4>;
+		pulldown-ohm = <1000>;
+	};
+
 	zephyr,user {
 		io-channels = <&adc 1>;
+	};
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twim";
+	status = "okay";
+
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+
+	shtc3: shtc3@70 {
+		status = "okay";
+		compatible = "sensirion,shtcx";
+		reg = <0x70>;
+		chip = "shtc3";
+		// may also be measure-mode = "low-power";
+		measure-mode = "normal";
+		clock-stretching;
 	};
 };
 
@@ -59,6 +97,16 @@
 		zephyr,input-positive = <NRF_SAADC_VDD>;
 		zephyr,resolution = <12>;
 	};
+
+	channel@4 {
+		reg = <4>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>; /* 10us */
+		zephyr,input-positive = <NRF_SAADC_AIN4>; /* P0.28 */
+		zephyr,oversampling = <3>; /* x8 */
+		zephyr,resolution = <12>;
+	};
 };
 
 &uicr {
@@ -74,7 +122,7 @@
 };
 
 &uart0 {
-	compatible = "nordic,nrf-uart";
+	compatible = "nordic,nrf-uarte";
 	current-speed = <115200>;
 	status = "okay";
 	pinctrl-0 = <&uart0_default>;
@@ -91,23 +139,28 @@
 
 		boot_partition: partition@0 {
 			label = "mcuboot";
-			reg = <0x00000000 0xc000>;
+			// 24kByte
+			reg = <0x00000000 0x06000>;
 		};
-		slot0_partition: partition@c000 {
+		slot0_partition: partition@6000 {
 			label = "image-0";
-			reg = <0x0000C000 0x32000>;
+			// 232kByte
+			reg = <0x00006000 0x3A000>;
 		};
-		slot1_partition: partition@3e000 {
+		slot1_partition: partition@40000 {
 			label = "image-1";
-			reg = <0x0003E000 0x32000>;
+			// 232kByte
+			reg = <0x00040000 0x3A000>;
 		};
-		scratch_partition: partition@70000 {
+		scratch_partition: partition@7a000 {
 			label = "image-scratch";
-			reg = <0x00070000 0xa000>;
+			// 20kByte
+			reg = <0x0007A000 0x05000>;
 		};
-		storage_partition: partition@7a000 {
+		storage_partition: partition@7f000 {
 			label = "storage";
-			reg = <0x0007a000 0x00006000>;
+			// 4kByte
+			reg = <0x0007F000 0x00001000>;
 		};
 	};
 };
@@ -116,15 +169,30 @@
 &pinctrl {
 	uart0_default: uart0_default {
 		group1 {
-			psels = <NRF_PSEL(UART_TX, 0, 19)>,
-				<NRF_PSEL(UART_RX, 0, 14)>;
+			psels = <NRF_PSEL(UART_TX, 0, 20)>,
+				<NRF_PSEL(UART_RX, 0, 19)>;
 		};
 	};
 
 	uart0_sleep: uart0_sleep {
 		group1 {
-			psels = <NRF_PSEL(UART_TX, 0, 19)>,
-				<NRF_PSEL(UART_RX, 0, 14)>;
+			psels = <NRF_PSEL(UART_TX, 0, 20)>,
+				<NRF_PSEL(UART_RX, 0, 19)>;
+			low-power-enable;
+		};
+	};
+
+	i2c0_default: i2c0_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 7)>,
+				<NRF_PSEL(TWIM_SCL, 0, 6)>;
+		};
+	};
+
+	i2c0_sleep: i2c0_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 7)>,
+				<NRF_PSEL(TWIM_SCL, 0, 6)>;
 			low-power-enable;
 		};
 	};
