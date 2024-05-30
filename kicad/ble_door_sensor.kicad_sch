@@ -5625,6 +5625,26 @@
 		)
 		(uuid "f5e89dca-10ee-4d0c-b8e5-d7b6a1eb7248")
 	)
+	(text "I2C: 0x4a"
+		(exclude_from_sim no)
+		(at 246.634 114.808 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "68dbc96a-91a8-4cf9-8fb1-64b6bd12cdd4")
+	)
+	(text "I2C: 0x70"
+		(exclude_from_sim no)
+		(at 195.58 115.824 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "74e442d0-b157-4267-839a-24290983bd74")
+	)
 	(label "DEC3"
 		(at 107.95 34.29 0)
 		(fields_autoplaced yes)
