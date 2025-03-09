@@ -11,6 +11,7 @@
 #include <zephyr/drivers/adc.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
+#include <zephyr/pm/device.h>
 
 #include <zephyr/logging/log.h>
 #define DT_DRV_COMPAT phototransistor_special
@@ -44,16 +45,6 @@ static int phototransistor_sample_fetch(const struct device *dev, enum sensor_ch
 
 	k_mutex_lock(&data->mutex, K_FOREVER);
 
-	int err = gpio_pin_set_dt(&cfg->enable, 1);
-	if (err != 0) {
-		LOG_ERR("Could not set enable pin!");
-		k_mutex_unlock(&data->mutex);
-		return -EIO;
-	}
-
-	// Wait for output voltage to stabilize
-	k_sleep(K_USEC(150));
-
 	adc_sequence_init_dt(&cfg->adc_channel, &sequence);
 	res = adc_read(cfg->adc_channel.dev, &sequence);
 	if (!res) {
@@ -68,8 +59,6 @@ static int phototransistor_sample_fetch(const struct device *dev, enum sensor_ch
 		}
 		LOG_DBG("Measured: %d -> %d mV", data->raw, data->sample_val);
 	}
-
-	gpio_pin_set_dt(&cfg->enable, 0);
 
 	k_mutex_unlock(&data->mutex);
 
@@ -101,6 +90,35 @@ static const struct sensor_driver_api phototransistor_driver_api = {
 	.channel_get = phototransistor_channel_get,
 };
 
+#ifdef CONFIG_PM_DEVICE
+static int pm_action(const struct device *dev, enum pm_device_action action)
+{
+	const struct phototransistor_config *config = dev->config;
+	int ret;
+
+	LOG_INF("running action %d", action);
+
+	switch (action) {
+	case PM_DEVICE_ACTION_RESUME:
+		ret = gpio_pin_set_dt(&config->enable, 1);
+		if (ret != 0) {
+			LOG_ERR("failed to set GPIO for PM resume");
+		}
+		break;
+	case PM_DEVICE_ACTION_SUSPEND:
+		ret = gpio_pin_set_dt(&config->enable, 0);
+		if (ret != 0) {
+			LOG_ERR("failed to set GPIO for PM suspend");
+		}
+		break;
+	default:
+		return -ENOTSUP;
+	}
+
+	return ret;
+}
+#endif
+
 static int phototransistor_init(const struct device *dev)
 {
 	const struct phototransistor_config *cfg = dev->config;
@@ -111,11 +129,14 @@ static int phototransistor_init(const struct device *dev)
 		return -ENODEV;
 	}
 
-	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_INACTIVE);
+	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_ACTIVE);
 	if (err < 0) {
 		LOG_ERR("Could not configure enable pin!");
 		return err;
 	}
+#ifdef CONFIG_PM_DEVICE
+	gpio_pin_set_dt(&cfg->enable, 0);
+#endif
 
 	if (!adc_is_ready_dt(&cfg->adc_channel)) {
 		LOG_ERR("ADC controller device is not ready\n");
@@ -140,7 +161,9 @@ static int phototransistor_init(const struct device *dev)
 		.pulldown_ohm = DT_INST_PROP(inst, pulldown_ohm),                                  \
 	};                                                                                         \
                                                                                                    \
-	SENSOR_DEVICE_DT_INST_DEFINE(inst, phototransistor_init, NULL,                             \
+	PM_DEVICE_DT_INST_DEFINE(inst, pm_action);                                                 \
+                                                                                                   \
+	SENSOR_DEVICE_DT_INST_DEFINE(inst, phototransistor_init, PM_DEVICE_DT_INST_GET(inst),      \
 				     &phototransistor_driver_##inst, &phototransistor_cfg_##inst,  \
 				     POST_KERNEL, CONFIG_SENSOR_INIT_PRIORITY,                     \
 				     &phototransistor_driver_api);

@@ -82,7 +82,7 @@ static void bt_ready(int err)
 static void read_sensors_cb(struct k_work *_work)
 {
 	struct k_work_delayable *work = k_work_delayable_from_work(_work);
-	k_work_reschedule(work, K_MINUTES(10));
+	k_work_reschedule(work, K_SECONDS(30));
 
 	gpio_pin_set_dt(&led, 1);
 	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
@@ -129,7 +129,7 @@ int main(void)
 		return ret;
 	}
 
-	k_work_schedule(&read_sensors_work, K_MINUTES(1));
+	k_work_schedule(&read_sensors_work, K_SECONDS(5));
 
 	// short blink to signal everything is okay
 	for(int i = 0; i <3; i++) {
