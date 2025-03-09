@@ -79,16 +79,39 @@ static void bt_ready(int err)
 	}
 }
 
+/* indicator if the button has ever been pressed.
+ * if not, we control the LED with the same value the hall-sensor reads.
+ * until the button is pressed at least once, then we only blink the LED
+ * short during sending data.
+ */
+static bool first_boot;
+
 static void read_sensors_cb(struct k_work *_work)
 {
 	struct k_work_delayable *work = k_work_delayable_from_work(_work);
 	k_work_reschedule(work, K_MINUTES(10));
 
-	gpio_pin_set_dt(&led, 1);
+	if (!first_boot) {
+		gpio_pin_set_dt(&led, 1);
+	}
 	env_read_sensor_data(service_data + POS_BATTERY_DATA, service_data + POS_TEMPERATURE_DATA,
 			     service_data + POS_HUMIDITY_DATA, service_data + POS_ILLUMINANCE_DATA);
 
-	int_read_sensor_data(service_data + POS_BUTTON_DATA, service_data + POS_HALL_EFFECT_DATA);
+	uint8_t button, hall_sensor;
+	int_read_sensor_data(&button, &hall_sensor);
+	if (first_boot) {
+		if (button != BTHOME_VALUE_BUTTON_NONE) {
+			first_boot = false;
+		} else {
+			if (hall_sensor == BTHOME_VALUE_WINDOW_OPEN) {
+				gpio_pin_set_dt(&led, 0);
+			} else {
+				gpio_pin_set_dt(&led, 1);
+			}
+		}
+	}
+	service_data[POS_BUTTON_DATA] = button;
+	service_data[POS_HALL_EFFECT_DATA] = hall_sensor;
 
 	LOG_INF("Updating BLE ADV Data");
 	int ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
@@ -96,7 +119,9 @@ static void read_sensors_cb(struct k_work *_work)
 	if (ret) {
 		LOG_ERR("Failed to update advertising data (err %d)", ret);
 	}
-	gpio_pin_set_dt(&led, 0);
+	if (!first_boot) {
+		gpio_pin_set_dt(&led, 0);
+	}
 }
 K_WORK_DELAYABLE_DEFINE(read_sensors_work, read_sensors_cb);
 
@@ -129,7 +154,7 @@ int main(void)
 		return ret;
 	}
 
-	k_work_schedule(&read_sensors_work, K_MINUTES(1));
+	k_work_schedule(&read_sensors_work, K_SECONDS(3));
 
 	// short blink to signal everything is okay
 	for(int i = 0; i <3; i++) {
@@ -138,6 +163,8 @@ int main(void)
 		gpio_pin_set_dt(&led, 0);
 		k_msleep(100);
 	}
+
+	first_boot = true;
 
 	return 0;
 }
