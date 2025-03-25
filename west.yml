@@ -13,8 +13,8 @@ manifest:
 
   projects:
     - name: zephyr
-      remote: my-github-fork
-      revision: i2c_power_fix_v3_5
+      remote: zephyrproject-rtos
+      revision: v4.1.0
       import:
         name-allowlist:
           - cmsis

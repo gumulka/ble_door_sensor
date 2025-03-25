@@ -1,0 +1,5 @@
+board:
+  name: ble_door_sensor
+  vendor: gumulka
+  socs:
+    - name: nrf52832
