@@ -12,6 +12,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/pm/device.h>
+#include <zephyr/pm/device_runtime.h>
 
 #include <zephyr/logging/log.h>
 #define DT_DRV_COMPAT phototransistor_special
@@ -19,15 +20,16 @@
 LOG_MODULE_REGISTER(phototransistor, CONFIG_SENSOR_LOG_LEVEL);
 
 struct phototransistor_data {
-	struct k_mutex mutex;
 	int32_t raw;
 	int32_t sample_val;
+	k_timeout_t earliest_sample;
 };
 
 struct phototransistor_config {
 	const struct adc_dt_spec adc_channel;
 	struct gpio_dt_spec enable;
 	uint32_t pulldown_ohm;
+	uint32_t sample_delay_us;
 };
 
 static int phototransistor_sample_fetch(const struct device *dev, enum sensor_channel chan)
@@ -43,7 +45,8 @@ static int phototransistor_sample_fetch(const struct device *dev, enum sensor_ch
 		.calibrate = false,
 	};
 
-	k_mutex_lock(&data->mutex, K_FOREVER);
+	pm_device_runtime_get(dev);
+	k_sleep(data->earliest_sample);
 
 	adc_sequence_init_dt(&cfg->adc_channel, &sequence);
 	res = adc_read(cfg->adc_channel.dev, &sequence);
@@ -59,8 +62,7 @@ static int phototransistor_sample_fetch(const struct device *dev, enum sensor_ch
 		}
 		LOG_DBG("Measured: %d -> %d mV", data->raw, data->sample_val);
 	}
-
-	k_mutex_unlock(&data->mutex);
+	pm_device_runtime_put(dev);
 
 	return res;
 }
@@ -90,20 +92,26 @@ static const struct sensor_driver_api phototransistor_driver_api = {
 	.channel_get = phototransistor_channel_get,
 };
 
-#ifdef CONFIG_PM_DEVICE
 static int pm_action(const struct device *dev, enum pm_device_action action)
 {
 	const struct phototransistor_config *config = dev->config;
-	int ret;
-
-	LOG_INF("running action %d", action);
+	struct phototransistor_data *data = dev->data;
+	int ret = 0;
 
 	switch (action) {
+	case PM_DEVICE_ACTION_TURN_ON:
+		ret = gpio_pin_configure_dt(&config->enable, GPIO_OUTPUT_INACTIVE);
+		if (ret != 0) {
+			LOG_ERR("failed to configure GPIO for PM on");
+		}
+		break;
 	case PM_DEVICE_ACTION_RESUME:
 		ret = gpio_pin_set_dt(&config->enable, 1);
 		if (ret != 0) {
 			LOG_ERR("failed to set GPIO for PM resume");
 		}
+		data->earliest_sample = K_TIMEOUT_ABS_TICKS(
+			k_uptime_ticks() + k_us_to_ticks_ceil32(config->sample_delay_us));
 		break;
 	case PM_DEVICE_ACTION_SUSPEND:
 		ret = gpio_pin_set_dt(&config->enable, 0);
@@ -111,13 +119,14 @@ static int pm_action(const struct device *dev, enum pm_device_action action)
 			LOG_ERR("failed to set GPIO for PM suspend");
 		}
 		break;
+	case PM_DEVICE_ACTION_TURN_OFF:
+		break;
 	default:
 		return -ENOTSUP;
 	}
 
 	return ret;
 }
-#endif
 
 static int phototransistor_init(const struct device *dev)
 {
@@ -128,15 +137,6 @@ static int phototransistor_init(const struct device *dev)
 		LOG_ERR("GPIO port %s is not ready", cfg->enable.port->name);
 		return -ENODEV;
 	}
-
-	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_ACTIVE);
-	if (err < 0) {
-		LOG_ERR("Could not configure enable pin!");
-		return err;
-	}
-#ifdef CONFIG_PM_DEVICE
-	gpio_pin_set_dt(&cfg->enable, 0);
-#endif
 
 	if (!adc_is_ready_dt(&cfg->adc_channel)) {
 		LOG_ERR("ADC controller device is not ready\n");
@@ -149,7 +149,13 @@ static int phototransistor_init(const struct device *dev)
 		return err;
 	}
 
-	return 0;
+	err = pm_device_runtime_enable(dev);
+	if (err < 0) {
+		LOG_ERR("Could not enable power management for light sensor. err(%d)\n", err);
+		return err;
+	}
+
+	return pm_device_driver_init(dev, pm_action);
 }
 
 #define PHOTOTRANSISTOR_DEFINE(inst)                                                               \
@@ -159,6 +165,7 @@ static int phototransistor_init(const struct device *dev)
 		.adc_channel = ADC_DT_SPEC_INST_GET(inst),                                         \
 		.enable = GPIO_DT_SPEC_INST_GET(inst, enable_gpios),                               \
 		.pulldown_ohm = DT_INST_PROP(inst, pulldown_ohm),                                  \
+		.sample_delay_us = DT_INST_PROP_OR(inst, power_on_sample_delay_us, 1000),          \
 	};                                                                                         \
                                                                                                    \
 	PM_DEVICE_DT_INST_DEFINE(inst, pm_action);                                                 \
