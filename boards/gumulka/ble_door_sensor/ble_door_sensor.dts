@@ -28,6 +28,7 @@
 		ambient-temp0 = &shtc3;
 		ambient-light0 = &light_sensor;
 		watchdog0 = &wdt0;
+
 	};
 
 	leds {
@@ -59,7 +60,7 @@
 		pulldown-ohm = <1000>;
 	};
 
-	zephyr,user {
+	bat_voltage: zephyr,user {
 		io-channels = <&adc 1>;
 	};
 };
