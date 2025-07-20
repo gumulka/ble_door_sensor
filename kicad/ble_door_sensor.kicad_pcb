@@ -170,31 +170,31 @@
 	(net 19 "unconnected-(U1-P0.24-Pad29)")
 	(net 20 "unconnected-(U1-P0.30{slash}AIN6-Pad42)")
 	(net 21 "unconnected-(U1-NC-Pad44)")
-	(net 22 "Net-(D101-A)")
-	(net 23 "RX")
-	(net 24 "TX")
-	(net 25 "LED")
-	(net 26 "unconnected-(U1-NFC2{slash}P0.10-Pad12)")
-	(net 27 "unconnected-(U1-P0.12-Pad15)")
-	(net 28 "unconnected-(U1-P0.27-Pad39)")
-	(net 29 "unconnected-(U1-P0.29{slash}AIN5-Pad41)")
-	(net 30 "unconnected-(U1-P0.31{slash}AIN7-Pad43)")
-	(net 31 "Net-(L101-Pad2)")
-	(net 32 "unconnected-(U1-P0.01{slash}XL2-Pad3)")
-	(net 33 "P0.01")
-	(net 34 "P0.02")
-	(net 35 "P0.03")
-	(net 36 "unconnected-(U1-P0.05{slash}AIN3-Pad7)")
-	(net 37 "/Antenne")
-	(net 38 "unconnected-(U1-P0.08-Pad10)")
-	(net 39 "SCL")
-	(net 40 "/DEC4")
-	(net 41 "/XC2")
-	(net 42 "/DEC3")
-	(net 43 "/XC1")
-	(net 44 "/DEC2")
-	(net 45 "/DEC1")
-	(net 46 "unconnected-(U1-P0.25-Pad37)")
+	(net 22 "RX")
+	(net 23 "TX")
+	(net 24 "LED")
+	(net 25 "unconnected-(U1-NFC2{slash}P0.10-Pad12)")
+	(net 26 "unconnected-(U1-P0.12-Pad15)")
+	(net 27 "unconnected-(U1-P0.27-Pad39)")
+	(net 28 "unconnected-(U1-P0.29{slash}AIN5-Pad41)")
+	(net 29 "unconnected-(U1-P0.31{slash}AIN7-Pad43)")
+	(net 30 "Net-(L101-Pad2)")
+	(net 31 "unconnected-(U1-P0.01{slash}XL2-Pad3)")
+	(net 32 "P0.01")
+	(net 33 "P0.02")
+	(net 34 "P0.03")
+	(net 35 "unconnected-(U1-P0.05{slash}AIN3-Pad7)")
+	(net 36 "/Antenne")
+	(net 37 "unconnected-(U1-P0.08-Pad10)")
+	(net 38 "SCL")
+	(net 39 "/DEC4")
+	(net 40 "/XC2")
+	(net 41 "/DEC3")
+	(net 42 "/XC1")
+	(net 43 "/DEC2")
+	(net 44 "/DEC1")
+	(net 45 "unconnected-(U1-P0.25-Pad37)")
+	(net 46 "Net-(D101-A)")
 	(net 47 "unconnected-(U2-NC-Pad5)")
 	(net 48 "/Photo_out")
 	(net 49 "/Photo_in")
@@ -291,7 +291,7 @@
 		)
 		(property ki_fp_filters "Crystal*")
 		(path "/f3bdcfd4-f183-4b92-b854-670d894aa00c")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -419,7 +419,7 @@
 			(at -1.1 0.85)
 			(size 1.4 1.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net 41 "/XC2")
+			(net 40 "/XC2")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "e04a00c0-c394-4138-a351-95451e7f0c56")
@@ -437,7 +437,7 @@
 			(at 1.1 -0.85)
 			(size 1.4 1.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net 43 "/XC1")
+			(net 42 "/XC1")
 			(pinfunction "3")
 			(pintype "passive")
 			(uuid "4341a32e-510b-4db3-b01b-dbb9af01d477")
@@ -470,11 +470,11 @@
 		(at 143.2 54.7 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
-		(property "Reference" "C13"
+		(property "Reference" "C201"
 			(at 0 -1.16 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "eb24bdc0-7832-417c-a73b-457f66ac8fd7")
+			(uuid "8fa4eda8-e5cc-4d41-858b-598aaae6813e")
 			(effects
 				(font
 					(size 1 1)
@@ -485,7 +485,7 @@
 		(property "Value" "10nF"
 			(at 0 1.16 90)
 			(layer "F.Fab")
-			(uuid "c0c7964c-fed3-48a3-9464-63fdda71e575")
+			(uuid "117d237d-c5ae-43e2-83be-c01adc9aab13")
 			(effects
 				(font
 					(size 1 1)
@@ -498,7 +498,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2d2e4f8b-37ae-4278-954f-1dd4dc8fd9f5")
+			(uuid "545085cf-5da7-4e4e-bf6a-b869829a3a55")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -511,7 +511,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a90a86c1-c66d-42be-af00-a21e3135b134")
+			(uuid "6c514188-434c-4d1d-ac45-f5b370e509cb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -545,8 +545,8 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/88c6b5a4-6373-4184-8f72-364298f73502")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.107836 -0.36)
@@ -694,12 +694,12 @@
 		(layer "F.Cu")
 		(uuid "1ce327a3-6320-4d30-99de-55007b1d5947")
 		(at 144 42)
-		(property "Reference" "T3"
+		(property "Reference" "T203"
 			(at 0 -2.032 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "7188f192-ed99-4c68-bb3f-9057deccac27")
+			(uuid "8e2bae85-2877-4afa-a11e-7019103986e6")
 			(effects
 				(font
 					(size 1 1)
@@ -711,7 +711,7 @@
 			(at 0 2.286 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "af7e3a90-11bc-4b51-8c5e-8b30aeae2242")
+			(uuid "83511125-de47-4c91-92ef-c4a919253ffa")
 			(effects
 				(font
 					(size 1 1)
@@ -724,7 +724,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "14de0f59-a5d3-44a2-aadb-79d27b3338cc")
+			(uuid "c6d65ee4-2787-48c1-b461-807e30329d8f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -737,7 +737,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a15fc644-77aa-4939-8d6d-b11b6943e60c")
+			(uuid "120b0acb-4e8f-457b-8906-705c3db087a1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -783,8 +783,8 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/81cdee7c-f64a-421c-9e52-30ef54fccd44")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(zone_connect 0)
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
@@ -829,11 +829,11 @@
 		(at 142.5 49)
 		(descr "Mounting Hole 2.2mm, no annular, M2")
 		(tags "mounting hole 2.2mm no annular m2")
-		(property "Reference" "H102"
+		(property "Reference" "H202"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "0a4e356c-820f-48e8-8071-de0e7d7472f4")
+			(uuid "6c13920b-a879-44c1-a667-c3b43049c95b")
 			(effects
 				(font
 					(size 1 1)
@@ -844,7 +844,7 @@
 		(property "Value" "MountingHole"
 			(at 0.2 -0.65 0)
 			(layer "F.Fab")
-			(uuid "b27b4b84-e6df-4272-a0ee-95e40c587d5c")
+			(uuid "724ec1d1-08b3-46ca-b37b-8e384bcbc7e7")
 			(effects
 				(font
 					(size 1 1)
@@ -857,7 +857,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "20f4d19c-9603-4e85-aaa5-07910e28f53d")
+			(uuid "e57835a8-0b15-4b56-93b6-7aabf0f0cbd8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -870,7 +870,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e4db6c5e-14ba-40ae-b53a-b3608b921edb")
+			(uuid "a7c80d01-c988-4550-a311-6c6aaef47692")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -915,9 +915,8 @@
 			)
 		)
 		(property ki_fp_filters "MountingHole*")
-		(path "/e2c4bbd3-597c-454c-a078-9f6dad4cfe32")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
@@ -971,7 +970,7 @@
 			(at 0 -4.3 135)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "faa3ff03-d60d-441b-860b-a9f685193504")
+			(uuid "346c8e73-c4bb-4c1b-beee-b9422d2785ea")
 			(effects
 				(font
 					(size 1 1)
@@ -982,7 +981,7 @@
 		(property "Value" "nRF52832-QFxx"
 			(at 0 4.3 135)
 			(layer "F.Fab")
-			(uuid "f7300584-e193-4716-905e-39d17d67b7a2")
+			(uuid "90f4a438-23fc-400d-abab-129d8c1e6965")
 			(effects
 				(font
 					(size 1 1)
@@ -995,7 +994,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6846591c-6014-4128-b40d-f350ff97b367")
+			(uuid "16cc7590-231f-483d-af69-5060dcc32838")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1008,7 +1007,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "96499cf9-17a6-4565-a3dc-7d7dfcbab7ad")
+			(uuid "733f42c5-7dc9-4073-83b6-06afbc6a83f4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1054,7 +1053,7 @@
 		)
 		(property ki_fp_filters "QFN*1EP*6x6mm*P0.4mm*")
 		(path "/a247b1f5-7003-481a-ad92-fc420a5a6952")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -1318,7 +1317,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 45 "/DEC1")
+			(net 44 "/DEC1")
 			(pinfunction "DEC1")
 			(pintype "passive")
 			(uuid "2e016fb1-7ff7-46a1-a0cb-c4f7607b2256")
@@ -1338,7 +1337,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 32 "unconnected-(U1-P0.01{slash}XL2-Pad3)")
+			(net 31 "unconnected-(U1-P0.01{slash}XL2-Pad3)")
 			(pinfunction "P0.01/XL2")
 			(pintype "bidirectional+no_connect")
 			(uuid "19e206c5-87c6-4d2f-a369-fab68219e3f0")
@@ -1348,7 +1347,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 33 "P0.01")
+			(net 32 "P0.01")
 			(pinfunction "P0.02/AIN0")
 			(pintype "bidirectional")
 			(uuid "607772f1-bb2a-468d-a896-25fcd99ed522")
@@ -1358,7 +1357,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 34 "P0.02")
+			(net 33 "P0.02")
 			(pinfunction "P0.03/AIN1")
 			(pintype "bidirectional")
 			(uuid "57864046-ab58-4501-8f01-5abd34290dcf")
@@ -1368,7 +1367,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 35 "P0.03")
+			(net 34 "P0.03")
 			(pinfunction "P0.04/AIN2")
 			(pintype "bidirectional")
 			(uuid "4798c1f9-9990-4c52-aa13-f711a7f9dc9d")
@@ -1378,7 +1377,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 36 "unconnected-(U1-P0.05{slash}AIN3-Pad7)")
+			(net 35 "unconnected-(U1-P0.05{slash}AIN3-Pad7)")
 			(pinfunction "P0.05/AIN3")
 			(pintype "bidirectional+no_connect")
 			(uuid "c083cb05-ea7a-4432-90db-c2c43a9664d6")
@@ -1388,7 +1387,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 39 "SCL")
+			(net 38 "SCL")
 			(pinfunction "P0.06")
 			(pintype "bidirectional")
 			(uuid "2657540f-fbb4-4195-9e34-80085ea371a4")
@@ -1408,7 +1407,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 38 "unconnected-(U1-P0.08-Pad10)")
+			(net 37 "unconnected-(U1-P0.08-Pad10)")
 			(pinfunction "P0.08")
 			(pintype "bidirectional+no_connect")
 			(uuid "103cb8b9-1309-4b9f-9aa0-8ea1b5d5461a")
@@ -1428,7 +1427,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 26 "unconnected-(U1-NFC2{slash}P0.10-Pad12)")
+			(net 25 "unconnected-(U1-NFC2{slash}P0.10-Pad12)")
 			(pinfunction "NFC2/P0.10")
 			(pintype "bidirectional+no_connect")
 			(uuid "26b39000-c5b8-4494-9350-352ac11c9046")
@@ -1458,7 +1457,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 27 "unconnected-(U1-P0.12-Pad15)")
+			(net 26 "unconnected-(U1-P0.12-Pad15)")
 			(pinfunction "P0.12")
 			(pintype "bidirectional+no_connect")
 			(uuid "65b308a5-e322-48c0-ab36-9cfc45910048")
@@ -1498,7 +1497,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 25 "LED")
+			(net 24 "LED")
 			(pinfunction "P0.16")
 			(pintype "bidirectional")
 			(uuid "89c25995-b654-4574-a3e0-15159169466f")
@@ -1528,7 +1527,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 23 "RX")
+			(net 22 "RX")
 			(pinfunction "P0.19")
 			(pintype "bidirectional")
 			(uuid "9fb00609-dd02-42b2-a4cf-58874bc62ae7")
@@ -1538,7 +1537,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 24 "TX")
+			(net 23 "TX")
 			(pinfunction "P0.20")
 			(pintype "bidirectional")
 			(uuid "7344fec7-939a-46a1-939d-deef3fcd8aa9")
@@ -1628,7 +1627,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 44 "/DEC2")
+			(net 43 "/DEC2")
 			(pinfunction "DEC2")
 			(pintype "passive")
 			(uuid "3ca4c433-0498-4e72-b88a-229bce6c6b57")
@@ -1638,7 +1637,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 42 "/DEC3")
+			(net 41 "/DEC3")
 			(pinfunction "DEC3")
 			(pintype "passive")
 			(uuid "9b94f3c0-dc07-465c-8704-a74e363dffee")
@@ -1648,7 +1647,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 43 "/XC1")
+			(net 42 "/XC1")
 			(pinfunction "XC1")
 			(pintype "input")
 			(uuid "061c40e7-c80d-4eae-af2a-1623fd7c7806")
@@ -1658,7 +1657,7 @@
 			(size 0.8 0.2)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 41 "/XC2")
+			(net 40 "/XC2")
 			(pinfunction "XC2")
 			(pintype "input")
 			(uuid "92e2224b-a207-4a04-a9dd-f4a85dfabdc6")
@@ -1678,7 +1677,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 46 "unconnected-(U1-P0.25-Pad37)")
+			(net 45 "unconnected-(U1-P0.25-Pad37)")
 			(pinfunction "P0.25")
 			(pintype "bidirectional+no_connect")
 			(uuid "ca99d7e5-f150-49cf-951f-2c3270f6efcd")
@@ -1698,7 +1697,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 28 "unconnected-(U1-P0.27-Pad39)")
+			(net 27 "unconnected-(U1-P0.27-Pad39)")
 			(pinfunction "P0.27")
 			(pintype "bidirectional+no_connect")
 			(uuid "005140ea-d915-4d4a-bdce-2bac111c0141")
@@ -1718,7 +1717,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 29 "unconnected-(U1-P0.29{slash}AIN5-Pad41)")
+			(net 28 "unconnected-(U1-P0.29{slash}AIN5-Pad41)")
 			(pinfunction "P0.29/AIN5")
 			(pintype "bidirectional+no_connect")
 			(uuid "3d30db4f-f6cf-4696-87ea-9d857f7062a3")
@@ -1738,7 +1737,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 30 "unconnected-(U1-P0.31{slash}AIN7-Pad43)")
+			(net 29 "unconnected-(U1-P0.31{slash}AIN7-Pad43)")
 			(pinfunction "P0.31/AIN7")
 			(pintype "bidirectional+no_connect")
 			(uuid "14185f42-a3c8-4908-934b-08d7eb9fb260")
@@ -1768,7 +1767,7 @@
 			(size 0.2 0.8)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 40 "/DEC4")
+			(net 39 "/DEC4")
 			(pinfunction "DEC4")
 			(pintype "passive")
 			(uuid "999daf5d-e332-4d11-88ab-8d5226b19fa4")
@@ -1909,7 +1908,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/4e914b98-094d-4068-a312-41e8f9fd981d")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2135,7 +2134,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/d35e0357-ce09-4789-84b2-ac006f761add")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2254,7 +2253,7 @@
 			(size 0.56 0.62)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 44 "/DEC2")
+			(net 43 "/DEC2")
 			(pintype "passive")
 			(uuid "889b1a5d-9e26-4723-9e82-dfd4a19bcec1")
 		)
@@ -2361,7 +2360,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/7664fffe-6165-41f8-a29b-37b39135206b")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2480,7 +2479,7 @@
 			(size 0.9 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 40 "/DEC4")
+			(net 39 "/DEC4")
 			(pintype "passive")
 			(uuid "e1d80098-bd0d-4724-80c4-5d56838c85c1")
 		)
@@ -2511,12 +2510,12 @@
 		(layer "F.Cu")
 		(uuid "3d059802-3e0c-4448-90f3-9f0f035d5a34")
 		(at 143.5 67)
-		(property "Reference" "SW101"
+		(property "Reference" "SW201"
 			(at -2.5 -7.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "b6942193-3dbc-430e-9254-6ad848037e93")
+			(uuid "c070810e-ecaa-48d8-a6c4-2e5c3102c9cc")
 			(effects
 				(font
 					(size 1 1)
@@ -2528,7 +2527,7 @@
 			(at -4 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "1cd8db4f-d389-4de0-9e5f-6a9f93a157f5")
+			(uuid "543cea63-6037-4044-a734-dac8e35510a8")
 			(effects
 				(font
 					(size 1 1)
@@ -2541,7 +2540,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ab9cd2e1-03d9-44c8-81ce-8d27407db391")
+			(uuid "98835406-c478-4a7d-867a-6ea3ea6983ee")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2554,7 +2553,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "db557664-5280-451d-915f-2cab553dcebb")
+			(uuid "7d231319-232e-4044-9458-2eb03f4b5f08")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2586,9 +2585,8 @@
 				)
 			)
 		)
-		(path "/220d28f8-7a7e-4e81-8e19-0821ae879a7b")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -1.5 -7.5)
@@ -2771,7 +2769,7 @@
 		)
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/60f734ce-559b-47c7-a260-6b96170228dd")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -2890,7 +2888,7 @@
 			(size 0.875 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 31 "Net-(L101-Pad2)")
+			(net 30 "Net-(L101-Pad2)")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "8c924713-9155-4234-9f5f-e85242f2a447")
@@ -2924,11 +2922,11 @@
 		(at 135 86.485 -90)
 		(descr "Keystone 3034 SMD battery holder for 2020, 2025 and 2032 coincell batteries. http://www.keyelco.com/product-pdf.cfm?p=798")
 		(tags "Keystone type 3034 coin cell retainer")
-		(property "Reference" "BT1"
+		(property "Reference" "BT201"
 			(at 0 -11.5 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "a53284f3-693e-46c8-b741-aa1d674f481c")
+			(uuid "c87cf95b-8a27-4fa9-9b69-7c1316b94f5c")
 			(effects
 				(font
 					(size 1 1)
@@ -2939,7 +2937,7 @@
 		(property "Value" "3034"
 			(at 0 11.5 90)
 			(layer "F.Fab")
-			(uuid "37407632-e9d2-456d-bdc5-a9246d9ff8dd")
+			(uuid "4607e3f7-6d1e-4ed6-8069-8e7bb5c091bd")
 			(effects
 				(font
 					(size 1 1)
@@ -2952,7 +2950,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3fd1ac0b-1ff4-4457-95c3-f346075d9da2")
+			(uuid "7cec6e30-a1be-481b-8a63-817795f61dfb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2965,7 +2963,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bb7d2afb-019e-4e25-a5dc-522480b70ff3")
+			(uuid "e05d8f07-b650-43ee-9777-3ac6a7e04d22")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3010,8 +3008,8 @@
 			)
 		)
 		(path "/5a3a5672-34e8-449a-bc2e-1691861823f7")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -10.78 3.63)
@@ -3511,11 +3509,11 @@
 		(at 125.75 48.5 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R102"
+		(property "Reference" "R201"
 			(at 0 -1.17 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "5b419fcd-ace6-4130-8d27-52e6afc49e79")
+			(uuid "96756a01-5419-458b-af07-0dd0db5ef6b5")
 			(effects
 				(font
 					(size 1 1)
@@ -3526,7 +3524,7 @@
 		(property "Value" "1K"
 			(at 0 1.17 90)
 			(layer "F.Fab")
-			(uuid "4ceb5bac-992e-4f8d-b8da-ade79eb60d96")
+			(uuid "5e79269d-9113-4d9c-a971-eaa027604e59")
 			(effects
 				(font
 					(size 1 1)
@@ -3539,7 +3537,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d8d061f2-e5ab-44f3-9885-293626bd5e44")
+			(uuid "befc608f-553d-4cc7-8fd2-d76d125c5b59")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3552,7 +3550,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9ca1b895-abe3-4f8e-a7e6-a7d92efa3325")
+			(uuid "f68e1cbd-56ab-4e3d-8d79-359fc945d71a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3586,8 +3584,8 @@
 		)
 		(property ki_fp_filters "R_*")
 		(path "/6e4cfaed-2110-449d-87c6-b6a63cc0447e")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
@@ -3705,7 +3703,7 @@
 			(size 0.54 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 25 "LED")
+			(net 24 "LED")
 			(pintype "passive")
 			(uuid "aa77fc83-bcea-427d-b196-b26d8b3e145c")
 		)
@@ -3714,7 +3712,7 @@
 			(size 0.54 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 22 "Net-(D101-A)")
+			(net 46 "Net-(D101-A)")
 			(pintype "passive")
 			(uuid "73fa39be-9dfc-4ac9-8fa4-7afda2c31df7")
 		)
@@ -3812,7 +3810,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/942ef49f-9b8b-4f5f-bfe5-737ced6f1b0e")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -3931,7 +3929,7 @@
 			(size 0.56 0.62)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 43 "/XC1")
+			(net 42 "/XC1")
 			(pintype "passive")
 			(uuid "3a314c1f-5d23-4f23-b7e8-579381756149")
 		)
@@ -3963,11 +3961,11 @@
 		(at 131.2 60.2 -45)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R3"
+		(property "Reference" "R206"
 			(at 0 -1.17 135)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "771e60fd-0e9b-46a6-a682-cd0b0d8cb6c6")
+			(uuid "6f79bea8-0a0b-4504-b9d0-9c808e47278c")
 			(effects
 				(font
 					(size 1 1)
@@ -3978,7 +3976,7 @@
 		(property "Value" "1K"
 			(at 0 1.17 135)
 			(layer "F.Fab")
-			(uuid "c7491616-2993-4ab7-8e5c-95d3522569b9")
+			(uuid "cd0483f0-bcfc-4674-b7a7-f6e6a933f0d7")
 			(effects
 				(font
 					(size 1 1)
@@ -3991,7 +3989,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7c609ff5-5224-4f46-ab0c-da1bbc15276d")
+			(uuid "9944e3f7-2ba9-4fce-b1b7-e97a6cb736a6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4004,7 +4002,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1e30d108-21b4-45df-8574-58ee7e51463e")
+			(uuid "e7ef992e-4545-423d-ab3d-f3523df7417d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4038,8 +4036,8 @@
 		)
 		(property ki_fp_filters "R_*")
 		(path "/5e54e61d-a54e-4601-baba-6c7d171b8abc")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.153641 0.38)
@@ -4189,11 +4187,11 @@
 		(at 127.75 48.25 180)
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED")
-		(property "Reference" "D101"
+		(property "Reference" "D201"
 			(at 0 -1.43 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "73111152-f95e-421c-b130-7aaf53712767")
+			(uuid "17b9b33d-1dbe-46f2-b147-330baa596fed")
 			(effects
 				(font
 					(size 1 1)
@@ -4204,7 +4202,7 @@
 		(property "Value" "LED"
 			(at 0 1.43 0)
 			(layer "F.Fab")
-			(uuid "523ff417-c6e3-4589-a004-428471d58672")
+			(uuid "e3106214-80d7-465d-9a14-44f1d7ad451c")
 			(effects
 				(font
 					(size 1 1)
@@ -4217,7 +4215,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "07a3bad3-4cc4-4c87-be8c-cea8fc5aad72")
+			(uuid "981a1275-9887-47a7-9b7b-dbec2d863bdf")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4230,7 +4228,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "288ababe-5e25-476f-9731-3074221b9200")
+			(uuid "224829e9-af25-4c94-80f4-11ad317ef3da")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4264,8 +4262,8 @@
 		)
 		(property ki_fp_filters "LED* LED_SMD:* LED_THT:*")
 		(path "/be2f5c11-2dd6-4289-af7e-d100d35c124e")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 0.8 -0.735)
@@ -4413,7 +4411,7 @@
 			(size 0.875 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 22 "Net-(D101-A)")
+			(net 46 "Net-(D101-A)")
 			(pinfunction "A")
 			(pintype "passive")
 			(uuid "eb67812e-9d83-4c9a-8f64-0f0fc6786770")
@@ -4437,11 +4435,11 @@
 		(at 139.5 68.25)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R104"
+		(property "Reference" "R204"
 			(at 0 -1.17 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "12080cdb-c06b-4689-b50f-0dcb11ab77d4")
+			(uuid "48cbca02-7710-4253-8c23-bd6a0750961b")
 			(effects
 				(font
 					(size 1 1)
@@ -4452,7 +4450,7 @@
 		(property "Value" "100k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
-			(uuid "4325e696-52a7-4cfc-acc0-e505b0abeb6e")
+			(uuid "07036741-fade-4e46-8735-f0da9c93989a")
 			(effects
 				(font
 					(size 1 1)
@@ -4465,7 +4463,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "82a401a8-4dd7-4e90-8dc3-bef2d32abedb")
+			(uuid "9713ff07-ae57-40bb-95fa-001b40a67c75")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4478,7 +4476,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f4d21b02-e417-49b3-becc-6c519c3ebb8a")
+			(uuid "46f4729a-fa36-4ab8-acae-85900b7b2b5e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4512,8 +4510,8 @@
 		)
 		(property ki_fp_filters "R_*")
 		(path "/fefd57b6-61a8-47e2-a59a-9a546c795274")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
@@ -4664,11 +4662,11 @@
 		(at 127.5 99)
 		(descr "Mounting Hole 2.2mm, no annular, M2")
 		(tags "mounting hole 2.2mm no annular m2")
-		(property "Reference" "H101"
+		(property "Reference" "H201"
 			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f6f2a35d-c657-4bc9-a718-9186d9e011be")
+			(uuid "d691e30f-e952-48f8-b5ef-4fc0c6d87b17")
 			(effects
 				(font
 					(size 1 1)
@@ -4679,7 +4677,7 @@
 		(property "Value" "MountingHole"
 			(at 0 3.2 0)
 			(layer "F.Fab")
-			(uuid "05c92fc8-afd9-4df9-b246-b168f1e8512b")
+			(uuid "68903d19-3a9c-48e9-9192-7918e9e87b09")
 			(effects
 				(font
 					(size 1 1)
@@ -4692,7 +4690,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c8857025-21a3-4bb2-8d67-6062ed1941ad")
+			(uuid "e9286e1a-ed83-46d7-848a-8978d0900dba")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4705,7 +4703,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3d54373c-4411-4ce7-87e2-fd1e14b9e460")
+			(uuid "96bbfb70-1e4f-4f0e-a477-6827bb1efa30")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4750,9 +4748,8 @@
 			)
 		)
 		(property ki_fp_filters "MountingHole*")
-		(path "/25e4cf2a-847a-4375-85d3-e6f76ab93ede")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
@@ -4802,11 +4799,11 @@
 		(at 138.525 66.3)
 		(descr "DFN, 4 Pin (https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHTC3_Datasheet.pdf)")
 		(tags "Sensirion DFN NoLead")
-		(property "Reference" "U2"
+		(property "Reference" "U201"
 			(at 0 -1.95 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "93728a8d-96c6-4a36-b9d4-cbfd23299290")
+			(uuid "5bc70ec1-2f33-4fbc-a77f-a9dc0956aa44")
 			(effects
 				(font
 					(size 1 1)
@@ -4817,7 +4814,7 @@
 		(property "Value" "SHTC3"
 			(at 0 1.95 0)
 			(layer "F.Fab")
-			(uuid "14cc230b-27b9-44ff-ac12-da4e9ebad8e1")
+			(uuid "4247ae51-647c-463b-9792-9444d845fa21")
 			(effects
 				(font
 					(size 1 1)
@@ -4830,7 +4827,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d5165d0f-ef40-417f-acba-3b9c08c32bdf")
+			(uuid "37a72914-4913-4706-97b7-d1930a18523f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4843,7 +4840,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "635c473b-b2d5-4f17-abdb-ec9dd987245c")
+			(uuid "58cb9f57-0cf9-4fd5-b858-f2121db058a4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4889,8 +4886,8 @@
 		)
 		(property ki_fp_filters "Sensirion*DFN*1EP*2x2mm*P1mm*EP0.7x1.6mm*")
 		(path "/69eac76e-b553-455d-a35d-e8ef533181f8")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -1 -1.11)
@@ -5075,7 +5072,7 @@
 			(size 0.55 0.35)
 			(layers "F.Cu" "F.Mask")
 			(roundrect_rratio 0.25)
-			(net 39 "SCL")
+			(net 38 "SCL")
 			(pinfunction "SCL")
 			(pintype "input")
 			(uuid "07b93dc6-e926-4678-afc8-4950c6d5bd79")
@@ -5140,11 +5137,11 @@
 		(at 142.8 56.3)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R2"
+		(property "Reference" "R202"
 			(at 0 -1.17 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "598d2287-3f22-4924-aeb7-9571ba2a1b7e")
+			(uuid "e8b25aa3-6374-4655-a24b-7f6cd26f615c")
 			(effects
 				(font
 					(size 1 1)
@@ -5155,7 +5152,7 @@
 		(property "Value" "1M"
 			(at 0 1.17 0)
 			(layer "F.Fab")
-			(uuid "185d7b12-2c7b-4fe2-9ce1-fea4f49bb4e0")
+			(uuid "5c8992a1-232e-493c-be16-41f04c661fe9")
 			(effects
 				(font
 					(size 1 1)
@@ -5168,7 +5165,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6c0fa266-6f54-48cf-92ff-7b46cf0b7526")
+			(uuid "c1929a1f-f937-4bc7-84d5-3c53e562f896")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5181,7 +5178,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "baad7b91-f67e-4887-acd1-a80bad4728f9")
+			(uuid "52585f99-309f-4c6e-ac34-bf6df54bd1da")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5215,8 +5212,8 @@
 		)
 		(property ki_fp_filters "R_*")
 		(path "/cd717525-d4f0-4845-850e-262592fa98ff")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
@@ -5366,11 +5363,11 @@
 		(at 137.5 68.25 180)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R105"
+		(property "Reference" "R205"
 			(at 0 -1.17 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "17086ec9-3029-456d-821b-4fd716e4b1f4")
+			(uuid "ad6b08f0-3657-43d1-8475-2150c1469882")
 			(effects
 				(font
 					(size 1 1)
@@ -5381,7 +5378,7 @@
 		(property "Value" "100k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
-			(uuid "9b006ec4-1af8-46cc-918e-9849407a4ddf")
+			(uuid "d03d8543-87bd-482a-acb4-ed9b26d72bc6")
 			(effects
 				(font
 					(size 1 1)
@@ -5394,7 +5391,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f1b6bf84-f268-4251-a890-df3957c98ebd")
+			(uuid "eac86cf6-edde-489c-8e05-142b21bc1c31")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5407,7 +5404,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "528ebeb8-c956-4dfb-9f32-769ce1424eee")
+			(uuid "3d30e215-6cb5-4b87-a73b-22d16a154774")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5441,8 +5438,8 @@
 		)
 		(property ki_fp_filters "R_*")
 		(path "/c4d89009-09cf-46d2-b729-818d88a9babd")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.153641 0.38)
@@ -5569,7 +5566,7 @@
 			(size 0.54 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 39 "SCL")
+			(net 38 "SCL")
 			(pintype "passive")
 			(uuid "8aa305fe-20c2-4ff0-8297-13fa6b77399f")
 		)
@@ -5592,7 +5589,7 @@
 		(at 126.5 57.9 180)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
-		(property "Reference" "C3"
+		(property "Reference" "C203"
 			(at 0 -1.16 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -5822,7 +5819,7 @@
 			(at 0 -1.16 225)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "4d1fa8f4-68fc-4be0-9785-a3901840f218")
+			(uuid "4cabbdf9-2e47-44b3-baa0-a2f33c84834e")
 			(effects
 				(font
 					(size 1 1)
@@ -5833,7 +5830,7 @@
 		(property "Value" "1pF"
 			(at 0 1.16 225)
 			(layer "F.Fab")
-			(uuid "cf6f92e9-d439-45be-887f-96d1809338a0")
+			(uuid "d2e0d94b-4e6d-4dce-8f74-a9e666a78d59")
 			(effects
 				(font
 					(size 1 1)
@@ -5846,7 +5843,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8fe87eff-8a4f-48c2-ad85-e12cedfe3b76")
+			(uuid "bbccc30c-7a71-4f6b-9075-3385b4dcc0dc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5859,7 +5856,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e2aa58b9-2d99-4ab2-9673-fabe9ef4cd97")
+			(uuid "f88f7248-08a8-4cce-9319-cdb898ce3932")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5917,7 +5914,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/ccae0a5e-6390-4344-a01e-c9bcf5b7ba8e")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd exclude_from_bom dnp)
 		(fp_line
@@ -6143,7 +6140,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/5ccb384b-f55a-4c63-8250-0e4641b639e5")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -6262,7 +6259,7 @@
 			(size 0.56 0.62)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 45 "/DEC1")
+			(net 44 "/DEC1")
 			(pintype "passive")
 			(uuid "a2dbbe84-e44b-4e5e-b717-5ae424aff36d")
 		)
@@ -6299,7 +6296,7 @@
 			(at 4.55 -6.41 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "dff01e95-af50-4c9f-bc69-3fa50eb7ba50")
+			(uuid "979a2596-5d3c-4027-89ba-b5755592fc53")
 			(effects
 				(font
 					(size 1 1)
@@ -6310,7 +6307,7 @@
 		(property "Value" "Antenna_Shield"
 			(at 4.55 1.21 0)
 			(layer "F.Fab")
-			(uuid "c7208afd-a8bb-4ecb-b93a-39e07b90b7ad")
+			(uuid "ea898876-723f-4a23-a918-0cb2e99c6b4c")
 			(effects
 				(font
 					(size 1 1)
@@ -6323,7 +6320,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0e3575bf-a3a6-4e2f-8be3-be05f860cde6")
+			(uuid "0840d013-ecf6-4417-8e8d-3eabf63a3752")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6336,7 +6333,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "85953526-79c4-482d-a581-b7d879164f88")
+			(uuid "6600d10e-a2bf-428b-98b8-1ae3c4bc8ff3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6381,7 +6378,7 @@
 			)
 		)
 		(path "/f1b27ede-295e-4d9e-9cb6-128e6e0259a5")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(net_tie_pad_groups "1,2")
@@ -6562,7 +6559,7 @@
 			(at 0 0)
 			(size 0.5 0.5)
 			(layers "F.Cu")
-			(net 37 "/Antenne")
+			(net 36 "/Antenne")
 			(pinfunction "A")
 			(pintype "input")
 			(uuid "0476e8b5-d549-4170-b15b-1d9974d87467")
@@ -6587,11 +6584,11 @@
 		(at 138.5 70.75)
 		(descr "SOT, 6 Pin (https://www.jedec.org/sites/default/files/docs/Mo-178c.PDF variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOT TO_SOT_SMD")
-		(property "Reference" "U101"
+		(property "Reference" "U202"
 			(at 0 -2.4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "8a9581ab-cba1-4a1f-bd27-22bcdd0b0007")
+			(uuid "316377e0-f5d6-4dcc-8333-c2df26671d51")
 			(effects
 				(font
 					(size 1 1)
@@ -6602,7 +6599,7 @@
 		(property "Value" "TMP100"
 			(at 0 2.4 0)
 			(layer "F.Fab")
-			(uuid "74abe9b2-a255-4764-a542-cbe7dafde941")
+			(uuid "0e2d0cf1-8b90-49b5-afbb-83030244606a")
 			(effects
 				(font
 					(size 1 1)
@@ -6615,7 +6612,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "320e7df3-83b9-4d8c-993a-693cf9f3da94")
+			(uuid "00fb6fd6-5c02-49d6-9d5c-0d14a73291cf")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6628,7 +6625,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d2c1d4de-6b1b-4510-854f-053fd2eae510")
+			(uuid "1c08067f-2de4-4a3f-978e-26a3261e147f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6674,8 +6671,8 @@
 		)
 		(property ki_fp_filters "SOT?23*")
 		(path "/8a8ea1d8-a642-40ff-979c-3082822d9638")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 0 -1.56)
@@ -6835,7 +6832,7 @@
 			(size 1.325 0.6)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 39 "SCL")
+			(net 38 "SCL")
 			(pinfunction "SCL")
 			(pintype "input")
 			(uuid "cdf61332-4629-4563-83cc-d5c4cf566f0d")
@@ -6984,7 +6981,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/85029a09-f5c9-4a1d-b1f5-8247b8bb633a")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -7103,7 +7100,7 @@
 			(size 0.56 0.62)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 42 "/DEC3")
+			(net 41 "/DEC3")
 			(pintype "passive")
 			(uuid "0dc796b4-1045-4fb2-a54f-a8e778c2ada8")
 		)
@@ -7133,12 +7130,12 @@
 		(layer "F.Cu")
 		(uuid "b31f1036-101d-4fe0-875b-c639ac1afc94")
 		(at 142.5 99)
-		(property "Reference" "T2"
+		(property "Reference" "T202"
 			(at 0 -2.032 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "4a87dd43-90b1-4dc8-8ce0-423b7ad4a2c3")
+			(uuid "62326819-80aa-414c-9097-2b469706c5c6")
 			(effects
 				(font
 					(size 1 1)
@@ -7150,7 +7147,7 @@
 			(at 0 2.286 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "7a69946a-000e-45c1-a86d-911671909ad5")
+			(uuid "a7d28d98-3e5c-4e83-8870-e5ee83a40fb6")
 			(effects
 				(font
 					(size 1 1)
@@ -7163,7 +7160,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "76bab741-6d69-4652-90c8-66b0c594c4ab")
+			(uuid "6a410ff2-7229-41f9-a40a-5e3723fac3e8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7176,7 +7173,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7d638416-57bb-4c0b-b579-1796bd0f5e2e")
+			(uuid "6967d2ae-447f-487a-9ef7-7446a02ed45a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7222,8 +7219,8 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/040e20dc-b36e-4575-bc5d-201ef4e96bce")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(zone_connect 0)
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
@@ -7267,11 +7264,11 @@
 		(at 128.75 71 90)
 		(descr "Low-profile SMD Tactile Switch, https://www.e-switch.com/system/asset/product_line/data_sheet/165/TL3342.pdf")
 		(tags "SPST Tactile Switch")
-		(property "Reference" "SW102"
+		(property "Reference" "SW202"
 			(at 0 -3.75 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "aa5e28ba-ce74-46d0-838a-3841c4b8ea77")
+			(uuid "05177b79-eabf-4dbf-9c4b-3b943bb1fde5")
 			(effects
 				(font
 					(size 1 1)
@@ -7282,7 +7279,7 @@
 		(property "Value" "SW_Push"
 			(at 0 3.75 90)
 			(layer "F.Fab")
-			(uuid "b8894e3d-111a-4874-aff6-7f3be3f01edb")
+			(uuid "cdd6bcdd-a000-42a2-938d-30ad9903ef45")
 			(effects
 				(font
 					(size 1 1)
@@ -7295,7 +7292,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4b7efe4d-e8ba-4357-a5e3-c3340fa31031")
+			(uuid "204d1f33-bf2e-48c7-9748-92b58872c322")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7308,7 +7305,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5e6c9dad-6793-40b5-8952-06bf97d9401e")
+			(uuid "c1d77304-2fc6-4a1f-9876-9339beb1de2f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7353,8 +7350,8 @@
 			)
 		)
 		(path "/5531d5c9-3168-4416-809f-c81f28825617")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -1.25 -2.75)
@@ -7948,7 +7945,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/7f5f15ae-66ce-4f26-909c-f38d75b216cb")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -8067,7 +8064,7 @@
 			(size 0.56 0.62)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 41 "/XC2")
+			(net 40 "/XC2")
 			(pintype "passive")
 			(uuid "d4852689-664c-49c7-b867-146926d3d550")
 		)
@@ -8099,11 +8096,11 @@
 		(at 128.2 63 90)
 		(descr "Tag-Connect programming header; http://www.tag-connect.com/Materials/TC2030-IDC-NL.pdf")
 		(tags "tag connect programming header pogo pins")
-		(property "Reference" "J1"
+		(property "Reference" "J201"
 			(at 0 2.7 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "237478b9-1764-4654-a477-5d916b0dac76")
+			(uuid "bf74004e-3523-463f-946d-55c47ed9f4db")
 			(effects
 				(font
 					(size 1 1)
@@ -8114,7 +8111,7 @@
 		(property "Value" "Prog Header"
 			(at 0 -2.3 90)
 			(layer "F.Fab")
-			(uuid "4ba9c1b1-0d8c-4307-8354-ee0a2adc1642")
+			(uuid "b81ab48a-2ec0-4c83-a335-dece78c5e163")
 			(effects
 				(font
 					(size 1 1)
@@ -8127,7 +8124,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "726a94a9-4d87-41d8-a218-f742e1810140")
+			(uuid "cb72a96a-6c2d-467f-9640-4a870a0a434d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8140,7 +8137,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4d350323-d691-48f6-8ec9-6dacc840ddfb")
+			(uuid "0fdbba2c-4ebb-4b57-80ff-2478a6911d2d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8174,8 +8171,8 @@
 		)
 		(property ki_fp_filters "*TC2030*")
 		(path "/c7a7c26d-4783-4519-8037-5fab899a79aa")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.27 1.27)
@@ -8374,11 +8371,11 @@
 		(at 131.5 57.5 -135)
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED")
-		(property "Reference" "Q1"
+		(property "Reference" "Q201"
 			(at 0 -1.43 45)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "c77a69ae-7b5c-4537-b5fc-746f3b974ee2")
+			(uuid "8717fecf-de8a-41a8-a08d-2170f55f7691")
 			(effects
 				(font
 					(size 1 1)
@@ -8389,7 +8386,7 @@
 		(property "Value" "ALS-PT19"
 			(at 0 1.43 45)
 			(layer "F.Fab")
-			(uuid "1e3ae53a-7f83-412e-aefd-a9a9bc22129c")
+			(uuid "3cc72a5d-c4b9-492b-b83b-7c21b44d92ac")
 			(effects
 				(font
 					(size 1 1)
@@ -8402,7 +8399,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1d784b94-dc8d-4451-b464-42687a2a23cb")
+			(uuid "605ae205-58bb-41e6-bc28-d78239e16557")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8415,7 +8412,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6c796c1a-344e-4ff8-8ef2-c78a29658754")
+			(uuid "7b51dfa2-3f36-4a38-9b0a-daad1f140ed1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8448,8 +8445,8 @@
 			)
 		)
 		(path "/271ae0b8-00cd-46bf-af15-83437d425836")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 0.8 -0.735)
@@ -8621,7 +8618,7 @@
 		(at 128.1 58.4 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R1"
+		(property "Reference" "R207"
 			(at 0 -1.17 90)
 			(layer "F.SilkS")
 			(hide yes)
@@ -8845,12 +8842,12 @@
 		(layer "F.Cu")
 		(uuid "e9e93e08-3525-41e5-bfc3-cf286e0bae89")
 		(at 126 42)
-		(property "Reference" "T1"
+		(property "Reference" "T201"
 			(at 0 -2.032 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "58722d1c-a4ab-4277-8f24-9849b0a0d3e8")
+			(uuid "870add22-8566-4022-865b-0b05e3ce3fe0")
 			(effects
 				(font
 					(size 1 1)
@@ -8862,7 +8859,7 @@
 			(at 0 2.286 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "59a2a597-9253-4103-82fe-4ffdcf4e797a")
+			(uuid "442d7662-ba3b-4239-ac8f-7d7bfe08256b")
 			(effects
 				(font
 					(size 1 1)
@@ -8875,7 +8872,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b443e880-5bf6-4667-a5e1-6606681c4948")
+			(uuid "7515cdfd-a48d-4db0-b002-48be96b83ba2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8888,7 +8885,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e691c9ee-47ee-4a75-9ddf-f22fc91ee625")
+			(uuid "cbd22cc3-fe93-42a5-853e-a36243e12ba1")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8934,8 +8931,8 @@
 		)
 		(property ki_fp_filters "MountingHole*")
 		(path "/af81bdd7-6e24-411c-9cc0-6bf4d32ee941")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(zone_connect 0)
 		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
@@ -8979,11 +8976,11 @@
 		(at 131.4 65.8)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
-		(property "Reference" "R101"
+		(property "Reference" "R203"
 			(at 0 -1.17 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "c0556b34-d8c7-4b4d-a1b2-05877818fa1d")
+			(uuid "5619aab9-fcd3-48a8-b69b-0a1316bfbe7f")
 			(effects
 				(font
 					(size 1 1)
@@ -8994,7 +8991,7 @@
 		(property "Value" "100k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
-			(uuid "ce9e523c-5b9c-4006-93b6-d4e811481f7d")
+			(uuid "49064527-3a8e-499d-a663-3fa2e5cd8905")
 			(effects
 				(font
 					(size 1 1)
@@ -9007,7 +9004,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8bc8ce62-7d6e-4749-9fac-9ba838941804")
+			(uuid "37c32fa2-bc67-47c8-b412-88ec144515a5")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9020,7 +9017,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e44e9e8a-8889-426e-bd45-3f17cc88ed96")
+			(uuid "14d18e8e-1ea5-4fe3-bd2f-7831a9d7babd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9054,8 +9051,8 @@
 		)
 		(property ki_fp_filters "R_*")
 		(path "/a0f7c7dd-fa56-404f-b10f-343d54555251")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.153641 -0.38)
@@ -9280,7 +9277,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/49f5dedf-d38c-4298-ba9c-14da29aeee3a")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9518,7 +9515,7 @@
 		)
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/a829690e-fce7-4f8f-a4bf-52453a89ecbb")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9617,7 +9614,7 @@
 			(size 0.59 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 40 "/DEC4")
+			(net 39 "/DEC4")
 			(pinfunction "1")
 			(pintype "passive")
 			(uuid "310c34b1-a3bb-4bca-a982-5b8ef6e72a2a")
@@ -9627,7 +9624,7 @@
 			(size 0.59 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 31 "Net-(L101-Pad2)")
+			(net 30 "Net-(L101-Pad2)")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "560430e2-b1d2-4d0f-95b5-95c82820688a")
@@ -9738,7 +9735,7 @@
 		)
 		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
 		(path "/0a321c43-329c-429c-a64f-ac8e98e49a75")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -9847,7 +9844,7 @@
 			(size 0.59 0.64)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
-			(net 37 "/Antenne")
+			(net 36 "/Antenne")
 			(pinfunction "2")
 			(pintype "passive")
 			(uuid "b483556d-3c0f-45f9-9d4a-fea0284c210c")
@@ -9946,7 +9943,7 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/9ccd30b4-1123-4953-a5be-c0624e8b0fe5")
-		(sheetname "Root")
+		(sheetname "/")
 		(sheetfile "ble_door_sensor.kicad_sch")
 		(attr smd)
 		(fp_line
@@ -10097,11 +10094,11 @@
 		(at 131.4 64.6 180)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
-		(property "Reference" "C101"
+		(property "Reference" "C202"
 			(at 0 -1.16 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "d88339ee-e04a-4746-887c-44ed5963395d")
+			(uuid "a736aba7-73b6-4801-bafe-90938a930d6c")
 			(effects
 				(font
 					(size 1 1)
@@ -10112,7 +10109,7 @@
 		(property "Value" "100nF"
 			(at 0 1.16 0)
 			(layer "F.Fab")
-			(uuid "68c16e93-3c80-49f4-99f9-122457e1030b")
+			(uuid "0fb07dc9-bd84-457c-8e31-113592a388a3")
 			(effects
 				(font
 					(size 1 1)
@@ -10125,7 +10122,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "108557c3-3fea-46d6-86b8-e7844882907d")
+			(uuid "a7018ae7-1a85-4c5d-8e6d-4e5e906e17c8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10138,7 +10135,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f3d2d674-302b-450c-8746-76d6893bd62d")
+			(uuid "6da8b221-184c-4970-9308-8b3ea7be63af")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10172,8 +10169,8 @@
 		)
 		(property ki_fp_filters "C_*")
 		(path "/acb021f9-a547-4173-978a-64930e7201b9")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start -0.107836 0.36)
@@ -10784,11 +10781,11 @@
 		(at 132.345 77.52 180)
 		(descr "surface-mounted straight pin header, 1x08, 2.54mm pitch, single row, style 1 (pin 1 left)")
 		(tags "Surface mounted pin header SMD 1x08 2.54mm single row style1 pin1 left")
-		(property "Reference" "J101"
+		(property "Reference" "J202"
 			(at 0 11.22 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "78b1e6ab-9071-43eb-8a34-f23a7724b7cc")
+			(uuid "fbf4cf46-4e02-4c4a-b134-25b1424834bb")
 			(effects
 				(font
 					(size 1 1)
@@ -10800,7 +10797,7 @@
 		(property "Value" "Conn_01x08"
 			(at 0 -11.22 0)
 			(layer "B.Fab")
-			(uuid "0ef9ae05-eab3-4d80-96ba-80644b4ed083")
+			(uuid "c7999c87-4472-4433-8b8f-042cf43c3437")
 			(effects
 				(font
 					(size 1 1)
@@ -10814,7 +10811,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "40b56ff9-9ed6-4fe8-b455-4f714d5b594a")
+			(uuid "8da457d5-bb0d-424c-99fe-02f1da63c154")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10827,7 +10824,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ae0978bf-00b6-42e8-9533-21a20897a15b")
+			(uuid "1ffb562c-91b2-40cd-b8f9-0e42a88214c4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10863,8 +10860,8 @@
 		)
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/20131899-95c5-47a1-8257-e4c447b00433")
-		(sheetname "Root")
-		(sheetfile "ble_door_sensor.kicad_sch")
+		(sheetname "/Sensors/")
+		(sheetfile "sensors.kicad_sch")
 		(attr smd)
 		(fp_line
 			(start 1.33 10.22)
@@ -11342,7 +11339,7 @@
 			(at -1.655 8.89 180)
 			(size 2.51 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net 23 "RX")
+			(net 22 "RX")
 			(pinfunction "Pin_1")
 			(pintype "passive")
 			(uuid "ea7e1e98-5674-472f-8a3f-be32ced4d1eb")
@@ -11351,7 +11348,7 @@
 			(at 1.655 6.35 180)
 			(size 2.51 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net 24 "TX")
+			(net 23 "TX")
 			(pinfunction "Pin_2")
 			(pintype "passive")
 			(uuid "ca81760e-79d9-4bfd-a7eb-0226de321ed5")
@@ -11378,7 +11375,7 @@
 			(at -1.655 -1.27 180)
 			(size 2.51 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net 33 "P0.01")
+			(net 32 "P0.01")
 			(pinfunction "Pin_5")
 			(pintype "passive")
 			(uuid "b2451244-ca13-4887-a444-5efbcd8cd298")
@@ -11387,7 +11384,7 @@
 			(at 1.655 -3.81 180)
 			(size 2.51 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net 34 "P0.02")
+			(net 33 "P0.02")
 			(pinfunction "Pin_6")
 			(pintype "passive")
 			(uuid "0386aa64-6d63-4c9d-bd1b-68d42bc23f0f")
@@ -11396,7 +11393,7 @@
 			(at -1.655 -6.35 180)
 			(size 2.51 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net 35 "P0.03")
+			(net 34 "P0.03")
 			(pinfunction "Pin_7")
 			(pintype "passive")
 			(uuid "eb7f8b4f-b411-44a4-9f96-952bf7f180d3")
@@ -13896,27 +13893,11 @@
 		(uuid "921405ad-95cd-4b90-908c-67f16dcfffef")
 	)
 	(segment
-		(start 125.75 47.99)
-		(end 126.7025 47.99)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 22)
-		(uuid "9a234960-ca60-4b71-b9bb-e8e131fabcdf")
-	)
-	(segment
-		(start 126.7025 47.99)
-		(end 126.9625 48.25)
-		(width 0.2)
-		(layer "F.Cu")
-		(net 22)
-		(uuid "cc2982f6-7678-4b0d-8559-e5875f5c4502")
-	)
-	(segment
 		(start 138.394975 49.605025)
 		(end 138.8 50.01005)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 23)
+		(net 22)
 		(uuid "5c1609a9-607e-473c-9ea4-4a6159e6f886")
 	)
 	(segment
@@ -13924,7 +13905,7 @@
 		(end 138.296016 52.074086)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 23)
+		(net 22)
 		(uuid "70874aed-d67b-4254-82d2-9c2047a8261e")
 	)
 	(segment
@@ -13932,7 +13913,7 @@
 		(end 138.8 51.570102)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 23)
+		(net 22)
 		(uuid "b585fde6-f9aa-4a92-b68b-ffc23aff2ba6")
 	)
 	(via
@@ -13940,7 +13921,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 23)
+		(net 22)
 		(uuid "dc3e1d3d-0ab9-4096-911b-6e90cb3ce8c5")
 	)
 	(segment
@@ -13948,7 +13929,7 @@
 		(end 134.021 54.729)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 23)
+		(net 22)
 		(uuid "28851f46-7c20-4825-baf0-5d344c11d7a2")
 	)
 	(segment
@@ -13956,7 +13937,7 @@
 		(end 134.021 68.609)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 23)
+		(net 22)
 		(uuid "665cea0d-ffa6-4934-bf48-e9c245fdef3a")
 	)
 	(segment
@@ -13964,7 +13945,7 @@
 		(end 138.394975 50.355025)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 23)
+		(net 22)
 		(uuid "6dd9de89-4189-4005-b31f-0c0425e6e9e7")
 	)
 	(segment
@@ -13972,7 +13953,7 @@
 		(end 134 68.63)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 23)
+		(net 22)
 		(uuid "86e647ce-03f2-4b1e-b0b7-160e16ec3f58")
 	)
 	(segment
@@ -13980,7 +13961,7 @@
 		(end 138.364152 51.440264)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 24)
+		(net 23)
 		(uuid "39cc5af2-e013-4700-90ad-ebbdd1792c24")
 	)
 	(segment
@@ -13988,7 +13969,7 @@
 		(end 138.364152 50.564152)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 24)
+		(net 23)
 		(uuid "3c6e3abb-8cdd-4feb-9471-7e071923dd5f")
 	)
 	(segment
@@ -13996,7 +13977,7 @@
 		(end 138.013173 51.791243)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 24)
+		(net 23)
 		(uuid "ac4eb557-aafc-4347-9347-6bfb0f546543")
 	)
 	(via
@@ -14004,7 +13985,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 24)
+		(net 23)
 		(uuid "63490ce5-05b2-4724-97e7-63d6d31abeba")
 	)
 	(segment
@@ -14012,7 +13993,7 @@
 		(end 130.69 67.865636)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 24)
+		(net 23)
 		(uuid "2866dcc2-fb42-41d4-9c76-fc662039797f")
 	)
 	(segment
@@ -14020,7 +14001,7 @@
 		(end 133.5 65.055636)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 24)
+		(net 23)
 		(uuid "430f6c06-d223-4579-905c-232f40d8bed6")
 	)
 	(segment
@@ -14028,7 +14009,7 @@
 		(end 130.69 71.17)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 24)
+		(net 23)
 		(uuid "49fe15f0-4a20-4698-bd16-a0d5d64f0a17")
 	)
 	(segment
@@ -14036,7 +14017,7 @@
 		(end 133.5 54.25)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 24)
+		(net 23)
 		(uuid "4a1d805b-20c2-4768-a8a9-68cdb6adf83d")
 	)
 	(segment
@@ -14044,7 +14025,7 @@
 		(end 137.3 50.45)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 24)
+		(net 23)
 		(uuid "d4b4d377-9e0d-4b31-b953-dbe3f50b9f91")
 	)
 	(segment
@@ -14052,7 +14033,7 @@
 		(end 140.25 51.817158)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 25)
+		(net 24)
 		(uuid "30f12804-7a7b-4fb2-adeb-1011dc3e95af")
 	)
 	(segment
@@ -14060,7 +14041,7 @@
 		(end 126.065 49.325)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 25)
+		(net 24)
 		(uuid "9f169c3b-addf-43c0-85ce-0eb0432626a0")
 	)
 	(segment
@@ -14068,7 +14049,7 @@
 		(end 125.75 49.01)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 25)
+		(net 24)
 		(uuid "bd1bc3c3-918a-4396-ac4c-80c4b1494f74")
 	)
 	(segment
@@ -14076,7 +14057,7 @@
 		(end 140.25 51.5)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 25)
+		(net 24)
 		(uuid "dbb3a383-2ca9-43d1-81bb-b58fc8778b23")
 	)
 	(via
@@ -14084,7 +14065,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "47f37575-898e-4584-a468-6b4131d74b8c")
 	)
 	(via
@@ -14092,7 +14073,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "7e8aa146-5775-4c31-843f-e7f93c8459e2")
 	)
 	(segment
@@ -14100,7 +14081,7 @@
 		(end 132.465686 47.6)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "03a61b7d-1b1a-4132-a2e3-c1d45099a91b")
 	)
 	(segment
@@ -14108,7 +14089,7 @@
 		(end 131.815686 48.25)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "0b9b430d-42e5-4b76-bed2-ca3afcd70883")
 	)
 	(segment
@@ -14116,7 +14097,7 @@
 		(end 127.825 48.25)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "24fc7bf2-19c6-4f9d-be8e-a7e787693930")
 	)
 	(segment
@@ -14124,7 +14105,7 @@
 		(end 138.88995 48.4)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "2c0ed9ae-67a0-4518-97ef-a2671f6e27e6")
 	)
 	(segment
@@ -14132,7 +14113,7 @@
 		(end 135.7 48.4)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "3433c339-d7c9-413c-85c4-4523adb7ca4b")
 	)
 	(segment
@@ -14140,7 +14121,7 @@
 		(end 140.25 51.5)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "84875161-3906-444f-8f03-22fc545e8d14")
 	)
 	(segment
@@ -14148,7 +14129,7 @@
 		(end 134.9 47.6)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "970b45d8-0e24-4ecc-b9e8-45725ef459e6")
 	)
 	(segment
@@ -14156,7 +14137,7 @@
 		(end 140.25 49.76005)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 25)
+		(net 24)
 		(uuid "d9535648-8266-49dc-89f2-5f3b6b7f0e2c")
 	)
 	(segment
@@ -14164,7 +14145,7 @@
 		(end 133.643153 61.929047)
 		(width 0.3)
 		(layer "F.Cu")
-		(net 31)
+		(net 30)
 		(uuid "52fcb42c-d5d0-4cbf-a499-30cc04db888a")
 	)
 	(segment
@@ -14172,7 +14153,7 @@
 		(end 133.643153 62.556847)
 		(width 0.3)
 		(layer "F.Cu")
-		(net 31)
+		(net 30)
 		(uuid "822afcf1-60ea-40cf-bded-17159b6c3d8f")
 	)
 	(segment
@@ -14180,7 +14161,7 @@
 		(end 138.578858 57.943072)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 33)
+		(net 32)
 		(uuid "1f62cc14-470e-448f-8263-ad0787ac3bb1")
 	)
 	(segment
@@ -14188,7 +14169,7 @@
 		(end 138.89 58.254212)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 33)
+		(net 32)
 		(uuid "22fc2a36-ba41-49b9-bbe5-e9cefe7e6142")
 	)
 	(segment
@@ -14196,7 +14177,7 @@
 		(end 139.5 61.541644)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 33)
+		(net 32)
 		(uuid "78484136-4ee2-4ed3-ae0e-ad237e032648")
 	)
 	(segment
@@ -14204,7 +14185,7 @@
 		(end 139.5 58.864214)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 33)
+		(net 32)
 		(uuid "a1063f9d-dc16-4824-a48d-614c47a4e99c")
 	)
 	(via
@@ -14212,7 +14193,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 33)
+		(net 32)
 		(uuid "562955fb-e35d-428c-817b-ff1ba83da8f6")
 	)
 	(segment
@@ -14220,7 +14201,7 @@
 		(end 134 78.79)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 33)
+		(net 32)
 		(uuid "09aaad5d-4fc2-4b42-85ef-4ea06710f4a1")
 	)
 	(segment
@@ -14228,7 +14209,7 @@
 		(end 136.61 78.79)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 33)
+		(net 32)
 		(uuid "6d664f9f-575f-41ea-b018-994c2799207c")
 	)
 	(segment
@@ -14236,7 +14217,7 @@
 		(end 137.5 63.541644)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 33)
+		(net 32)
 		(uuid "8135d6dd-860b-435b-9613-e069d8164e4e")
 	)
 	(segment
@@ -14244,7 +14225,7 @@
 		(end 137.5 77.9)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 33)
+		(net 32)
 		(uuid "b611b8c2-fc49-4abe-b626-905e2f452c34")
 	)
 	(segment
@@ -14252,7 +14233,7 @@
 		(end 138.861701 57.660229)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 34)
+		(net 33)
 		(uuid "ab4f8d96-cb5e-4f52-bd8e-19f07d99f261")
 	)
 	(segment
@@ -14260,7 +14241,7 @@
 		(end 140 62.031594)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 34)
+		(net 33)
 		(uuid "bd5c9f9d-7ce0-4244-9757-0629cf2c066a")
 	)
 	(segment
@@ -14268,7 +14249,7 @@
 		(end 140 58.798529)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 34)
+		(net 33)
 		(uuid "f8a95973-bcd9-444a-a163-5d670b10d765")
 	)
 	(via
@@ -14276,7 +14257,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 34)
+		(net 33)
 		(uuid "0f009186-c2d7-44a2-a3be-da7ce3215b5e")
 	)
 	(segment
@@ -14284,7 +14265,7 @@
 		(end 138.2 79.2)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 34)
+		(net 33)
 		(uuid "1f3e91ad-ff0b-4c40-bc1a-259da42b0f04")
 	)
 	(segment
@@ -14292,7 +14273,7 @@
 		(end 130.69 81.33)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 34)
+		(net 33)
 		(uuid "402ad016-8ed9-4ed2-9ea6-aeced1819de8")
 	)
 	(segment
@@ -14300,7 +14281,7 @@
 		(end 138.2 63.831594)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 34)
+		(net 33)
 		(uuid "98a1a57a-6355-4eea-9a32-1bb933b6916a")
 	)
 	(segment
@@ -14308,7 +14289,7 @@
 		(end 136.07 81.33)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 34)
+		(net 33)
 		(uuid "ae21d933-c201-464a-981c-67b7f73f4b95")
 	)
 	(segment
@@ -14316,7 +14297,7 @@
 		(end 140.5 62.9)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 35)
+		(net 34)
 		(uuid "1bfe28f2-3cfd-4b56-8c32-5fe97f460acd")
 	)
 	(segment
@@ -14324,7 +14305,7 @@
 		(end 140.5 58.732844)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 35)
+		(net 34)
 		(uuid "4839da56-d30b-44cf-907a-cbb16e3ea6c0")
 	)
 	(segment
@@ -14332,7 +14313,7 @@
 		(end 139.144544 57.377386)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 35)
+		(net 34)
 		(uuid "9163c576-f0b5-4b01-abf2-2f5a2c774bb0")
 	)
 	(via
@@ -14340,7 +14321,7 @@
 		(size 0.8)
 		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
-		(net 35)
+		(net 34)
 		(uuid "05244a6e-bb7f-48d6-9ebc-6f7f6d32fb35")
 	)
 	(segment
@@ -14348,7 +14329,7 @@
 		(end 137.73 83.87)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 35)
+		(net 34)
 		(uuid "22bb9532-62c3-4388-afeb-c751505cdd72")
 	)
 	(segment
@@ -14356,7 +14337,7 @@
 		(end 139 64.4)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 35)
+		(net 34)
 		(uuid "327cf169-3327-48a6-b504-e34c96edc13e")
 	)
 	(segment
@@ -14364,7 +14345,7 @@
 		(end 139 82.6)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 35)
+		(net 34)
 		(uuid "451b29c3-9b0e-445d-bf3b-dd16144fff00")
 	)
 	(segment
@@ -14372,7 +14353,7 @@
 		(end 134 83.87)
 		(width 0.2)
 		(layer "B.Cu")
-		(net 35)
+		(net 34)
 		(uuid "f169a3c6-e4b2-4cce-ae7b-e8fc704d36c6")
 	)
 	(segment
@@ -14380,7 +14361,7 @@
 		(end 130.45 46)
 		(width 0.5)
 		(layer "F.Cu")
-		(net 37)
+		(net 36)
 		(uuid "51b582e6-090a-41dc-b678-866449873f18")
 	)
 	(segment
@@ -14388,7 +14369,7 @@
 		(end 131.164664 48.164664)
 		(width 0.5)
 		(layer "F.Cu")
-		(net 37)
+		(net 36)
 		(uuid "b0d6c4e1-7fb1-4387-8ee1-0574514eb5bc")
 	)
 	(arc
@@ -14397,7 +14378,7 @@
 		(end 130.45 46.439313)
 		(width 0.5)
 		(layer "F.Cu")
-		(net 37)
+		(net 36)
 		(uuid "c597f8b8-5304-408f-a4db-e20ede46eb8d")
 	)
 	(segment
@@ -14405,7 +14386,7 @@
 		(end 136 66.8)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "1269e84c-7530-4b1b-bf5b-6ed59600a1d6")
 	)
 	(segment
@@ -14413,7 +14394,7 @@
 		(end 140.4 64.4)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "12e8a1c8-da23-471c-9ba0-d7ef6e5757fe")
 	)
 	(segment
@@ -14421,7 +14402,7 @@
 		(end 136 66.8)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "49e1a705-8a8e-49ae-8037-9ef0c28a42eb")
 	)
 	(segment
@@ -14429,7 +14410,7 @@
 		(end 136 67.26)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "7716d3f4-2812-45da-8cb6-c0ff3afccefb")
 	)
 	(segment
@@ -14437,7 +14418,7 @@
 		(end 136.6 64.4)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "96aabf16-07f3-4855-b2dd-ce4419193151")
 	)
 	(segment
@@ -14445,7 +14426,7 @@
 		(end 136.99 68.25)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "9da3f185-7d87-4474-aac7-c238446ee230")
 	)
 	(segment
@@ -14453,7 +14434,7 @@
 		(end 136 65)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "a5971a85-8d5d-4c29-907d-8fcb8c0f3379")
 	)
 	(segment
@@ -14461,7 +14442,7 @@
 		(end 141 63.8)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "af19c5cd-7c90-421b-b200-d89764a3ca01")
 	)
 	(segment
@@ -14469,7 +14450,7 @@
 		(end 136.99 68.25)
 		(width 0.25)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "c724df88-57e5-4cf0-9528-3b2073cc6f9b")
 	)
 	(segment
@@ -14477,7 +14458,7 @@
 		(end 137.3625 68.6225)
 		(width 0.25)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "d66a7ec3-32a7-4c71-b2d4-b79a4f67f581")
 	)
 	(segment
@@ -14485,7 +14466,7 @@
 		(end 141 58.101472)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 39)
+		(net 38)
 		(uuid "fa6c4897-cb0c-42c4-83db-149491b56832")
 	)
 	(segment
@@ -14493,7 +14474,7 @@
 		(end 134.248008 59.198008)
 		(width 0.3)
 		(layer "F.Cu")
-		(net 40)
+		(net 39)
 		(uuid "12e131be-8a05-47a3-87ad-cba15a7bef67")
 	)
 	(segment
@@ -14501,7 +14482,7 @@
 		(end 135.131892 59.198008)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 40)
+		(net 39)
 		(uuid "1342d0d9-3c96-4458-895f-24bc872590d5")
 	)
 	(segment
@@ -14509,7 +14490,7 @@
 		(end 133.342947 60.103069)
 		(width 0.3)
 		(layer "F.Cu")
-		(net 40)
+		(net 39)
 		(uuid "65c763c5-91c4-41a3-8632-09ffa51792e7")
 	)
 	(segment
@@ -14517,7 +14498,7 @@
 		(end 134.248008 59.198008)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 40)
+		(net 39)
 		(uuid "ef9dc5f0-bafc-4a82-ae24-f3a6af30f7b6")
 	)
 	(segment
@@ -14525,7 +14506,7 @@
 		(end 126.7 53.75)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "04304453-4d42-49b7-a54c-53fad8a81605")
 	)
 	(segment
@@ -14533,7 +14514,7 @@
 		(end 127.42 55.12)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "155ed0c5-4894-4416-801d-8e344b42deac")
 	)
 	(segment
@@ -14541,7 +14522,7 @@
 		(end 128.5 55.12)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "179ab073-4cdc-4e9d-939a-facb2362ee3f")
 	)
 	(segment
@@ -14549,7 +14530,7 @@
 		(end 132.765686 54.2)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "33c13061-a5db-4904-ad60-ff4d99db96dd")
 	)
 	(segment
@@ -14557,7 +14538,7 @@
 		(end 131.28733 54.2)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "4c68f3c8-be4e-4cbb-9858-1d8307941af5")
 	)
 	(segment
@@ -14565,7 +14546,7 @@
 		(end 126.7 54.4)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "95c3c26c-b545-4d65-bf20-01487546a6d6")
 	)
 	(segment
@@ -14573,7 +14554,7 @@
 		(end 130.36733 55.12)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "9761a7ef-9ec3-4e4b-b687-73cf82139518")
 	)
 	(segment
@@ -14581,7 +14562,7 @@
 		(end 132.979838 53.985848)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "c2258c45-f4f8-41ce-b172-008a1f3c68e9")
 	)
 	(segment
@@ -14589,7 +14570,7 @@
 		(end 133.490264 53.985848)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 41)
+		(net 40)
 		(uuid "d85a2d1d-cc04-4ab5-a63e-240aa6a8b0a8")
 	)
 	(segment
@@ -14597,7 +14578,7 @@
 		(end 131.801358 53.101358)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 42)
+		(net 41)
 		(uuid "1a621e17-c504-47bf-b261-39672514e371")
 	)
 	(segment
@@ -14605,7 +14586,7 @@
 		(end 131.739411 53.039411)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 42)
+		(net 41)
 		(uuid "3ed0421b-f46a-4e1a-be22-33df0a1a354d")
 	)
 	(segment
@@ -14613,7 +14594,7 @@
 		(end 133.737144 53.101358)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 42)
+		(net 41)
 		(uuid "d46440e5-dedc-4203-b187-2e4dcab80989")
 	)
 	(segment
@@ -14621,7 +14602,7 @@
 		(end 132.814153 53.585848)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "0b54373e-20f6-4806-b67f-cc12e189dd89")
 	)
 	(segment
@@ -14629,7 +14610,7 @@
 		(end 128.9 50.62)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "0c8fdda3-b6a7-40cd-8518-de94fd67e43e")
 	)
 	(segment
@@ -14637,7 +14618,7 @@
 		(end 129.25 52.05)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "37138393-d06c-4305-a845-5e2d0297aa79")
 	)
 	(segment
@@ -14645,7 +14626,7 @@
 		(end 128.88 50.6)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "463f89cc-e96e-4d61-aed2-197c0bfe9050")
 	)
 	(segment
@@ -14653,7 +14634,7 @@
 		(end 131 53.8)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "6b78ee12-6195-4705-bde7-d6ce9597142c")
 	)
 	(segment
@@ -14661,7 +14642,7 @@
 		(end 132.600001 53.8)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "96f0cb7d-3188-4175-bd29-2df9375d0b6c")
 	)
 	(segment
@@ -14669,7 +14650,7 @@
 		(end 128.9 52.05)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "d5791543-1b1d-43bb-be6b-996a9f34e23d")
 	)
 	(segment
@@ -14677,7 +14658,7 @@
 		(end 133.65595 53.585848)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 43)
+		(net 42)
 		(uuid "e7937dce-5355-4763-aa45-39dccfca2196")
 	)
 	(segment
@@ -14685,7 +14666,7 @@
 		(end 132.439411 52.339411)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 44)
+		(net 43)
 		(uuid "5e1d4759-6327-4de1-9f81-2e5994886b5f")
 	)
 	(segment
@@ -14693,7 +14674,7 @@
 		(end 133.90283 52.701358)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 44)
+		(net 43)
 		(uuid "6790bd81-077c-4f48-9179-fbfb2e8228f1")
 	)
 	(segment
@@ -14701,7 +14682,7 @@
 		(end 132.801358 52.701358)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 44)
+		(net 43)
 		(uuid "99d7d47b-76d4-4fc7-bc8e-27b0f0cc3694")
 	)
 	(segment
@@ -14709,7 +14690,7 @@
 		(end 138.539411 59.600681)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 45)
+		(net 44)
 		(uuid "3fcad263-0c16-4c62-9bac-7576a79e0121")
 	)
 	(segment
@@ -14717,8 +14698,24 @@
 		(end 137.73033 58.7916)
 		(width 0.2)
 		(layer "F.Cu")
-		(net 45)
+		(net 44)
 		(uuid "8834f766-c549-45bc-8f4a-c7806d52cbba")
+	)
+	(segment
+		(start 125.75 47.99)
+		(end 126.7025 47.99)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 46)
+		(uuid "9a234960-ca60-4b71-b9bb-e8e131fabcdf")
+	)
+	(segment
+		(start 126.7025 47.99)
+		(end 126.9625 48.25)
+		(width 0.2)
+		(layer "F.Cu")
+		(net 46)
+		(uuid "cc2982f6-7678-4b0d-8559-e5875f5c4502")
 	)
 	(segment
 		(start 132.6 56.4)
