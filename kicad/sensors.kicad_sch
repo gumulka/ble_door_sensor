@@ -3636,14 +3636,8 @@
 			)
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "T202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "T202")
 					(unit 1)
 				)
@@ -3705,17 +3699,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "b2070211-7d1e-45cf-84fc-5404d0fb8185")
+			(uuid "5e91bb78-5310-4579-ad2f-e253bc274e95")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0205")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0205")
 					(unit 1)
 				)
@@ -3729,7 +3717,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "20131899-95c5-47a1-8257-e4c447b00433")
 		(property "Reference" "J202"
@@ -3794,38 +3782,32 @@
 			)
 		)
 		(pin "6"
-			(uuid "7e290e15-3200-43d5-9309-6781e6deb6a1")
+			(uuid "38dc67c3-700d-4c06-86c5-e2eabc60e5f2")
 		)
 		(pin "1"
-			(uuid "1adbb073-5c68-454b-812e-e2720c2c6f6d")
+			(uuid "59885f65-ab7c-4620-82de-8225044b4ec7")
 		)
 		(pin "2"
-			(uuid "8b04c20c-6cb3-4230-8f5b-2b721385867c")
+			(uuid "bb427daf-86ce-429c-a07a-a7d05d3f9d51")
 		)
 		(pin "3"
-			(uuid "fabf94ae-9dbb-493a-9641-d263543b2735")
+			(uuid "f1e8aeb7-9a97-4c85-a84a-9fc282aa9c02")
 		)
 		(pin "4"
-			(uuid "161b01e0-27e9-4917-8210-cb340a2bd069")
+			(uuid "28ad0612-a258-4008-8ce0-c3bf1c98a0e9")
 		)
 		(pin "5"
-			(uuid "0a3576ef-178a-488d-84d1-7c5210d8df05")
+			(uuid "2bc8fb85-8222-4dcb-a3bc-bbc9c589be3c")
 		)
 		(pin "7"
-			(uuid "ed2ea85f-9b7d-4841-8213-f5bf8e2610da")
+			(uuid "3847ee3f-fd56-490c-8820-a9ffe115aebf")
 		)
 		(pin "8"
-			(uuid "c74e74f7-9abd-4072-b7e9-9557a3a27b26")
+			(uuid "bbd51aae-d1a1-49a0-a1a6-c0479e878d9f")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "J202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "J202")
 					(unit 1)
 				)
@@ -3887,17 +3869,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "d6cf8fa2-ed7c-4cf2-8b62-55cb4fc9c379")
+			(uuid "d984146c-3903-4594-a39a-a405f4233a11")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0212")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0212")
 					(unit 1)
 				)
@@ -3978,20 +3954,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "9b8d5f30-ff87-4089-aa59-394e3af9d474")
+			(uuid "4b59ab9e-fa1b-4b81-9762-9ddd959bbfd6")
 		)
 		(pin "1"
-			(uuid "5b2f2522-015c-4197-a6bd-259b056cdfda")
+			(uuid "52a1c9c9-2510-4167-a8d0-a7253068e6f8")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "SW201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "SW201")
 					(unit 1)
 				)
@@ -4054,17 +4024,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "4b426676-b3e6-42bc-9d1b-de3801243c5c")
+			(uuid "9c8f72be-beee-440a-a9e1-ceeecaf0d09d")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0218")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0218")
 					(unit 1)
 				)
@@ -4145,20 +4109,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "ad63341f-1995-4e05-a564-492fbf775b30")
+			(uuid "42a9dc59-2ab1-4514-af98-e589794bedd5")
 		)
 		(pin "1"
-			(uuid "3deb64c5-c121-4a9c-84b3-f51aa2b5bd8b")
+			(uuid "eb770888-7479-4727-9ccc-21d04efdc97a")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "Q201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "Q201")
 					(unit 1)
 				)
@@ -4220,17 +4178,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "5d8bf01a-18c0-4674-91e2-b6a680cf4727")
+			(uuid "b4231c84-ecac-4819-85d2-8ca93e17623b")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0214")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0214")
 					(unit 1)
 				)
@@ -4292,17 +4244,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "f9cc449e-36b9-46da-be3d-ad6a1b233bdc")
+			(uuid "ca74900d-0028-468a-9b02-e9dcab11de7d")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0215")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0215")
 					(unit 1)
 				)
@@ -4364,17 +4310,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "00320a95-68d1-4d5c-9abc-6acfd9432436")
+			(uuid "67fe2686-066f-48b6-8d6b-7fd4ec9d1639")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0204")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0204")
 					(unit 1)
 				)
@@ -4436,17 +4376,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "dbf5b658-01f9-41d5-918a-6d36f5b4ec23")
+			(uuid "3864dd7b-8cad-45c9-9c73-ccdb77b42bd8")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0201")
 					(unit 1)
 				)
@@ -4527,20 +4461,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "03060de3-a934-4762-9cdc-407df6759cbe")
+			(uuid "be5171c1-5b48-4aed-b86b-7fbab21bfd65")
 		)
 		(pin "1"
-			(uuid "de31433c-d470-4201-b750-ad3d5cdca4af")
+			(uuid "c668c39d-1bc6-49c6-bc06-8d7c0d26f136")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R207")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R207")
 					(unit 1)
 				)
@@ -4602,17 +4530,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "980fb732-204e-4e0e-9354-a25434c52e3c")
+			(uuid "79a41239-7ce0-4d41-a046-a251c9e243c3")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#FLG0202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#FLG0202")
 					(unit 1)
 				)
@@ -4702,20 +4624,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "68f77ff5-ebd8-4afe-bd13-9f03c0588b67")
+			(uuid "731d1f20-4cdb-4280-a859-8628973a09bb")
 		)
 		(pin "1"
-			(uuid "99720df0-abb0-4aad-ab02-7ab7c879cb05")
+			(uuid "7eb8a841-90b1-4213-b294-9647b5a171d9")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "SW202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "SW202")
 					(unit 1)
 				)
@@ -4805,20 +4721,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "69558b53-b82e-4695-a79b-0da85ff33bca")
+			(uuid "1f0dbaa1-23c6-4f88-b73a-c5b9b74355d2")
 		)
 		(pin "1"
-			(uuid "aa4a05ae-12a2-4d21-a13d-ae8fa18bc363")
+			(uuid "84821dbc-f0ac-40c1-9cf4-66e094902b9d")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "BT201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "BT201")
 					(unit 1)
 				)
@@ -4880,17 +4790,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "b70bd5b9-7fcd-4a5e-864b-d651afb6edbc")
+			(uuid "06908923-471d-4f9e-8e72-f566a5c4bec3")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0206")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0206")
 					(unit 1)
 				)
@@ -4971,20 +4875,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "4787ef9e-39f2-4c28-a2a3-1e2fc69d0272")
+			(uuid "98526a3a-d766-4973-a685-9046296a5246")
 		)
 		(pin "2"
-			(uuid "616d0bd1-c222-44d6-a376-be4181ab2844")
+			(uuid "ddb3c265-bf26-4db8-ac22-5d950acb90fb")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R206")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R206")
 					(unit 1)
 				)
@@ -5074,29 +4972,23 @@
 			)
 		)
 		(pin "1"
-			(uuid "56405205-956d-41f5-80c7-d00477e97853")
+			(uuid "c76b54b3-0bbd-4a63-9989-53cb0707621a")
 		)
 		(pin "4"
-			(uuid "4abe876f-054e-4883-a0a3-940154540f52")
+			(uuid "b71d41bc-2e1e-429a-9d19-6c2aa3d97d02")
 		)
 		(pin "3"
-			(uuid "e525f208-7c7b-48cd-bc57-698d8ea47ccb")
+			(uuid "04c9288b-02c3-4491-8b1b-876cc6e8b2f1")
 		)
 		(pin "5"
-			(uuid "fefb9182-9a54-49b7-9478-39e15268bd71")
+			(uuid "bdab6943-7d5e-459d-858f-49aae00e4b97")
 		)
 		(pin "2"
-			(uuid "6c68d9ed-9ddf-42da-923a-2b437ba3c85c")
+			(uuid "0d9d9374-3498-4a52-a716-08cdf3d7c469")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "U201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "U201")
 					(unit 1)
 				)
@@ -5177,20 +5069,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "5629d6ce-8990-4652-854b-da0168cbb626")
+			(uuid "190ea1d2-3429-430e-a94e-fd6007b2f7a1")
 		)
 		(pin "2"
-			(uuid "fb5e1cf6-e82c-457a-a5d6-9e3a07f9d152")
+			(uuid "37ae9d62-c6d1-48a3-a13e-186a644a3cef")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R201")
 					(unit 1)
 				)
@@ -5271,14 +5157,8 @@
 			)
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "T203")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "T203")
 					(unit 1)
 				)
@@ -5339,17 +5219,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "c8014ef1-192d-41a9-ba04-594cdd7daac5")
+			(uuid "7dfb7d31-df02-425d-99f7-35ea35ebd989")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0209")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0209")
 					(unit 1)
 				)
@@ -5430,20 +5304,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "75fd9fe9-6bd1-40f1-b25f-dda8b1e2af78")
+			(uuid "f23240c8-6049-4442-b392-5c1327c5ba54")
 		)
 		(pin "1"
-			(uuid "12327570-ba4a-4a9f-bf1e-44548e5d9afd")
+			(uuid "5365afa1-e7dd-4865-8aec-377b5cc6f7ab")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "C201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "C201")
 					(unit 1)
 				)
@@ -5505,17 +5373,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "1e1e68c0-b2de-4011-905d-07b17d94e236")
+			(uuid "fcf2db9b-8bf6-4274-9a6f-366391cfcbe3")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0219")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0219")
 					(unit 1)
 				)
@@ -5605,32 +5467,26 @@
 			)
 		)
 		(pin "3"
-			(uuid "2a6974a9-76cd-4d13-9f5b-3dab453744eb")
+			(uuid "da08dcd2-70ca-4b29-9593-2b466e45bae4")
 		)
 		(pin "4"
-			(uuid "c3922c99-4d30-4fc0-9945-2c722836d0d8")
+			(uuid "af7b10a9-c900-4b39-82de-a8df26a8d983")
 		)
 		(pin "5"
-			(uuid "45be6cda-5acb-4cea-b351-e4dd37b2a716")
+			(uuid "fb950a88-e69b-43b6-aa35-cfe39ab4e779")
 		)
 		(pin "1"
-			(uuid "ec6aaa16-12dd-4ddc-ac5f-136ff9836de8")
+			(uuid "4f11b46f-d4f6-4acb-b885-25a175fb3e15")
 		)
 		(pin "6"
-			(uuid "093d93be-a902-488c-a830-b8716ace2d4f")
+			(uuid "2ca7ce0d-c1b0-493e-9814-e405f6c71469")
 		)
 		(pin "2"
-			(uuid "7ed6a784-b82a-4da2-bde1-590bdfa620ac")
+			(uuid "806a57bf-b7a3-4aa9-8333-dfaf071e3415")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "U202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "U202")
 					(unit 1)
 				)
@@ -5692,17 +5548,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "0e6bb3ed-2f2a-4e5e-af34-bbd8505103ea")
+			(uuid "66029a15-8b12-4294-b78a-b43eb45a1da3")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0216")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0216")
 					(unit 1)
 				)
@@ -5763,17 +5613,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "2bda97e2-6f80-47ec-8956-0d1166bd7017")
+			(uuid "fb003ec7-ab01-402a-8504-329e568dcaef")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#FLG0201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#FLG0201")
 					(unit 1)
 				)
@@ -5854,20 +5698,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "619560de-6810-42bd-9582-73107cedd35c")
+			(uuid "a46a47f4-923e-4fc5-9513-d7bceba07197")
 		)
 		(pin "1"
-			(uuid "8b103ff4-e803-4066-ba47-f4d7b322a42f")
+			(uuid "31bc25ef-9fc5-456b-ab67-3d220bf8924a")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R203")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R203")
 					(unit 1)
 				)
@@ -5948,20 +5786,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "9605aa16-7207-49fa-898d-0d30b5c706bc")
+			(uuid "0447f15d-1991-4148-800e-2287a3fe390c")
 		)
 		(pin "1"
-			(uuid "4b5b61e3-cb7f-42df-8abf-d41c9fe7426e")
+			(uuid "c674718f-df3d-47bd-8b5d-97d6762593b0")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "C202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "C202")
 					(unit 1)
 				)
@@ -6042,14 +5874,8 @@
 			)
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "T201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "T201")
 					(unit 1)
 				)
@@ -6112,17 +5938,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "c5e2ac72-9008-4ee0-ad7a-b9ae3a528201")
+			(uuid "0a7fcc4f-bf45-4107-90b5-f872cf3c354d")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0217")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0217")
 					(unit 1)
 				)
@@ -6184,17 +6004,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "df47ea67-9e0f-47d5-8872-afed9917dfb3")
+			(uuid "120cb36c-9ceb-4e76-bfa5-77dd60ee9c88")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0210")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0210")
 					(unit 1)
 				)
@@ -6255,17 +6069,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "3634b3fd-d864-43e5-92c1-d1493f9678e7")
+			(uuid "aac04d3f-e86d-4cb1-9722-ff95a90bb270")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0208")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0208")
 					(unit 1)
 				)
@@ -6327,17 +6135,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "2a751724-d384-4546-849d-78ede29a2f64")
+			(uuid "ef819b76-be6f-4c61-82a2-f07a7b578542")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0220")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0220")
 					(unit 1)
 				)
@@ -6426,20 +6228,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "a402a82d-9ffa-4c83-8ef2-61da92765af2")
+			(uuid "987b9475-6a3e-400c-a642-7a85cbc5d26f")
 		)
 		(pin "1"
-			(uuid "31b6fc0f-3bdc-4946-8525-c6857336fbc4")
+			(uuid "17edc7f8-a027-40a3-b968-8155358df3c8")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "D201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "D201")
 					(unit 1)
 				)
@@ -6520,20 +6316,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "0f1c1bce-2c14-4382-93db-5555d7a6d107")
+			(uuid "47a8462c-2848-450f-bcb6-39e24c35cb08")
 		)
 		(pin "2"
-			(uuid "5716bd7b-abae-45ec-8691-9e94267c849a")
+			(uuid "a7df5b3b-5a88-447b-92d6-644c2e51f0d9")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R204")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R204")
 					(unit 1)
 				)
@@ -6614,32 +6404,26 @@
 			)
 		)
 		(pin "6"
-			(uuid "297e6619-c5a4-4e85-b68d-17d88828280b")
+			(uuid "9397253b-e773-4dac-b8c3-c5750f4551d1")
 		)
 		(pin "1"
-			(uuid "f692cadf-be3e-47a4-abdc-f3d453e3ee64")
+			(uuid "7add4d8b-924c-493c-a8a2-34ca9f3515c9")
 		)
 		(pin "4"
-			(uuid "c7daa80c-9821-4431-b15d-de2e1d06fbc6")
+			(uuid "2430eded-f693-4896-acc8-b70716126324")
 		)
 		(pin "3"
-			(uuid "adc0e40f-eae7-4edc-ad19-64be1aa53dd4")
+			(uuid "2a1324ca-49a6-4e5f-b170-c9a0a23accf7")
 		)
 		(pin "5"
-			(uuid "e8270d9e-1042-4964-9074-df2b875763da")
+			(uuid "9bb108f9-e846-4f05-8154-06f0de9bace5")
 		)
 		(pin "2"
-			(uuid "3ffa3e1d-5cb3-4359-85bb-60cd73cdb0d0")
+			(uuid "8ff03dbd-f027-4c90-b2c8-83f1c611d5c6")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "J201")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "J201")
 					(unit 1)
 				)
@@ -6701,17 +6485,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "c7be0f97-f05e-4b62-ac68-fe962ed38ee2")
+			(uuid "1ca1a617-1050-43ed-b06b-725bf7541786")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0207")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0207")
 					(unit 1)
 				)
@@ -6792,20 +6570,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "eb6a061f-4f9b-45f6-96d2-b6253ad1b3a5")
+			(uuid "f183d20f-bae8-421d-8d76-52840ea81297")
 		)
 		(pin "1"
-			(uuid "69035ef2-12af-45a9-a25d-5a6cace1bdf7")
+			(uuid "296dd7a3-c7d0-4ad9-940b-981883028563")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R202")
 					(unit 1)
 				)
@@ -6867,17 +6639,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "890f0f43-ca3d-4ab3-a912-4a1f910862d9")
+			(uuid "8cb58ac7-14f8-4c6f-b264-908771f1818d")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0202")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0202")
 					(unit 1)
 				)
@@ -6939,17 +6705,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "8b20defe-e174-4630-a256-bf3d6366a9e2")
+			(uuid "40fb2dfe-7ec0-4779-bf82-814faf36d7c0")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0203")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0203")
 					(unit 1)
 				)
@@ -7011,17 +6771,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "9d4d8ce2-43d1-45c9-85b9-bfe2e3c94efd")
+			(uuid "6d4ede21-a76c-459f-9af7-74b386d4c0e8")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0211")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0211")
 					(unit 1)
 				)
@@ -7083,17 +6837,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "7850aaeb-eea2-48e9-a1a2-0447b98cf28e")
+			(uuid "e7b0c44a-e632-4563-aad6-37fca4ba9983")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0213")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0213")
 					(unit 1)
 				)
@@ -7174,20 +6922,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "8a6eb4d9-dd41-4e5b-b481-2fb196d05e82")
+			(uuid "44edd1f2-4a0e-4350-b8aa-c3d3a9e1d370")
 		)
 		(pin "1"
-			(uuid "94c826af-0bfa-490a-b8b6-ae2dff7f527a")
+			(uuid "c09a2c2d-da78-4943-a896-5ecce83847fb")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "C203")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "C203")
 					(unit 1)
 				)
@@ -7268,20 +7010,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "22eca8d7-e263-424a-b39a-b1025c0b6aa0")
+			(uuid "85224c54-bcf9-4cea-9592-74744413669a")
 		)
 		(pin "2"
-			(uuid "f271b318-ad66-40a8-956c-103d8b41a0f0")
+			(uuid "ec11d7c1-7b45-46f9-b514-943e7aa0e4ee")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "R205")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "R205")
 					(unit 1)
 				)
@@ -7343,17 +7079,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "0c9e1429-1c2d-43d5-b058-09cd7176ac3a")
+			(uuid "bbff88f6-9353-48a5-9cf1-b4ced85a70d3")
 		)
 		(instances
-			(project "nxp-mcxw71"
-				(path "/0dbc6546-f2a5-460d-b787-d097af37703e/32309792-4f45-40f9-9f6e-aedc02a4e074"
-					(reference "#PWR0221")
-					(unit 1)
-				)
-			)
-			(project "ble_door_sensor"
-				(path "/e515e172-8345-4650-ab90-1ac5a17c23f8/fd2e6d5f-3731-4dc2-b707-fdecbc09fbdb"
+			(project "stm-stm32wb55"
+				(path "/069df044-8904-4f82-8714-7ba764e8923e/cba33b14-df19-4be1-83bf-2070fa44ecbf"
 					(reference "#PWR0221")
 					(unit 1)
 				)
