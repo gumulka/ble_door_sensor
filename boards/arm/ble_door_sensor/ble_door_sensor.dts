@@ -74,9 +74,8 @@
 
 	shtc3: shtc3@70 {
 		status = "okay";
-		compatible = "sensirion,shtcx";
+		compatible = "sensirion,shtc3", "sensirion,shtcx";
 		reg = <0x70>;
-		chip = "shtc3";
 		// may also be measure-mode = "low-power";
 		measure-mode = "normal";
 		clock-stretching;

@@ -1,0 +1,9 @@
+# Copyright (c) 2024 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+board:
+  name: ble_door_sensor
+  full_name: BLE Door Sensor
+  vendor: arm
+  socs:
+    - name: nrf52832

@@ -8,17 +8,14 @@ manifest:
   remotes:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
-    - name: my-github-fork
-      url-base: https://github.com/gumulka
 
   projects:
     - name: zephyr
-      remote: my-github-fork
-      revision: i2c_power_fix_v3_5
+      remote: zephyrproject-rtos
+      revision: v4.4.1
       import:
         name-allowlist:
-          - cmsis
+          - cmsis_6
           - hal_nordic
-          - tinycrypt
           - zcbor
           - mcuboot
