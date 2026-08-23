@@ -5,65 +5,19 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
 
+#include <zephyr/bluetooth/bluetooth.h>
+
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(environment_sensors, CONFIG_APP_LOG_LEVEL);
 
 static const struct adc_dt_spec soc_voltage = ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
-static const struct device *const shtc = DEVICE_DT_GET(DT_ALIAS(ambient_temp0));
-static const struct device *const light = DEVICE_DT_GET(DT_ALIAS(ambient_light0));
 
-static void read_shtc(uint8_t *temperature, uint8_t *humidity)
-{
-	struct sensor_value value;
-	int ret;
-
-	ret = sensor_sample_fetch_chan(shtc, SENSOR_CHAN_ALL);
-	if (ret < 0) {
-		LOG_WRN("Could not fetch shtc data: %d", ret);
-		return;
-	}
-
-	ret = sensor_channel_get(shtc, SENSOR_CHAN_AMBIENT_TEMP, &value);
-	if (ret < 0) {
-		LOG_WRN("Could not get temperature: %d", ret);
-		return;
-	}
-	LOG_DBG("Temperature is %d°C", value.val1);
-	uint16_t temp = (uint16_t)(value.val1 * 100 + value.val2 / 10000);
-	temperature[1] = (temp >> 8) & 0xFF;
-	temperature[0] = temp & 0xFF;
-
-	ret = sensor_channel_get(shtc, SENSOR_CHAN_HUMIDITY, &value);
-	if (ret < 0) {
-		LOG_WRN("Could not get humidity: %d", ret);
-		return;
-	}
-	LOG_DBG("Humidity is %d percent", value.val1);
-	*humidity = (uint8_t)(value.val1 & 0xFF);
-}
-
-static void read_ambient_light(uint8_t *illuminance)
-{
-	struct sensor_value value;
-	int ret;
-
-	ret = sensor_sample_fetch_chan(light, SENSOR_CHAN_ALL);
-	if (ret < 0) {
-		LOG_WRN("Could not fetch ambient light data: %d", ret);
-		return;
-	}
-
-	ret = sensor_channel_get(light, SENSOR_CHAN_LIGHT, &value);
-	if (ret < 0) {
-		LOG_WRN("Could not get ambient light: %d", ret);
-		return;
-	}
-	uint32_t temp = (uint32_t)(value.val1 * 100 + value.val2 / 10000);
-	LOG_DBG("Light is %d centi lux", temp);
-	illuminance[0] = temp & 0xFF;
-	illuminance[1] = (temp >> 8) & 0xFF;
-	illuminance[2] = (temp >> 16) & 0xFF;
-}
+static struct battery_reading {
+	struct bt_data *data;
+	size_t data_size;
+	uint8_t *battery;
+	struct k_work_delayable work;
+} reading_g;
 
 static void read_supply_voltage(uint8_t *battery)
 {
@@ -101,8 +55,36 @@ static void read_supply_voltage(uint8_t *battery)
 	*battery = (uint8_t)batt;
 }
 
-int env_init_sensors()
+static void read_sensors_cb(struct k_work *_work)
 {
+	struct k_work_delayable *work = k_work_delayable_from_work(_work);
+	k_work_reschedule(work, K_MINUTES(10));
+	struct battery_reading *reading = CONTAINER_OF(work, struct battery_reading, work);
+
+	uint8_t battery;
+	read_supply_voltage(&battery);
+
+	if (battery == *reading->battery) {
+		return;
+	}
+
+	LOG_INF("Battery changed from %d to %d", *reading->battery, battery);
+	*reading->battery = battery;
+
+	int ret = bt_le_adv_update_data(reading->data, reading->data_size, NULL, 0);
+	if (ret) {
+		LOG_ERR("Failed to update advertising data (err %d)", ret);
+	}
+}
+
+int battery_init(struct bt_data *data, size_t data_size, uint8_t *battery)
+{
+	reading_g.data = data;
+	reading_g.data_size = data_size;
+	reading_g.battery = battery;
+	reading_g.work.work.handler = read_sensors_cb;
+	reading_g.work.work.flags = K_WORK_DELAYABLE;
+
 	if (!adc_is_ready_dt(&soc_voltage)) {
 		printk("ADC controller device %s not ready\n", soc_voltage.dev->name);
 		return -EBADFD;
@@ -114,15 +96,7 @@ int env_init_sensors()
 		return ret;
 	}
 
-	return 0;
-}
+	k_work_schedule(&reading_g.work, K_MINUTES(10));
 
-int env_read_sensor_data(uint8_t *battery, uint8_t *temperature, uint8_t *humidity,
-			 uint8_t *illuminance)
-{
-	int ret = 0;
-	read_shtc(temperature, humidity);
-	read_ambient_light(illuminance);
-	read_supply_voltage(battery);
-	return ret;
+	return 0;
 }

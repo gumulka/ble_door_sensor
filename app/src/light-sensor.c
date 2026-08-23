@@ -12,15 +12,22 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
 
+#include <zephyr/bluetooth/bluetooth.h>
+
+#include "blink.h"
+
 #include <zephyr/logging/log.h>
 #define DT_DRV_COMPAT phototransistor_special
 
 LOG_MODULE_REGISTER(phototransistor, CONFIG_SENSOR_LOG_LEVEL);
 
 struct phototransistor_data {
-	struct k_mutex mutex;
-	int32_t raw;
-	int32_t sample_val;
+	struct bt_data *data;
+	size_t data_size;
+	uint32_t *energy_wh;
+	uint32_t last_reading;
+	struct k_work_delayable work;
+	const struct device *dev;
 };
 
 struct phototransistor_config {
@@ -29,77 +36,90 @@ struct phototransistor_config {
 	uint32_t pulldown_ohm;
 };
 
-static int phototransistor_sample_fetch(const struct device *dev, enum sensor_channel chan)
+static int phototransistor_sample_fetch(const struct device *dev, uint32_t *val_mv)
 {
-	struct phototransistor_data *data = dev->data;
 	const struct phototransistor_config *cfg = dev->config;
-	int32_t val_mv;
+	uint32_t raw_val;
 	int res;
 	struct adc_sequence sequence = {
 		.options = NULL,
-		.buffer = &data->raw,
-		.buffer_size = sizeof(data->raw),
+		.buffer = &raw_val,
+		.buffer_size = sizeof(raw_val),
 		.calibrate = false,
 	};
 
-	k_mutex_lock(&data->mutex, K_FOREVER);
-
-	int err = gpio_pin_set_dt(&cfg->enable, 1);
-	if (err != 0) {
-		LOG_ERR("Could not set enable pin!");
-		k_mutex_unlock(&data->mutex);
-		return -EIO;
-	}
+	// int err = gpio_pin_set_dt(&cfg->enable, 1);
+	// if (err != 0) {
+	// 	LOG_ERR("Could not set enable pin!");
+	// 	return -EIO;
+	// }
 
 	// Wait for output voltage to stabilize
-	k_sleep(K_USEC(150));
+	// k_sleep(K_USEC(150));
 
 	adc_sequence_init_dt(&cfg->adc_channel, &sequence);
 	res = adc_read(cfg->adc_channel.dev, &sequence);
 	if (!res) {
-		val_mv = data->raw;
+		*val_mv = raw_val;
 		// If the number is 16 bit signed negative, then there is an error.
 		// Especially since we have less then 15 bit resolution.
-		if (data->raw & 0x8000) {
-			data->sample_val = 0;
+		if (raw_val & 0x8000) {
+			*val_mv = 0;
 		} else {
-			res = adc_raw_to_millivolts_dt(&cfg->adc_channel, &val_mv);
-			data->sample_val = val_mv;
+			res = adc_raw_to_millivolts_dt(&cfg->adc_channel, val_mv);
 		}
-		LOG_DBG("Measured: %d -> %d mV", data->raw, data->sample_val);
+		LOG_DBG("Measured: %d -> %d mV", raw_val, *val_mv);
 	}
 
-	gpio_pin_set_dt(&cfg->enable, 0);
-
-	k_mutex_unlock(&data->mutex);
+	// gpio_pin_set_dt(&cfg->enable, 0);
 
 	return res;
 }
 
-static int phototransistor_channel_get(const struct device *dev, enum sensor_channel chan,
-				       struct sensor_value *val)
+static void read_sensors_cb(struct k_work *_work)
 {
-	struct phototransistor_data *data = dev->data;
-	const struct phototransistor_config *cfg = dev->config;
-	int32_t temp;
+	struct k_work_delayable *work = k_work_delayable_from_work(_work);
+	k_work_reschedule(work, K_MSEC(30));
+	struct phototransistor_data *data = CONTAINER_OF(work, struct phototransistor_data, work);
 
-	switch (chan) {
-	case SENSOR_CHAN_LIGHT:
-		temp = data->sample_val;
-		temp = 100 * temp * 6666 / cfg->pulldown_ohm;
-		val->val1 = temp / 100;
-		val->val2 = (temp % 100) * 10000;
-		break;
-	default:
-		return -ENOTSUP;
+	uint32_t raw_mv = 0;
+	int ret = phototransistor_sample_fetch(data->dev, &raw_mv);
+	if (ret) {
+		LOG_ERR("Could not read phototransistor (%d)", ret);
+		return;
 	}
-	return 0;
+
+	if ((data->last_reading - raw_mv) < 10 || (raw_mv - data->last_reading) < 10) {
+		data->last_reading = raw_mv;
+		return;
+	}
+
+	// It roughly toggles between 0 and 100mV, but I have seen 80 to 130 mV.
+
+	LOG_INF("Phototransistor changed from %d to %d", data->last_reading, raw_mv);
+	data->last_reading = raw_mv;
+	(*data->energy_wh)++;
+
+	// LOG_INF("Energy is now %d Wh", *data->energy_wh);
+
+	ret = bt_le_adv_update_data(data->data, data->data_size, NULL, 0);
+	if (ret) {
+		LOG_ERR("Failed to update advertising data (err %d)", ret);
+	}
 }
 
-static const struct sensor_driver_api phototransistor_driver_api = {
-	.sample_fetch = phototransistor_sample_fetch,
-	.channel_get = phototransistor_channel_get,
-};
+int energy_init(const struct device *dev, struct bt_data *bt_data, size_t data_size,
+		uint32_t *energy_wh)
+{
+
+	struct phototransistor_data *data = dev->data;
+	data->data = bt_data;
+	data->data_size = data_size;
+	data->energy_wh = energy_wh;
+
+	k_work_reschedule(&data->work, K_MSEC(30));
+	return 0;
+}
 
 static int phototransistor_init(const struct device *dev)
 {
@@ -111,7 +131,7 @@ static int phototransistor_init(const struct device *dev)
 		return -ENODEV;
 	}
 
-	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_INACTIVE);
+	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_ACTIVE);
 	if (err < 0) {
 		LOG_ERR("Could not configure enable pin!");
 		return err;
@@ -128,11 +148,17 @@ static int phototransistor_init(const struct device *dev)
 		return err;
 	}
 
+	struct phototransistor_data *data = dev->data;
+	data->dev = dev;
+
 	return 0;
 }
 
 #define PHOTOTRANSISTOR_DEFINE(inst)                                                               \
-	static struct phototransistor_data phototransistor_driver_##inst;                          \
+	static struct phototransistor_data phototransistor_driver_##inst = {                       \
+		.work = Z_WORK_DELAYABLE_INITIALIZER(read_sensors_cb),                             \
+		.last_reading = 0,                                                                 \
+	};                                                                                         \
                                                                                                    \
 	static const struct phototransistor_config phototransistor_cfg_##inst = {                  \
 		.adc_channel = ADC_DT_SPEC_INST_GET(inst),                                         \
@@ -140,9 +166,8 @@ static int phototransistor_init(const struct device *dev)
 		.pulldown_ohm = DT_INST_PROP(inst, pulldown_ohm),                                  \
 	};                                                                                         \
                                                                                                    \
-	SENSOR_DEVICE_DT_INST_DEFINE(inst, phototransistor_init, NULL,                             \
-				     &phototransistor_driver_##inst, &phototransistor_cfg_##inst,  \
-				     POST_KERNEL, CONFIG_SENSOR_INIT_PRIORITY,                     \
-				     &phototransistor_driver_api);
+	DEVICE_DT_INST_DEFINE(inst, phototransistor_init, NULL, &phototransistor_driver_##inst,    \
+			      &phototransistor_cfg_##inst, POST_KERNEL,                            \
+			      CONFIG_SENSOR_INIT_PRIORITY, NULL);
 
 DT_INST_FOREACH_STATUS_OKAY(PHOTOTRANSISTOR_DEFINE)

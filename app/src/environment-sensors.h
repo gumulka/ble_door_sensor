@@ -2,10 +2,8 @@
 #define ENVIRONMENT_SENSORS_H
 
 #include <zephyr/kernel.h>
+#include <zephyr/bluetooth/bluetooth.h>
 
-int env_init_sensors();
-
-int env_read_sensor_data(uint8_t *battery, uint8_t *temperature, uint8_t *humidity,
-			 uint8_t *illuminance);
+int battery_init(struct bt_data *data, size_t data_size, uint8_t *battery);
 
 #endif /* ENVIRONMENT_SENSORS_H */
