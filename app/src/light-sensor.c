@@ -28,6 +28,7 @@ struct phototransistor_data {
 	uint32_t last_reading;
 	struct k_work_delayable work;
 	const struct device *dev;
+	int num_below_threshold;
 };
 
 struct phototransistor_config {
@@ -89,18 +90,20 @@ static void read_sensors_cb(struct k_work *_work)
 		return;
 	}
 
-	if ((data->last_reading - raw_mv) < 10 || (raw_mv - data->last_reading) < 10) {
-		data->last_reading = raw_mv;
+	// It roughly toggles between 0 and 100mV, but I have seen 80 to 130 mV.
+	if (raw_mv < 40) {
+		data->num_below_threshold++;
+	} else {
+		data->num_below_threshold = 0;
+	}
+
+	if (data->num_below_threshold != 2) {
 		return;
 	}
 
-	// It roughly toggles between 0 and 100mV, but I have seen 80 to 130 mV.
-
-	LOG_INF("Phototransistor changed from %d to %d", data->last_reading, raw_mv);
-	data->last_reading = raw_mv;
 	(*data->energy_wh)++;
 
-	// LOG_INF("Energy is now %d Wh", *data->energy_wh);
+	LOG_INF("Energy is now %d Wh", *data->energy_wh);
 
 	ret = bt_le_adv_update_data(data->data, data->data_size, NULL, 0);
 	if (ret) {
@@ -157,7 +160,7 @@ static int phototransistor_init(const struct device *dev)
 #define PHOTOTRANSISTOR_DEFINE(inst)                                                               \
 	static struct phototransistor_data phototransistor_driver_##inst = {                       \
 		.work = Z_WORK_DELAYABLE_INITIALIZER(read_sensors_cb),                             \
-		.last_reading = 0,                                                                 \
+		.num_below_threshold = 0,                                                          \
 	};                                                                                         \
                                                                                                    \
 	static const struct phototransistor_config phototransistor_cfg_##inst = {                  \
