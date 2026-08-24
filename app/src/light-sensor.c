@@ -49,14 +49,14 @@ static int phototransistor_sample_fetch(const struct device *dev, uint32_t *val_
 		.calibrate = false,
 	};
 
-	// int err = gpio_pin_set_dt(&cfg->enable, 1);
-	// if (err != 0) {
-	// 	LOG_ERR("Could not set enable pin!");
-	// 	return -EIO;
-	// }
+	int err = gpio_pin_set_dt(&cfg->enable, 1);
+	if (err != 0) {
+		LOG_ERR("Could not set enable pin!");
+		return -EIO;
+	}
 
 	// Wait for output voltage to stabilize
-	// k_sleep(K_USEC(150));
+	k_sleep(K_USEC(150));
 
 	adc_sequence_init_dt(&cfg->adc_channel, &sequence);
 	res = adc_read(cfg->adc_channel.dev, &sequence);
@@ -72,7 +72,7 @@ static int phototransistor_sample_fetch(const struct device *dev, uint32_t *val_
 		LOG_DBG("Measured: %d -> %d mV", raw_val, *val_mv);
 	}
 
-	// gpio_pin_set_dt(&cfg->enable, 0);
+	gpio_pin_set_dt(&cfg->enable, 0);
 
 	return res;
 }
@@ -134,7 +134,7 @@ static int phototransistor_init(const struct device *dev)
 		return -ENODEV;
 	}
 
-	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_ACTIVE);
+	err = gpio_pin_configure_dt(&cfg->enable, GPIO_OUTPUT_INACTIVE);
 	if (err < 0) {
 		LOG_ERR("Could not configure enable pin!");
 		return err;
