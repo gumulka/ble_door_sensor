@@ -7,6 +7,7 @@
 /dts-v1/;
 #include <nordic/nrf52832_qfaa.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <zephyr/dt-bindings/comparator/nrf-comp.h>
 
 / {
 	model = "BLE door sensor";
@@ -24,7 +25,7 @@
 
 	aliases {
 		led0 = &led0;
-		ambient-light0 = &light_sensor;
+		compen = &comp_enable;
 		watchdog0 = &wdt0;
 	};
 
@@ -33,6 +34,10 @@
 		led0: led_0 {
 			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
 			label = "User LED";
+		};
+		comp_enable: comp_enable {
+			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+			label = "comp_enable";
 		};
 	};
 
@@ -43,13 +48,6 @@
 			label = "User Button";
 			zephyr,code = <INPUT_KEY_1>;
 		};
-	};
-
-	light_sensor: ambient_light_sensor {
-		compatible = "phototransistor-special";
-		enable-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
-		io-channels = <&adc 4>;
-		pulldown-ohm = <1000>;
 	};
 
 	zephyr,user {
@@ -70,17 +68,26 @@
 		zephyr,input-positive = <NRF_SAADC_VDD>;
 		zephyr,resolution = <12>;
 	};
-
-	channel@4 {
-		reg = <4>;
-		zephyr,gain = "ADC_GAIN_1_6";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>; /* 10us */
-		zephyr,input-positive = <NRF_SAADC_AIN4>; /* P0.28 */
-		zephyr,oversampling = <3>; /* x8 */
-		zephyr,resolution = <12>;
-	};
 };
+
+&comp {
+		status = "okay";
+		main-mode = "SE";
+		psel = <NRF_COMP_AIN4>;
+		refsel = "INT_1V2";
+		sp-mode = "LOW";
+		th-up = <3>;
+		th-down = <1>;
+		isource = "DISABLED";
+};
+
+/* &comp {
+            compatible = "nordic,nrf-lpcomp";
+		status = "okay";
+            psel = <NRF_COMP_AIN4>;
+            refsel = "AREF";
+            extrefsel = <NRF_COMP_AIN0>;
+}; */
 
 &uicr {
 	gpio-as-nreset;
@@ -92,6 +99,15 @@
 
 &gpio0 {
 	status = "okay";
+};
+
+&uart0 {
+	compatible = "nordic,nrf-uarte";
+	current-speed = <115200>;
+	status = "okay";
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &flash0 {

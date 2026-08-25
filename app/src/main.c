@@ -1,5 +1,8 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
+#include <zephyr/drivers/comparator.h>
+
+#include <zephyr/pm/device_runtime.h>
 
 #include <zephyr/sys/reboot.h>
 #include <zephyr/logging/log_ctrl.h>
@@ -13,7 +16,6 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 
 #include "bthome.h"
 #include "environment-sensors.h"
-#include "blink.h"
 
 static uint8_t service_data[] = {
 	BT_UUID_16_ENCODE(BTHOME_SERVICE_UUID),
@@ -25,10 +27,15 @@ static uint8_t service_data[] = {
 	0,
 	0,
 	0,
+	BTHOME_SENSOR_POWER_10MW_24BIT,
+	0,
+	0,
+	0,
 };
 
 #define POS_BATTERY_DATA     4
 #define POS_ENERGY_WH_DATA   6
+#define POS_ENERGY_POWER_DATA   11
 
 static struct bt_data ad[] = {
 	BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR),
@@ -36,7 +43,8 @@ static struct bt_data ad[] = {
 	BT_DATA(BT_DATA_SVC_DATA16, service_data, ARRAY_SIZE(service_data))};
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
-static const struct device *const light = DEVICE_DT_GET(DT_ALIAS(ambient_light0));
+static const struct gpio_dt_spec comp_en = GPIO_DT_SPEC_GET(DT_ALIAS(compen), gpios);
+static const struct device *comp_dev = DEVICE_DT_GET(DT_NODELABEL(comp));
 
 void k_sys_fatal_error_handler(unsigned int reason, const struct arch_esf *esf)
 {
@@ -68,6 +76,33 @@ static void bt_ready(int err)
 	}
 }
 
+static struct k_sem comp_sem;
+int64_t time_ref = 0;
+
+static void comp_callback(const struct device *dev, void *user_data)
+{
+	uint32_t *counter = (uint32_t*)(service_data + POS_ENERGY_WH_DATA);
+
+	(*counter)++;
+
+	int64_t delta = k_uptime_delta(&time_ref);
+	if (delta > 0) {
+		// each callback is 1Wh. Time delta is in ms.
+		// 1WH = 3600Ws = 3600*1000Wms
+		// We calculate the power in 0.01W, since BThome wants it.
+		int64_t power = (3600 * 1000 * 100) / delta;
+		uint8_t *power_ptr = service_data + POS_ENERGY_POWER_DATA;
+		*power_ptr = power & 0xFF;
+		power_ptr++;
+		*power_ptr = (power >> 8) & 0xFF;
+		power_ptr++;
+		*power_ptr = (power >> 16) & 0xFF;
+	}
+
+	// We are in interrupt context here. So no BLE update.
+	k_sem_give(&comp_sem);
+}
+
 int main(void)
 {
 	int ret;
@@ -83,6 +118,35 @@ int main(void)
 		return 0;
 	}
 
+	if (!gpio_is_ready_dt(&comp_en)) {
+		LOG_ERR("No comparator enable defined");
+		return -ENODEV;
+	}
+
+	ret = gpio_pin_configure_dt(&comp_en, GPIO_OUTPUT_ACTIVE);
+	if (ret < 0) {
+		LOG_ERR("Could not configure comparator enable GPIO.");
+		return 0;
+	}
+
+	if(!device_is_ready(comp_dev)) {
+		LOG_ERR("No comparator defined");
+		return -ENODEV;
+	}
+
+	k_sem_init(&comp_sem, 0, 1);
+	time_ref = k_uptime_get();
+
+	if(comparator_set_trigger_callback(comp_dev, comp_callback, NULL) != 0) {
+		LOG_ERR("Could not set comparator callback");
+		return -EIO;
+	}
+
+	if (comparator_set_trigger(comp_dev, COMPARATOR_TRIGGER_FALLING_EDGE) != 0) {
+		LOG_ERR("Could not set comparator trigger");
+		return -EIO;
+	}
+
 	/* Initialize the Bluetooth Subsystem */
 	ret = bt_enable(bt_ready);
 	if (ret) {
@@ -91,7 +155,12 @@ int main(void)
 	}
 
 	battery_init(ad, ARRAY_SIZE(ad), service_data + POS_BATTERY_DATA);
-	energy_init(light, ad, ARRAY_SIZE(ad), (uint32_t*) (service_data + POS_ENERGY_WH_DATA));
+
+	ret = pm_device_runtime_get(comp_dev);
+	if (ret) {
+		LOG_ERR("Could not get runtime for comparator device (%d)", ret);
+		return ret;
+	}
 
 	// short blink to signal everything is okay
 	for(int i = 0; i <3; i++) {
@@ -99,6 +168,15 @@ int main(void)
 		k_msleep(80);
 		gpio_pin_set_dt(&led, 0);
 		k_msleep(100);
+	}
+
+
+	while(true) {
+		k_sem_take(&comp_sem, K_FOREVER);
+		ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
+		if (ret) {
+			LOG_ERR("Failed to update advertising data (err %d)", ret);
+		}
 	}
 
 	return 0;
