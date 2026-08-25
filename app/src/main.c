@@ -81,23 +81,35 @@ int64_t time_ref = 0;
 
 static void comp_callback(const struct device *dev, void *user_data)
 {
+	int64_t now = k_uptime_get();
 	uint32_t *counter = (uint32_t*)(service_data + POS_ENERGY_WH_DATA);
+	int64_t delta;
+
+	// The LPCOMP seems to trigger on both edges, even though we have configured it for falling edge only. So we check the output here and only count if it is low.
+	if(comparator_get_output(dev)) {
+		return;
+	}
+
+	delta = now - time_ref;
+
+	if(delta < 10) {
+		return;
+	}
+
+	time_ref = now;
 
 	(*counter)++;
 
-	int64_t delta = k_uptime_delta(&time_ref);
-	if (delta > 0) {
-		// each callback is 1Wh. Time delta is in ms.
-		// 1WH = 3600Ws = 3600*1000Wms
-		// We calculate the power in 0.01W, since BThome wants it.
-		int64_t power = (3600 * 1000 * 100) / delta;
-		uint8_t *power_ptr = service_data + POS_ENERGY_POWER_DATA;
-		*power_ptr = power & 0xFF;
-		power_ptr++;
-		*power_ptr = (power >> 8) & 0xFF;
-		power_ptr++;
-		*power_ptr = (power >> 16) & 0xFF;
-	}
+	// each callback is 1Wh. Time delta is in ms.
+	// 1WH = 3600Ws = 3600*1000Wms
+	// We calculate the power in 0.01W, since BThome wants it.
+	int64_t power = (3600 * 1000 * 100) / delta;
+	uint8_t *power_ptr = service_data + POS_ENERGY_POWER_DATA;
+	*power_ptr = power & 0xFF;
+	power_ptr++;
+	*power_ptr = (power >> 8) & 0xFF;
+	power_ptr++;
+	*power_ptr = (power >> 16) & 0xFF;
 
 	// We are in interrupt context here. So no BLE update.
 	k_sem_give(&comp_sem);
@@ -106,6 +118,7 @@ static void comp_callback(const struct device *dev, void *user_data)
 int main(void)
 {
 	int ret;
+	uint32_t power;
 
 	if (!gpio_is_ready_dt(&led)) {
 		LOG_ERR("No LED defined");
@@ -170,9 +183,10 @@ int main(void)
 		k_msleep(100);
 	}
 
-
 	while(true) {
 		k_sem_take(&comp_sem, K_FOREVER);
+		power = service_data[POS_ENERGY_POWER_DATA] | (service_data[POS_ENERGY_POWER_DATA + 1] << 8) | (service_data[POS_ENERGY_POWER_DATA + 2] << 16);
+		LOG_INF("Comparator triggered, energy: %d Wh, power: %d W", *(uint32_t*)(service_data + POS_ENERGY_WH_DATA), power/100);
 		ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
 		if (ret) {
 			LOG_ERR("Failed to update advertising data (err %d)", ret);

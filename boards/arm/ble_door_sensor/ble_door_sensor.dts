@@ -71,14 +71,12 @@
 };
 
 &comp {
+		compatible = "nordic,nrf-lpcomp";
 		status = "okay";
-		main-mode = "SE";
 		psel = <NRF_COMP_AIN4>;
-		refsel = "INT_1V2";
-		sp-mode = "LOW";
-		th-up = <3>;
-		th-down = <1>;
-		isource = "DISABLED";
+		refsel = "AREF";
+		extrefsel = <NRF_COMP_AIN0>;
+		enable-hyst;
 };
 
 /* &comp {
