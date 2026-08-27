@@ -1,0 +1,52 @@
+# Copyright (c) 2024 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig BTHOME
+	bool "BTHome BLE support"
+	select BT_BROADCASTER
+	select BT_HCI_HOST
+	help
+	  Export BTHome sensors over BLE
+
+if BTHOME
+
+config BTHOME_STACK_SIZE
+	int "Update sensor thread stack size"
+	default 1024
+	help
+	  The stack size for the update sensor thread
+
+config BTHOME_SERVICE_UUID
+	hex "Service UUID"
+	default 0xfcd2
+	help
+	  The UUID of the BTHome service.
+
+config BTHOME_FAST_INTERVAL
+	hex "ADV interval for events"
+	default 0x0400
+	help
+	  The advertisement interval for events.
+	  default is 0x0400 * 0.625ms = 1024 * 0.625ms = 0.64 s
+
+config BTHOME_NORMAL_INTERVAL
+	hex "ADV interval for normal Operation"
+	default 0x4000
+	help
+	  The advertisement interval for normal operation.
+	  default is the same as BT_LE_ADV_INTERVAL_MAX, which is
+	  0x4000 * 0.625ms = 16384 * 0.625ms = 10.24 s
+	  It is used to conserve energy as much as possible, as data will
+	  probably not change rapidly.
+
+config BTHOME_BLINK_LED
+	bool "Blink LED on sensor updates"
+	default y
+	help
+	  Should led0 be used to blink if sensors are updated.
+
+module = BTHOME
+module-str = bthome
+source "subsys/logging/Kconfig.template.log_config"
+
+endif
