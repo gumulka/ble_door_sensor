@@ -3,6 +3,7 @@ module-str = bthome-sensors
 source "subsys/logging/Kconfig.template.log_config"
 
 rsource "Kconfig.light"
+rsource "Kconfig.battery"
 
 
 config BTHOME_ENERGY_METER_SENSOR

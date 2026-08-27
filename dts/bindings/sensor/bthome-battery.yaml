@@ -1,0 +1,24 @@
+# Copyright (c) 2026 Fabian Pflug
+# SPDX-License-Identifier: Apache-2.0
+
+description: Battery sensor for BTHome
+
+compatible: "bthome-battery"
+
+include: base.yaml
+
+properties:
+  io-channels:
+    required: true
+    description: |
+      ADC IO channel to measure the battery voltage.
+
+  voltage-full:
+    type: int
+    required: true
+    description: Voltage if the battery if full in mV
+
+  voltage-empty:
+    type: int
+    required: true
+    description: Voltage if the battery if empty in mV

@@ -1,0 +1,17 @@
+config BTHOME_BATTERY_SENSOR
+	bool "Battery sensor"
+	default y
+	depends on DT_HAS_BTHOME_BATTERY_ENABLED
+        select ADC
+	help
+	  Battery sensor for BTHome
+
+if BTHOME_BATTERY_SENSOR
+
+config BTHOME_BATTERY_SENSOR_UPDATE_INTERVAL
+	int "Update interval"
+	default 3600
+	help
+	  Interval between battery sensor updates in seconds.
+
+endif

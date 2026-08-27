@@ -1,3 +1,4 @@
 zephyr_library()
 zephyr_library_sources_ifdef(CONFIG_BTHOME_LIGHT_SENSOR light-sensor.c)
 zephyr_library_sources_ifdef(CONFIG_BTHOME_ENERGY_METER_SENSOR energy-tracker.c)
+zephyr_library_sources_ifdef(CONFIG_BTHOME_BATTERY_SENSOR battery.c)
