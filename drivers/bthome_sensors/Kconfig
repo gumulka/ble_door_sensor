@@ -1,0 +1,5 @@
+module = BTHOME_SENSORS
+module-str = bthome-sensors
+source "subsys/logging/Kconfig.template.log_config"
+
+rsource "Kconfig.light"

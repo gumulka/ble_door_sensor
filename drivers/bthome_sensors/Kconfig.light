@@ -1,0 +1,18 @@
+config BTHOME_LIGHT_SENSOR
+	bool "Light sensor"
+	default y
+	depends on DT_HAS_PHOTOTRANSISTOR_SPECIAL_ENABLED
+	select GPIO
+        select ADC
+	help
+	  My very own special Phototransistor configuration.
+
+if BTHOME_LIGHT_SENSOR
+
+config BTHOME_LIGHT_SENSOR_UPDATE_INTERVAL
+	int "Update interval"
+	default 600
+	help
+	  Interval between light sensor updates in seconds.
+
+endif
