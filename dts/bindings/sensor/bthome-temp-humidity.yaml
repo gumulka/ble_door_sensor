@@ -1,0 +1,23 @@
+# Copyright (c) 2026 Fabian Pflug
+# SPDX-License-Identifier: Apache-2.0
+
+description: Temperature & Humidity sensor for BTHome
+
+compatible: "bthome-temp-humidity"
+
+include: base.yaml
+
+properties:
+  sensor:
+    type: phandle
+    required: true
+    description: |
+      The temperature and humidity sensor device
+
+  include-temperature:
+    type: boolean
+    description: include the temperature as a BTHome output
+
+  include-humidity:
+    type: boolean
+    description: include the humidity as a BTHome output

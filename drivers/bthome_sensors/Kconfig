@@ -4,6 +4,7 @@ source "subsys/logging/Kconfig.template.log_config"
 
 rsource "Kconfig.light"
 rsource "Kconfig.battery"
+rsource "Kconfig.temp-humidity"
 
 
 config BTHOME_ENERGY_METER_SENSOR

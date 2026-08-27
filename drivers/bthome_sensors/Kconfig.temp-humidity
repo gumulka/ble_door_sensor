@@ -1,0 +1,17 @@
+config BTHOME_TEMP_HUMIDITY_SENSOR
+	bool "Temperature & Humidity sensor"
+	default y
+	depends on DT_HAS_BTHOME_TEMP_HUMIDITY_ENABLED
+        select SENSOR
+	help
+	  Temperature & Humidity sensor for BTHome
+
+if BTHOME_TEMP_HUMIDITY_SENSOR
+
+config BTHOME_TEMP_HUMIDITY_SENSOR_UPDATE_INTERVAL
+	int "Update interval"
+	default 1200
+	help
+	  Interval between Temperature & Humidity sensor updates in seconds.
+
+endif
