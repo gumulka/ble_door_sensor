@@ -1,0 +1,36 @@
+# Copyright (c) 2026 Fabian Pflug
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  A kind of special configuration for my device, where I use the comperator
+  to track LED blibs of my energy meter by physically modifying the
+  ble_door_sensor with a 1M and 22k resistor to have a reference. Not sure if
+  I ever upstream it, but it is kind of generic, except, that is has an enable
+  GPIO and is only used to feed the BTHome information.
+
+compatible: "energy-tracker-special"
+
+include: base.yaml
+
+properties:
+  comp:
+    type: phandle
+    required: true
+    description: |
+      The comperator device
+
+  enable-gpios:
+    type: phandle-array
+    required: true
+    description: |
+      GPIO to use to enable/disable the phototransistor. This GPIO is driven
+      active when the phototransistor is enabled and inactive when the
+      phototransistor is disabled.
+
+  include-calculated-power:
+    type: boolean
+    description: include the calculated power as a BTHome output
+
+  include-energy:
+    type: boolean
+    description: include the consumed energy as a BTHome output

@@ -3,3 +3,13 @@ module-str = bthome-sensors
 source "subsys/logging/Kconfig.template.log_config"
 
 rsource "Kconfig.light"
+
+
+config BTHOME_ENERGY_METER_SENSOR
+	bool "Energy meter"
+	default y
+	depends on DT_HAS_ENERGY_TRACKER_SPECIAL_ENABLED
+	select GPIO
+        select COMPARATOR
+	help
+	  My very own energy tracker using the light sensor with enable pin.
