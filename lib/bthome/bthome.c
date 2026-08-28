@@ -24,9 +24,9 @@ const struct bt_le_adv_param *slow_adv_param =
 	BT_LE_ADV_PARAM(BT_LE_ADV_OPT_USE_IDENTITY, CONFIG_BTHOME_NORMAL_INTERVAL / 2,
 			CONFIG_BTHOME_NORMAL_INTERVAL, NULL);
 
-// const struct bt_le_adv_param *fast_adv_param =
-// 	BT_LE_ADV_PARAM(BT_LE_ADV_OPT_USE_IDENTITY, CONFIG_BTHOME_FAST_INTERVAL / 2,
-// 			CONFIG_BTHOME_FAST_INTERVAL, NULL);
+const struct bt_le_adv_param *fast_adv_param =
+	BT_LE_ADV_PARAM(BT_LE_ADV_OPT_USE_IDENTITY, CONFIG_BTHOME_FAST_INTERVAL / 2,
+			CONFIG_BTHOME_FAST_INTERVAL, NULL);
 
 #ifdef CONFIG_BTHOME_BLINK_LED
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
@@ -36,9 +36,9 @@ static void update_ble_adv_data(void)
 {
 	int ret;
 	uint8_t *ptr;
-	// struct bt_le_ext_adv *adv = bt_le_adv_lookup_legacy();
 	bool event = false, prev_event;
 	LOG_INF("BLE Update Thread started!");
+	const struct bt_le_adv_param *param;
 	while (true) {
 #ifdef CONFIG_BTHOME_BLINK_LED
 		gpio_pin_set_dt(&led, 0);
@@ -64,26 +64,34 @@ static void update_ble_adv_data(void)
 
 		LOG_HEXDUMP_DBG(service_data, ptr - service_data, "Service data:");
 
-		/* Update the advertising data */
-		ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
-		if (ret) {
-			LOG_ERR("Failed to update advertising data (err %d)", ret);
-			continue;
+		if (event == prev_event) {
+			/* Update the advertising data */
+			ret = bt_le_adv_update_data(ad, ARRAY_SIZE(ad), NULL, 0);
+			if (ret) {
+				LOG_ERR("Failed to update advertising data (err %d)", ret);
+				continue;
+			}
+			LOG_DBG("Advertising data updated");
+		} else {
+			LOG_DBG("Event state changed, updating advertising parameters");
+			if (event) {
+				param = fast_adv_param;
+			} else {
+				param = slow_adv_param;
+			}
+			ret = bt_le_adv_stop();
+			if (ret) {
+				printk("Advertising failed to stop (err %d)\n", ret);
+				continue;
+			}
+			/* Start advertising */
+			ret = bt_le_adv_start(param, ad, ARRAY_SIZE(ad), NULL, 0);
+			if (ret) {
+				LOG_ERR("Advertising failed to start (err %d)", ret);
+				continue;
+			}
+			LOG_DBG("Restarted BT Advertising with new params and data.");
 		}
-		LOG_DBG("Advertising data updated");
-
-		// if (event != prev_event) {
-		// 	LOG_DBG("Event state changed, updating advertising parameters");
-		// 	if (event) {
-		// 		ret = bt_le_ext_adv_update_param(adv, fast_adv_param);
-		// 	} else {
-		// 		ret = bt_le_ext_adv_update_param(adv, slow_adv_param);
-		// 	}
-		// 	if (ret) {
-		// 		LOG_ERR("Failed to update advertising parameters (err %d)", ret);
-		// 		continue;
-		// 	}
-		// }
 	}
 }
 
@@ -134,7 +142,7 @@ static int bthome_init(void)
 	service_data[0] = (uint8_t)(CONFIG_BTHOME_SERVICE_UUID & 0xFF);
 	service_data[1] = (uint8_t)((CONFIG_BTHOME_SERVICE_UUID >> 8) & 0xFF);
 	service_data[2] =
-		BTHOME_INFO_VERSION | BTHOME_INFO_IRREGULAR_INTERVAL | BTHOME_INFO_UNENCRYPTED_DATA;
+		BTHOME_INFO_VERSION | BTHOME_INFO_REGULAR_INTERVAL | BTHOME_INFO_UNENCRYPTED_DATA;
 
 	uint8_t *ptr = service_data + 3;
 	STRUCT_SECTION_FOREACH(bthome_sensor, sensor) {
