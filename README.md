@@ -37,9 +37,30 @@ The application is different from the bootloader and is what is in need of
 updates/upgrades.
 
 ```bash
-west build -p -b ble_door_sensor app -- -DOVERLAY_CONFIG="output.conf"
+west build -p -b ble_door_sensor app
 west flash
 ```
+
+It is also possible to build the application with debug output for the UART
+on the backside of the board.
+This is disabled by default as it has a significant influence on battery.
+
+```bash
+west build -p -b ble_door_sensor app -- -DEXTRA_CONF_FILE=="debug.conf"
+```
+
+### Energy sensor
+
+When I wanted to integrate energy consumption into home assistant without
+having to order new hardware, I soldered two resistors to the board and
+converted it into an energy monitor.
+A 1M Ohm between VCC and AIN0 and 22k Ohm between AIN0 and GND.
+This can be configured with:
+
+```bash
+west build -p -b ble_door_sensor app -- -DEXTRA_DTC_OVERLAY_FILE=="energy-tracker.dtsi"
+```
+
 
 ## Update via BLE
 

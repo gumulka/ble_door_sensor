@@ -1,0 +1,36 @@
+#include <zephyr/dt-bindings/comparator/nrf-comp.h>
+
+/ {
+	model = "BLE energy tracker";
+
+	/delete-node/ ambient_light_sensor;
+	/delete-node/ temp_humidity;
+	/delete-node/ window;
+	/delete-node/ button;
+
+	energy_tracker {
+		compatible = "energy-tracker-special";
+		enable-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+		comp = <&comp>;
+		include-energy;
+		include-calculated-power;
+	};
+};
+
+&i2c0 {
+	status = "disabled";
+	/delete-node/ shtc3@70;
+};
+
+&adc {
+	/delete-node/ channel@4;
+};
+
+&comp {
+	compatible = "nordic,nrf-lpcomp";
+	status = "okay";
+	psel = <NRF_COMP_AIN4>;
+	refsel = "AREF";
+	extrefsel = <NRF_COMP_AIN0>;
+	enable-hyst;
+};
