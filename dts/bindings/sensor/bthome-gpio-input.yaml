@@ -1,0 +1,22 @@
+# Copyright (c) 2026 Fabian Pflug
+# SPDX-License-Identifier: Apache-2.0
+
+description: GPIO Input for binary sensor in BTHome
+
+compatible: "bthome-binary-gpio"
+
+include: base.yaml
+
+properties:
+  input-gpios:
+    type: phandle-array
+    required: true
+    description: |
+      GPIO to use for interrupt detection
+
+  bthome-sensor-type:
+    type: int
+    default: 0x2D
+    description: |
+      The sensor type acording to the bthome specification
+      Must be a binary sensor

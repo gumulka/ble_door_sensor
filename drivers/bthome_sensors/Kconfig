@@ -15,3 +15,12 @@ config BTHOME_ENERGY_METER_SENSOR
         select COMPARATOR
 	help
 	  My very own energy tracker using the light sensor with enable pin.
+
+
+config BTHOME_BINARY_GPIO_SENSOR
+	bool "Binary sensor from GPIO"
+	default y
+	depends on DT_HAS_BTHOME_BINARY_GPIO_ENABLED
+	select GPIO
+	help
+	  A GPIO based binary sensor.
