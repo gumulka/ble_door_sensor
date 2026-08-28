@@ -1,0 +1,38 @@
+config BTHOME_BUTTON_SENSOR
+	bool "Button sensor"
+	default y
+	depends on DT_HAS_BTHOME_BUTTON_ENABLED
+        select GPIO
+	help
+	  Button sensor for BTHome
+
+if BTHOME_BUTTON_SENSOR
+
+config BTHOME_BUTTON_SENSOR_EVENT_DURATION
+	int "event duration"
+	default 60
+	help
+	  How long to send the event data with BTHome before ideling again.
+	  Value is in seconds.
+
+config BTHOME_BUTTON_SENSOR_LONG_PRESS
+	int "long press"
+	default 2500
+	help
+	  How long to press the button before registering LONG_PRESS
+	  Value is in ms.
+
+config BTHOME_BUTTON_SENSOR_IDLE_TIME
+	int "idle time"
+	default 1000
+	help
+	  How long can the button be idle, before sending out the data.
+	  Value is in ms.
+
+	  If the time is really short, then pressing the button will have
+	  immediate effects on the BLE data, but double or tripple press
+	  become impossible. Long values result in a long time until the
+	  button press is propageted to BLE, but double or tripple presses
+	  become easier to do.
+
+endif

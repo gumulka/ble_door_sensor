@@ -4,6 +4,7 @@ source "subsys/logging/Kconfig.template.log_config"
 
 rsource "Kconfig.light"
 rsource "Kconfig.battery"
+rsource "Kconfig.button"
 rsource "Kconfig.temp-humidity"
 
 
