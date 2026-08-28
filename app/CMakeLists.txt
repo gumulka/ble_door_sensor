@@ -3,4 +3,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(app LANGUAGES C)
 
-target_sources(app PRIVATE src/main.c src/light-sensor.c src/environment-sensors.c src/interrupt-sensors.c)
+target_sources(app PRIVATE src/main.c)

@@ -24,9 +24,6 @@
 
 	aliases {
 		led0 = &led0;
-		sw0 = &button;
-		ambient-temp0 = &shtc3;
-		ambient-light0 = &light_sensor;
 		watchdog0 = &wdt0;
 	};
 
@@ -38,29 +35,36 @@
 		};
 	};
 
-	buttons {
-		compatible = "gpio-keys";
-		hall_sensor: hall_sensor {
-			gpios = <&gpio0 11 GPIO_ACTIVE_LOW>;
-			label = "Hall sensor";
-			zephyr,code = <INPUT_KEY_0>;
-		};
-		button: button0 {
-			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
-			label = "User Button";
-			zephyr,code = <INPUT_KEY_1>;
-		};
-	};
-
-	light_sensor: ambient_light_sensor {
+	ambient_light_sensor {
 		compatible = "phototransistor-special";
 		enable-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
 		io-channels = <&adc 4>;
 		pulldown-ohm = <1000>;
 	};
 
-	zephyr,user {
+	battery_voltage {
+		compatible = "bthome-battery";
 		io-channels = <&adc 1>;
+		voltage-full = <3300>;
+		voltage-empty = <2500>;
+	};
+
+	temp_humidity {
+		compatible = "bthome-temp-humidity";
+		sensor = <&shtc3>;
+		include-temperature;
+		include-humidity;
+	};
+
+	window {
+		compatible = "bthome-binary-gpio";
+		input-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+		bthome-sensor-type = <0x2D>;
+	};
+
+	button {
+		compatible = "bthome-button";
+		input-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
 	};
 };
 
